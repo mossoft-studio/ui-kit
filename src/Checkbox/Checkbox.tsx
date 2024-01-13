@@ -1,6 +1,6 @@
 import React from "react";
-import ErrorText from "./ErrorText";
 import { FieldError } from "react-hook-form";
+import ErrorText from "../ErrorText/ErrorText";
 
 type Props = {
   onChange: (value: any) => void;
