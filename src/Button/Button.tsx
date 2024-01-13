@@ -1,11 +1,14 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, useEffect, useState } from "react";
 import styles from "./button.module.css";
 import Icon from "../Icon/Icon";
+import Loader from "../Loader/Loader";
 
 type Props = {
   onClick: () => void;
   className?: string;
   disabled?: boolean;
+  isLoading?: boolean;
+  loadType?: "1C" | "";
   variant:
     | "primary"
     | "secondary"
@@ -23,10 +26,33 @@ const Button: FC<PropsWithChildren<Props>> = ({
   children,
   onClick,
   className,
-  disabled,
+  loadType,
+  isLoading,
   variant,
   icon,
+  disabled,
 }) => {
+  const [loadMessage, setLoadMessage] = useState("");
+
+  const handleLoadMessage = () => {
+    if (isLoading && loadType === "1C") {
+      setLoadMessage("Отправляем запрос в 1С");
+      setTimeout(
+        () =>
+          loadType === "1C"
+            ? setLoadMessage("1С обрабатывает документы")
+            : setLoadMessage(""),
+        4000
+      );
+    }
+  };
+
+  useEffect(() => {
+    loadType === "1C" && handleLoadMessage();
+  }, [isLoading]);
+
+  console.log(loadMessage);
+
   const buttonClasses = [
     styles.button,
     className,
@@ -44,8 +70,12 @@ const Button: FC<PropsWithChildren<Props>> = ({
     .join(" ");
 
   return (
-    <button disabled={disabled} className={buttonClasses} onClick={onClick}>
-      {icon && (
+    <button
+      disabled={disabled || isLoading}
+      className={buttonClasses}
+      onClick={onClick}
+    >
+      {icon && !isLoading && (
         <Icon
           name={icon}
           className={
@@ -55,7 +85,12 @@ const Button: FC<PropsWithChildren<Props>> = ({
           }
         />
       )}
-      {children}
+
+      {isLoading ? (
+        <Loader text={loadType === "1C" ? loadMessage : undefined} />
+      ) : (
+        children
+      )}
     </button>
   );
 };
