@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
-import styles from "./button.module.css";
+import styles from "./button.css";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 
@@ -89,7 +89,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       {isLoading ? (
         <Loader text={loadType === "1C" ? loadMessage : undefined} />
       ) : (
-        children
+      123
       )}
     </button>
   );
