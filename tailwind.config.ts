@@ -6,7 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@mossoft/ui-kit/src/**/*.{js,jsx,ts,tsx}"
+    "./node_modules/@mossoft/ui-kit/src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     colors: {
@@ -28,15 +28,15 @@ const config: Config = {
       },
     },
     screens: {
-      sm: '480px',
-      md: '1023px',
-      lg: '976px',
-      xl: '1440px',
+      sm: "480px",
+      md: "1023px",
+      lg: "976px",
+      xl: "1440px",
     },
     container: {
       // TODO: Check container width and maybe set it like that
       screens: {
-        sm: '100%',
+        sm: "100%",
       },
     },
   },
