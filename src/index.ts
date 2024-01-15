@@ -1,7 +1,8 @@
-import Button from "./Button/Button";
-import Icon from "./Icon/Icon";
-import Loader from './Loader/Loader'
+
 import { useTheme } from '../tailwind.config';
+import Button from './components/Button/Button';
+import Icon from './components/Icon/Icon';
+import Loader from './components/Loader/Loader';
 
 
 export { Button, Icon ,Loader, useTheme };

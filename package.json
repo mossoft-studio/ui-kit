@@ -3,10 +3,10 @@
   "version": "0.1.5",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "test": "jest",
-    "start": "PORT=8080 react-scripts start",
-    "build": "react-scripts build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "pub": "webpack && npm version patch && npm publish"
@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/css-modules": "^1.0.5",
+    "autoprefixer": "^10.4.16",
     "react": "*",
     "react-hook-form": "^7.49.3",
     "react-number-format": "*"
@@ -46,7 +47,7 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.6.8",
     "style-loader": "^0.23.1",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.4.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
