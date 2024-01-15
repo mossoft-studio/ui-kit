@@ -1,13 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/*.{js,jsx,ts,tsx}",
-    "./node_modules/@mossoft/ui-kit/src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
       "main-green": "#2DDB92",
