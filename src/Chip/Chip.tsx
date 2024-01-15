@@ -9,6 +9,7 @@ type Props = {
 };
 
 const Chips: React.FC<Props> = ({ items, disable, color }) => {
+
   return (
     <div className="flex flex-wrap gap-[6px]">
       {items.map((item) => (
