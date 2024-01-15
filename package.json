@@ -2,9 +2,9 @@
   "name": "@mossoft/ui-kit",
   "version": "0.1.7",
   "description": "Mossoft ui kit",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "test": "jest",
     "storybook": "storybook dev -p 6006",
