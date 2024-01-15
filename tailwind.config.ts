@@ -1,75 +1,64 @@
-import { Row } from "@/redux/app/app.api";
-import { SelectOptions } from "@/types";
-import moment from "moment";
+import type { Config } from "tailwindcss";
 
-export const rowsTranfom = (rows: Row[]) => {
-  let s: any = null;
-
-  const arr = rows
-    ?.map((row: any) => row.number)
-    ?.sort((a, b) => a - b)
-    ?.reduce((p: string[], c: any, i: number, arr) => {
-      if (!s) s = c;
-      if (c + 1 !== arr[i + 1]) {
-        p.push(s === c ? s : `${s}-${c}`);
-        s = null;
-      }
-
-      return p;
-    }, []);
-
-  return arr.join(", ");
-};
-
-export const numberWithSpaces = (value: number) =>
-  value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-export const createOptionsFromTranslations = <T extends string>(
-  translations: {
-    [key in T]: string;
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    colors: {
+      "main-green": "#2DDB92",
+      "danger-red": "#FF4242",
+      "dark-green": "#176242",
+      "light-gray": "#F5F5F5",
+      "dark-gray": "#999999",
+      yellow: "#FFCA7C",
+      white: "#FFFFFF",
+      black: "#000000",
+      transparent: "transparent",
+    },
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+    screens: {
+      sm: '480px',
+      md: '1023px',
+      lg: '976px',
+      xl: '1440px',
+    },
+    container: {
+      // TODO: Check container width and maybe set it like that
+      screens: {
+        sm: '100%',
+      },
+    },
   },
-  keyToExclude?: T
-): SelectOptions[] =>
-  translations &&
-  (Object.keys(translations) as T[]).map((key) => ({
-    label: translations[key],
-    value: key,
-  }));
-
-export const numbersRounding = (value: number) =>
-  value > 1000000 ? `${Math.floor(value / 1000000)} млн` : value;
-
-export const transformTimeDuration = (value: string) => {
-  const duration = moment.duration(value);
-  const hours = Math.floor(duration.asHours());
-  const minutes = duration.minutes();
-
-  if (value !== null && (minutes !== 0 || hours !== 0)) {
-    if (hours === 0) {
-      return `${minutes} мин.`;
-    } else if (minutes === 0) {
-      return `${hours} ч.`;
-    } else {
-      return `${hours} ч. ${minutes} мин.`;
-    }
-  } else {
-    return "-";
-  }
+  plugins: [
+    // @ts-ignore
+    function ({ addVariant }) {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
+    // @ts-ignore
+    function ({ addUtilities }) {
+      addUtilities({
+        ".no-scrollbar": {
+          /* IE and Edge */
+          "-ms-overflow-style": "none",
+          /* Firefox */
+          "scrollbar-width": "none",
+          /* Safari and Chrome */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      });
+    },
+  ],
 };
-
-export const lowestCommonDenominator = (a: number, b: number): number => {
-  return Math.floor(a / b);
-};
-
-export const mushroomSizeTransorm = (
-  data: { name: string; id: number }[]
-): string => {
-  return `${data
-    .find((item) => item)
-    ?.name.split("-")
-    .find((item) => item)}-${
-    data[data.length - 1].name.split("-")[
-      data[data.length - 1].name.split("-").length - 1
-    ]
-  }`;
-};
+export default config;
