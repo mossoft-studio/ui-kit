@@ -47,11 +47,7 @@ const Checkbox: React.FC<Props> = ({
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
           type="checkbox"
-          className={
-            className
-              ? className
-              : "appearance-none flex-shrink-0 relative bg-transparent h-[23px] w-[23px] transition-all cursor-pointer rounded-full inline-flex text-center justify-center items-center border border-dark-gray checked:bg-main-green checked:border-main-green after:h-5 after:w-5 after:absolute checked:after:bg-[url('/icons/checked.svg')]"
-          }
+          className={className}
         />
       </label>
       {error && <ErrorText error={error} />}
