@@ -1,4 +1,5 @@
-export { useTheme } from '../tailwind.config';
-export * from './Loader/Loader';
-export * from './Button/Button';
-export * from './Icon/Icon';
+import { useTheme } from '../tailwind.config';
+import Button from './Button/Button';
+import Icon from './Icon/Icon';
+import Loader from './Loader/Loader';
+export { Button, Icon, Loader, useTheme };
