@@ -1,5 +1,4 @@
 
-'use client';
 export { useTheme } from '../tailwind.config';
 export * from './Loader/Loader'
 export * from './Button/Button'
