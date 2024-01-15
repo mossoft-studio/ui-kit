@@ -51,7 +51,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
     loadType === "1C" && handleLoadMessage();
   }, [isLoading]);
 
-  console.log(loadMessage);
+  console.log(styles);
 
   const buttonClasses = [
     styles.button,
