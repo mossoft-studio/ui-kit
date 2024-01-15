@@ -3,8 +3,7 @@
   "version": "0.1.8",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/src/index.d.ts",
+  "module": "./index.js",
   "scripts": {
     "test": "jest",
     "storybook": "storybook dev -p 6006",
