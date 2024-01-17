@@ -1,8 +1,9 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
-import styles from "./button.module.css";
+import styles from "./button.css";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 import "../index.css";
+import "./button.css";
 
 type Props = {
   onClick: () => void;

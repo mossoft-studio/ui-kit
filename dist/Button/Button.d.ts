@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import "../index.css";
+import "./button.css";
 type Props = {
     onClick: () => void;
     className?: string;

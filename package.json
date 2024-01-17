@@ -16,12 +16,15 @@
   "dependencies": {
     "@types/css-modules": "^1.0.5",
     "autoprefixer": "^10.4.16",
+    "i": "^0.3.7",
     "mini-css-extract-plugin": "^2.7.7",
+    "npm": "^10.3.0",
     "postcss-cli": "^11.0.0",
     "react": "*",
     "react-hook-form": "^7.49.3",
     "react-number-format": "*",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "scss-loader": "^0.0.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.8",
