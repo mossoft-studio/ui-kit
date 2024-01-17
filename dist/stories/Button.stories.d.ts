@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import type { StoryObj } from "@storybook/react";
+import "../index.css";
 declare const meta: {
     title: string;
     component: import("react").FC<import("react").PropsWithChildren<{
