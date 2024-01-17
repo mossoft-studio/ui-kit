@@ -1,3 +1,4 @@
+import "./index.css";
 import Button from "./Button/Button";
 import Icon from "./Icon/Icon";
 import Loader from "./Loader/Loader";

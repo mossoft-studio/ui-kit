@@ -73,8 +73,8 @@ const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       disabled={disabled || isLoading}
-      className={buttonClasses}
       onClick={onClick}
+      className={buttonClasses}
     >
       {icon && !isLoading && (
         <Icon

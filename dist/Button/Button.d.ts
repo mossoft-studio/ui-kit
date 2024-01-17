@@ -1,5 +1,4 @@
 import { FC, PropsWithChildren } from "react";
-import "../index.css";
 type Props = {
     onClick: () => void;
     className?: string;

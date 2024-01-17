@@ -20,7 +20,8 @@
     "postcss-cli": "^11.0.0",
     "react": "*",
     "react-hook-form": "^7.49.3",
-    "react-number-format": "*"
+    "react-number-format": "*",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.8",
