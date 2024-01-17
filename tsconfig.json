@@ -7,14 +7,20 @@
         "esModuleInterop": true,
         "lib": [
             "es2015",
-            "dom"
+            "dom",
+            "esnext"
         ],
         "outDir": "./dist/",
         "sourceMap": true,
         "declaration": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
     },
     "include": [
-        "src"
+        "src",
     ],
     "exclude": [
         "node_modules",
