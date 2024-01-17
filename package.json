@@ -9,7 +9,7 @@
     "build": "postcss ./src/index.css -o dist/styles.css",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "pub": "webpack && npm version patch && npm publish"
+    "pub": "npm version patch && npm publish"
   },
   "author": "",
   "license": "MIT",
