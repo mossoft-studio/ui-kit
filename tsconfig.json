@@ -1,29 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonJS",
-        "jsx": "react",
-        "strict": true,
-        "esModuleInterop": true,
-        "lib": [
-            "es2015",
-            "dom",
-            "esnext"
-        ],
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "declaration": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ]
-    },
-    "include": [
-        "src",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonJS",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [
+      "es2015",
+      "dom"
     ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "declaration": true,
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
