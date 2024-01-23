@@ -17,19 +17,17 @@
   "license": "MIT",
   "dependencies": {
     "@types/css-modules": "^1.0.5",
-    "i": "^0.3.7",
-    "mini-css-extract-plugin": "^2.7.7",
-    "next": "^14.0.4",
-    "npm": "^10.3.0",
     "postcss-cli": "^11.0.0",
     "react-hook-form": "^7.49.3",
     "react-number-format": "*",
-    "rollup": "^4.9.6",
-    "rollup-plugin-postcss": "^4.0.2",
     "scss-loader": "^0.0.1",
-    "tsdx": "^0.14.1"
+    "tsdx": "^0.14.1",
+    "@hello-pangea/dnd": "^16.5.0"
   },
   "devDependencies": {
+    "rollup": "^4.9.6",
+    "tsdx": "^0.14.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "@hello-pangea/dnd": "^16.5.0",
     "@storybook/addon-essentials": "^7.6.8",
     "@storybook/addon-interactions": "^7.6.8",
@@ -54,10 +52,7 @@
     "style-loader": "^0.23.1",
     "tailwindcss": "^3.4.1",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.3.3",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "typescript": "^5.3.3"
   },
   "files": [
     "dist"
