@@ -1,4 +1,4 @@
-import "./index.css";
+import "./tailwind.css";
 
 import Button from "./Button/Button";
 import Icon from "./Icon/Icon";

@@ -1,5 +1,5 @@
 import { CSSProperties, FC } from "react";
-type Props = {
+declare type Props = {
     style?: CSSProperties;
     text?: string;
 };

@@ -5,13 +5,13 @@
   "main": "./dist/index.js",
   "module": "./index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "start": "tsdx watch",
+    "build": "tsdx build",
     "test": "jest",
+    "pub": "npm version patch && npm publish",
     "build-css": "postcss ./src/index.css -o dist/styles.css",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "pub": "npm version patch && npm publish"
   },
   "author": "",
   "license": "MIT",
@@ -25,8 +25,10 @@
     "react": "*",
     "react-hook-form": "^7.49.3",
     "react-number-format": "*",
+    "rollup": "^4.9.6",
     "rollup-plugin-postcss": "^4.0.2",
-    "scss-loader": "^0.0.1"
+    "scss-loader": "^0.0.1",
+    "tsdx": "^0.14.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.8",

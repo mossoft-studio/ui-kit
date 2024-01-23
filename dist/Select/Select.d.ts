@@ -1,11 +1,11 @@
 import React, { SelectHTMLAttributes } from "react";
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
-export type SelectOptions = {
+export declare type SelectOptions = {
     value: any;
     label: string;
 };
-type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
-type Props = {
+declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
+declare type Props = {
     options: SelectOptions[];
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;

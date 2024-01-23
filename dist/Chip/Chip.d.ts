@@ -1,5 +1,5 @@
 import React from "react";
-type Props = {
+declare type Props = {
     items: {
         title: string | number;
     }[];
