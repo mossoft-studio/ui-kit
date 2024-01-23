@@ -9,6 +9,7 @@ module.exports = {
                 },
                 extensions: ['.css'],  // Corrected spelling here
                 minimize: true,
+                modules: true,
                 inject: { insertAt: 'top' },
             })
         );
