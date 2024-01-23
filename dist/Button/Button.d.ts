@@ -5,7 +5,7 @@ declare type Props = {
     disabled?: boolean;
     isLoading?: boolean;
     loadType?: "1C" | "";
-    variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-yellow" | "small-secondary" | "small-danger" | "tab";
+    variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-secondary" | "small-danger" | "tab";
     icon?: string;
 };
 declare const Button: FC<PropsWithChildren<Props>>;
