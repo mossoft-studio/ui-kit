@@ -11,7 +11,7 @@
     "pub": "npm version patch && npm publish",
     "build-css": "postcss ./src/index.css -o dist/styles.css",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build"
   },
   "author": "",
   "license": "MIT",
