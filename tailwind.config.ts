@@ -1,10 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@mossoft/ui-kit/**/*.js",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     colors: {
       "main-green": "#2DDB92",
@@ -31,7 +28,6 @@ const config: Config = {
       xl: "1440px",
     },
     container: {
-      // TODO: Check container width and maybe set it like that
       screens: {
         sm: "100%",
       },
