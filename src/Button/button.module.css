@@ -3,7 +3,7 @@
 }
 
 .primary_button {
-  @apply text-white bg-main-green;
+  @apply text-white bg-primary;
 }
 
 .secondary_button {
