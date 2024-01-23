@@ -1,7 +1,6 @@
 import { FC, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
-import styles from "./input.module.css";
 import React from "react";
 import ErrorText from "../ErrorText/ErrorText";
 
@@ -58,9 +57,7 @@ const Input: FC<InputProps> = ({
           allowEmptyFormatting
           type={type as "password" | "tel" | "text"}
           mask="_"
-          className={`${!!fieldState?.error && errorClass} ${className} ${
-            styles.input
-          }`}
+          className={`${!!fieldState?.error && errorClass} ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
           format={format}
           {...rest}
         />
@@ -76,7 +73,7 @@ const Input: FC<InputProps> = ({
               field?.onChange(values.value.replace("_", "")?.toString())
             }
             value={field?.value?.toString()}
-            className={`${className} ${styles.input}`}
+            className={`${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
             {...rest}
             {...MaskRules["number"]}
           />
@@ -91,9 +88,7 @@ const Input: FC<InputProps> = ({
           {...field}
           {...rest}
           type={type}
-          className={`${!!fieldState?.error && errorClass} ${className} ${
-            styles.input
-          }`}
+          className={`${!!fieldState?.error && errorClass} ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
         />
       )}
       <ErrorText error={fieldState?.error} />

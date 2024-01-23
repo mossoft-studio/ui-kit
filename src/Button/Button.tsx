@@ -1,5 +1,4 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
-import styles from "./button.module.css";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 
@@ -15,7 +14,6 @@ type Props = {
     | "danger"
     | "link"
     | "small-primary"
-    | "small-yellow"
     | "small-secondary"
     | "small-danger"
     | "tab";
@@ -51,20 +49,17 @@ const Button: FC<PropsWithChildren<Props>> = ({
     loadType === "1C" && handleLoadMessage();
   }, [isLoading]);
 
-  console.log(styles);
-
   const buttonClasses = [
-    styles.button,
+    "flex items-center justify-center py-[14px] px-[6px] w-full h-fit rounded-[30px] md:rounded-[15px] text-base md:text-lg uppercase font-medium border border-transparent active:opacity-[0.6] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-[0.6]",
     className,
     variant === "primary" && "text-white bg-primary",
-    variant === "secondary" && styles.secondary_button,
-    variant === "small-secondary" && styles.small_secondary_button,
-    variant === "small-primary" && styles.small_primary_button,
-    variant === "small-danger" && styles.small_danger_button,
-    variant === "danger" && styles.danger_button,
-    variant === "small-yellow" && styles.small_yellow_button,
-    variant === "link" && styles.link_button,
-    variant === "tab" && styles.tab_button,
+    variant === "secondary" && "text-primary bg-primary bg-opacity-10",
+    variant === "small-secondary" && "!normal-case !py-[6px] !text-sm text-primary bg-primary bg-opacity-20",
+    variant === "small-primary" && "!normal-case !py-[6px] !text-sm text-white bg-primary",
+    variant === "small-danger" && "!normal-case !py-[6px] !text-sm text-danger bg-danger bg-opacity-10",
+    variant === "danger" && "text-danger bg-danger bg-opacity-10",
+    variant === "link" && "text-primary !text-sm !py-0 !px-1 !normal-case !w-fit",
+    variant === "tab" && "bg-primary text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit",
   ]
     .filter(Boolean)
     .join(" ");
@@ -76,7 +71,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       className={buttonClasses}
     >
       {isLoading ? (
-        <Loader text={loadType === "1C" ? loadMessage : undefined} />
+        <Loader color="primary" text={loadType === "1C" ? loadMessage : undefined} />
       ) : (
         children
       )}
