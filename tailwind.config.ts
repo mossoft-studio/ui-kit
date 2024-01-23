@@ -4,6 +4,7 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     colors: {
+      primary: "#2DDB92",
       "main-green": "#2DDB92",
       "danger-red": "#FF4242",
       "dark-green": "#176242",
