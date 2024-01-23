@@ -19,7 +19,7 @@ type Props = {
     | "small-secondary"
     | "small-danger"
     | "tab";
-  icon?: "plus" | "start" | "pause" | "stop" | "scan";
+  icon?: string;
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -75,21 +75,20 @@ const Button: FC<PropsWithChildren<Props>> = ({
       onClick={onClick}
       className={buttonClasses}
     >
+      {isLoading ? (
+        <Loader text={loadType === "1C" ? loadMessage : undefined} />
+      ) : (
+        children
+      )}
       {icon && !isLoading && (
         <Icon
           name={icon}
           className={
             variant.includes("small")
-              ? "w-4 h-4 child:w-4 child:h-4 mr-1"
-              : "w-5 h-5 child:w-5 child:h-5 mr-2"
+              ? "w-4 h-4 child:w-4 child:h-4"
+              : "w-5 h-5 child:w-5 child:h-5"
           }
         />
-      )}
-
-      {isLoading ? (
-        <Loader text={loadType === "1C" ? loadMessage : undefined} />
-      ) : (
-        children
       )}
     </button>
   );

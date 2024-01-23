@@ -44,7 +44,7 @@ const Input: FC<InputProps> = ({
   decimalScale = 1,
   ...rest
 }) => {
-  const errorClass = "!border-danger-red";
+  const errorClass = "!border-danger";
 
   return (
     <>

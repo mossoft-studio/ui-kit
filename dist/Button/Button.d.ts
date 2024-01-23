@@ -6,7 +6,7 @@ declare type Props = {
     isLoading?: boolean;
     loadType?: "1C" | "";
     variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-yellow" | "small-secondary" | "small-danger" | "tab";
-    icon?: "plus" | "start" | "pause" | "stop" | "scan";
+    icon?: string;
 };
 declare const Button: FC<PropsWithChildren<Props>>;
 export default Button;

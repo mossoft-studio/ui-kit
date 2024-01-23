@@ -4,10 +4,8 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     colors: {
-      primary: "#2DDB92",
-      "main-green": "#2DDB92",
-      "danger-red": "#FF4242",
-      "dark-green": "#176242",
+      "primary": "#2DDB92",
+      "danger": "#FF4242",
       "light-gray": "#F5F5F5",
       "dark-gray": "#999999",
       yellow: "#FFCA7C",
@@ -27,11 +25,6 @@ const config: Config = {
       md: "1023px",
       lg: "976px",
       xl: "1440px",
-    },
-    container: {
-      screens: {
-        sm: "100%",
-      },
     },
   },
   plugins: [

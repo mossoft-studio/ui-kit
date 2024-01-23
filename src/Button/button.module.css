@@ -7,33 +7,29 @@
 }
 
 .secondary_button {
-  @apply text-main-green bg-main-green bg-opacity-10;
+  @apply text-primary bg-primary bg-opacity-10;
 }
 
 .small_secondary_button {
-  @apply !normal-case !py-[6px] !text-sm text-main-green bg-main-green bg-opacity-20;
+  @apply !normal-case !py-[6px] !text-sm text-primary bg-primary bg-opacity-20;
 }
 
 .small_primary_button {
-  @apply !normal-case !py-[6px] !text-sm text-white bg-main-green;
+  @apply !normal-case !py-[6px] !text-sm text-white bg-primary;
 }
 
 .small_danger_button {
-  @apply !normal-case !py-[6px] !text-sm text-danger-red bg-danger-red bg-opacity-10;
+  @apply !normal-case !py-[6px] !text-sm text-danger bg-danger bg-opacity-10;
 }
 
 .danger_button {
-  @apply text-danger-red bg-danger-red bg-opacity-10;
+  @apply text-danger bg-danger bg-opacity-10;
 }
 
-.small_yellow_button {
-  @apply !normal-case !py-[6px] !text-sm text-yellow bg-yellow bg-opacity-10;
-}
-
-.link_button {
-  @apply text-main-green !text-sm !py-0 !px-1 !normal-case !w-fit;
+.link_button { 
+  @apply text-primary !text-sm !py-0 !px-1 !normal-case !w-fit;
 }
 
 .tab_button {
-  @apply bg-main-green text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit;
+  @apply bg-primary text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit;
 }

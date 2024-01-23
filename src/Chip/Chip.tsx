@@ -18,7 +18,7 @@ const Chips: React.FC<Props> = ({ items, disable, color }) => {
             <div
               key={item.title}
               className={`${
-                disable ? "bg-dark-gray" : color ? color : "bg-main-green"
+                disable ? "bg-dark-gray" : color ? color : "bg-primary"
               } rounded-[15px] px-[10px] py-[5px] text-sm text-white h-fit`}
             >
               {item.title}
