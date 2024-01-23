@@ -6,9 +6,10 @@ import ErrorText from "./ErrorText/ErrorText";
 import Select from "./Select/Select";
 import Textarea from "./Textarea/Textarea";
 import Input from "./Input/Input";
-import Chip from "./Chip/Chip";
+import Chips from "./Chips/Chips";
 import Table from "./Table/Table";
 import Search from "./Search/Search";
+import Wrapper from "./Wrapper/Wrapper";
 import useDebounce from "./hooks/useDebounce";
 import { useScroll } from "./hooks/useScroll";
 
@@ -22,8 +23,9 @@ export {
   ErrorText,
   Select,
   Textarea,
+  Wrapper,
   Input,
-  Chip,
+  Chips,
   useScroll,
   Search,
   Table,

@@ -8,6 +8,7 @@ export declare type HeaderData = {
 declare type Props = {
     headerData: HeaderData[];
     data?: any[];
+    className: string;
     isDragDisabled?: boolean;
     haveLinks: boolean;
     onRowClick?: (id: string) => void;
