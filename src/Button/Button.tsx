@@ -56,7 +56,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   const buttonClasses = [
     styles.button,
     className,
-    variant === "primary" && styles.primary_button,
+    variant === "primary" && "text-white bg-primary",
     variant === "secondary" && styles.secondary_button,
     variant === "small-secondary" && styles.small_secondary_button,
     variant === "small-primary" && styles.small_primary_button,
