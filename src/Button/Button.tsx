@@ -1,6 +1,5 @@
-"use client";
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
-import styles from "./button.module.css";
+import styles from "./Button.css";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 
