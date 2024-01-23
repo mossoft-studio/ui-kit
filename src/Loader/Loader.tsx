@@ -4,7 +4,7 @@ import styles from "./loader.module.css";
 type Props = {
   style?: CSSProperties;
   text?: string;
-  color: string;
+  color?: string;
 };
 
 const Loader: FC<Props> = ({ style, text, color }) => {

@@ -7,6 +7,25 @@ import Select from "./Select/Select";
 import Textarea from "./Textarea/Textarea";
 import Input from "./Input/Input";
 import Chip from "./Chip/Chip";
+import Table from "./Table/Table";
+import Search from "./Search/Search";
+import useDebounce from "./hooks/useDebounce";
+import { useScroll } from "./hooks/useScroll";
+
 import "./tailwind.css";
 
-export { Button, Icon, Loader, Checkbox, ErrorText, Select, Textarea, Input, Chip };
+export {
+  Button,
+  Icon,
+  Loader,
+  Checkbox,
+  ErrorText,
+  Select,
+  Textarea,
+  Input,
+  Chip,
+  useScroll,
+  Search,
+  Table,
+  useDebounce,
+};
