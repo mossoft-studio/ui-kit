@@ -4,6 +4,9 @@
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "module": "./index.js",
+  "repository": {
+    "url": "https://github.com/mossoft-studio/ui-kit"
+  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
