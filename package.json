@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "module": "./index.js",
   "repository": {
+    "type": "git",
     "url": "https://github.com/mossoft-studio/ui-kit"
   },
   "scripts": {
@@ -66,6 +67,9 @@
     "next",
     "ui"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
