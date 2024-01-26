@@ -1,6 +1,6 @@
 {
   "name": "@mossoft/ui-kit",
-  "version": "0.1.40",
+  "version": "0.1.42",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "module": "./index.js",
@@ -59,6 +59,12 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "js",
+    "react",
+    "next",
+    "ui"
   ],
   "browserslist": {
     "production": [
