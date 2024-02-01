@@ -1,9 +1,13 @@
 {
   "name": "@mossoft/ui-kit",
-  "version": "0.1.41",
+  "version": "0.1.42",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "module": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mossoft-studio/ui-kit"
+  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
@@ -57,6 +61,15 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "js",
+    "react",
+    "next",
+    "ui"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
