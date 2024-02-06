@@ -6,7 +6,7 @@ type Props = {
   }[];
   disable?: boolean;
   color?: string | null;
-  style: CSSProperties;
+  style?: CSSProperties;
 };
 
 const Chips: React.FC<Props> = ({ items, disable, color, style }) => {

@@ -5,7 +5,7 @@ declare type Props = {
     }[];
     disable?: boolean;
     color?: string | null;
-    style: CSSProperties;
+    style?: CSSProperties;
 };
 declare const Chips: React.FC<Props>;
 export default Chips;
