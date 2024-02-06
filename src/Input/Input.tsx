@@ -15,6 +15,7 @@ type InputProps = {
   decimalScale?: number;
   defaultValue?: string | number | null;
   postfix?: string;
+  parentClassName?: string;
 } & InputAttributes;
 
 export const MaskRules: {
@@ -40,6 +41,7 @@ const Input: FC<InputProps> = ({
   postfix,
   className,
   format,
+  parentClassName,
   decimalScale = 1,
   ...rest
 }) => {
@@ -65,7 +67,7 @@ const Input: FC<InputProps> = ({
         <div
           className={`${
             !!fieldState?.error && errorClass
-          } flex items-center justify-between w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] transition-all duration-300`}
+          } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] transition-all duration-300`}
         >
           <NumericFormat
             decimalScale={decimalScale}

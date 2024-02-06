@@ -5,18 +5,20 @@ import Icon from "../Icon/Icon";
 type Props = {
   placeholder?: string;
   value: string;
+  parentClassName?: string;
   setValue: (value: string) => void;
 };
 
-const Search: React.FC<Props> = ({ placeholder, setValue, value }) => {
+const Search: React.FC<Props> = ({ placeholder, setValue, value, parentClassName }) => {
   const [localValue, setLocalValue] = useState<any>(value);
   const debounced = useDebounce(localValue, 300);
 
   useEffect(() => {
     setValue?.(debounced);
   }, [debounced]);
+  
   return (
-    <div className="relative h-fit w-full">
+    <div className={`relative h-fit w-full ${parentClassName}`}>
       <Icon
         name="search"
         className="w-5 h-5 md:w-[25px] md:h-[25px] absolute left-[10px] md:left-[15px] top-0 bottom-0 my-auto"
