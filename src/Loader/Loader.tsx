@@ -4,13 +4,12 @@ import styles from "./loader.module.css";
 type Props = {
   style?: CSSProperties;
   text?: string;
-  color?: string;
 };
 
-const Loader: FC<Props> = ({ style, text, color }) => {
+const Loader: FC<Props> = ({ style, text }) => {
   return (
     <div className="flex flex-row items-center justify-center gap-3">
-      <span className={`${styles.loader} border-${color}`} style={style}></span>
+      <span className={`${styles.loader} border-primary`} style={style}></span>
       {text && <span className="text-base">{text}</span>}
     </div>
   );
