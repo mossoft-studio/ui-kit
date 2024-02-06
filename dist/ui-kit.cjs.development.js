@@ -224,11 +224,13 @@ const Input = ({
 const Chips = ({
   items,
   disable,
-  color
+  color,
+  style
 }) => {
   return React__default.createElement("div", {
     className: "flex flex-wrap gap-[6px]"
   }, items.map(item => React__default.createElement(React__default.Fragment, null, item.title ? React__default.createElement("div", {
+    style: style,
     key: item.title,
     className: `${disable ? "bg-dark-gray" : color ? color : "bg-primary"} rounded-[15px] px-[10px] py-[5px] text-sm text-white h-fit`
   }, item.title) : React__default.createElement(React__default.Fragment, null))));
