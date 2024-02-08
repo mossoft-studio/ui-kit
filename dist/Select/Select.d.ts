@@ -11,6 +11,7 @@ declare type Props = {
     fieldState?: ControllerFieldState;
     className?: string;
     placeholder?: string;
+    parentClassName?: string;
 } & SelectAttributes;
 declare const Select: React.FC<Props>;
 export default Select;

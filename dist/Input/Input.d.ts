@@ -10,6 +10,7 @@ declare type InputProps = {
     decimalScale?: number;
     defaultValue?: string | number | null;
     postfix?: string;
+    parentClassName?: string;
 } & InputAttributes;
 export declare const MaskRules: {
     [key in "number"]?: {
