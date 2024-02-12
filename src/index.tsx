@@ -10,6 +10,8 @@ import Chips from "./Chips/Chips";
 import Table from "./Table/Table";
 import Search from "./Search/Search";
 import Wrapper from "./Wrapper/Wrapper";
+import List from "./List/List";
+import MultiSelectSearch from "./MultiSelectSearch/MultiSelectSearch";
 import useDebounce from "./hooks/useDebounce";
 import { useScroll } from "./hooks/useScroll";
 
@@ -23,7 +25,9 @@ export {
   ErrorText,
   Select,
   Textarea,
+  List,
   Wrapper,
+  MultiSelectSearch,
   Input,
   Chips,
   useScroll,

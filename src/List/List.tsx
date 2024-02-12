@@ -18,7 +18,7 @@ const List: React.FC<Props> = ({ data, className, onClick }) => {
   const activeItemClass: string =
     "bg-white after:border-main-green child:text-black [&>svg]:fill-main-green";
 
-  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [activeItem] = useState<string | null>(null);
 
   return (
     <Wrapper className={`md:h-full flex ${className}`}>

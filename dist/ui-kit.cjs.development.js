@@ -8,6 +8,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var reactNumberFormat = require('react-number-format');
 var dnd = require('@hello-pangea/dnd');
+var tailwindMerge = require('tailwind-merge');
 
 const Icon = ({
   name,
@@ -381,6 +382,82 @@ const Search = ({
   }));
 };
 
+const List = ({
+  data,
+  className,
+  onClick
+}) => {
+  const activeItemClass = "bg-white after:border-main-green child:text-black [&>svg]:fill-main-green";
+  const [activeItem] = React.useState(null);
+  return React__default.createElement(Wrapper, {
+    className: `md:h-full flex ${className}`
+  }, React__default.createElement("div", {
+    className: "md:overflow-y-auto w-full grid gap-1"
+  }, data.map(item => React__default.createElement("div", {
+    key: item.value,
+    onClick: () => onClick(item.value),
+    className: `relative flex gap-4 transition-all duration-300 items-center px-[10px] py-[10px] md:py-[15px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-main-green after:rotate-45 after:transition-all after:duration-300 cursor-pointer rounded-[15px] ${activeItem === item.value && activeItemClass}`
+  }, React__default.createElement("span", {
+    className: " text-sm text-black font-normal transition-all duration-300"
+  }, item.label), item.row && React__default.createElement("span", {
+    className: "text-sm text-dark-gray font-normal transition-all duration-300 m-auto"
+  }, item.row)))));
+};
+
+const MultiSelectSearch = ({
+  options,
+  field,
+  className,
+  ...inputProps
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  const debouncedSearch = useDebounce(search, 100);
+  const inputRef = React.useRef(null);
+  React.useEffect(() => {
+    const handleClickOutside = event => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const handleSelect = value => {
+    field?.onChange(Array.isArray(field?.value) && field?.value.includes(value) && field?.value.filter(item => item !== value) || Array.isArray(field?.value) && [...field?.value, value] || [value]);
+  };
+  return React__default.createElement("div", {
+    ref: inputRef,
+    className: "relative"
+  }, React__default.createElement("div", {
+    className: "h-fit w-full"
+  }, isOpen && React__default.createElement(Icon, {
+    name: "search",
+    className: "w-5 h-5 absolute right-[7px] top-0 bottom-0 my-auto !text-dark"
+  }), React__default.createElement("input", Object.assign({}, inputProps, {
+    ref: inputRef,
+    className: tailwindMerge.twMerge(`bg-[#f6f7fa] rounded-[20px] focus:outline-none`, className),
+    value: isOpen && search || !isOpen && Array.isArray(field?.value) && field?.value.map(val => options.find(option => option.value === val)?.label).join(", ") || "",
+    onFocus: () => setIsOpen(true),
+    placeholder: isOpen ? "Поиск..." : "Выбрать",
+    onChange: e => setSearch(e.target.value),
+    readOnly: !isOpen
+  }))), isOpen && React__default.createElement("ul", {
+    className: "absolute z-10 w-full bg-white shadow-lg max-h-40 mt-1 rounded-md overflow-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent"
+  }, options.filter(option => option.label.toLowerCase().includes(debouncedSearch.toLowerCase())).map(option => React__default.createElement("li", {
+    onClick: () => handleSelect(option.value),
+    key: option.value,
+    className: "px-4 py-2 hover:bg-gray-100 cursor-pointer"
+  }, React__default.createElement("div", {
+    className: "flex flex-row"
+  }, option.icon && React__default.createElement(Icon, {
+    name: option.icon
+  }), React__default.createElement("button", {
+    className: `w-full text-left !p-0 !text-sm text-dark !font-normal ${Array.isArray(field?.value) && field?.value?.includes(option.value) && "text-primary"}`,
+    value: option.value
+  }, option.label))))));
+};
+
 const useScroll = () => {
   const elRef = React.useRef(null);
   const executeScroll = () => elRef.current?.scrollIntoView({
@@ -400,7 +477,9 @@ exports.Chips = Chips;
 exports.ErrorText = ErrorText;
 exports.Icon = Icon;
 exports.Input = Input;
+exports.List = List;
 exports.Loader = Loader;
+exports.MultiSelectSearch = MultiSelectSearch;
 exports.Search = Search;
 exports.Select = Select;
 exports.Table = DraggableList;
