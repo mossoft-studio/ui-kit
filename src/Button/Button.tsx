@@ -54,12 +54,17 @@ const Button: FC<PropsWithChildren<Props>> = ({
     className,
     variant === "primary" && "text-white bg-primary",
     variant === "secondary" && "text-primary bg-primary bg-opacity-10",
-    variant === "small-secondary" && "!normal-case !py-[6px] !text-sm text-primary bg-primary bg-opacity-20",
-    variant === "small-primary" && "!normal-case !py-[6px] !text-sm text-white bg-primary",
-    variant === "small-danger" && "!normal-case !py-[6px] !text-sm text-danger bg-danger bg-opacity-10",
+    variant === "small-secondary" &&
+      "!normal-case !py-[6px] !text-sm text-primary bg-primary bg-opacity-20",
+    variant === "small-primary" &&
+      "!normal-case !py-[6px] !text-sm text-white bg-primary",
+    variant === "small-danger" &&
+      "!normal-case !py-[6px] !text-sm text-danger bg-danger bg-opacity-10",
     variant === "danger" && "text-danger bg-danger bg-opacity-10",
-    variant === "link" && "text-primary !text-sm !py-0 !px-1 !normal-case !w-fit",
-    variant === "tab" && "bg-primary text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit",
+    variant === "link" &&
+      "text-primary !text-sm !py-0 !px-1 !normal-case !w-fit",
+    variant === "tab" &&
+      "bg-primary text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit",
   ]
     .filter(Boolean)
     .join(" ");
@@ -71,7 +76,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       className={buttonClasses}
     >
       {isLoading ? (
-        <Loader color="primary" text={loadType === "1C" ? loadMessage : undefined} />
+        <Loader text={loadType === "1C" ? loadMessage : undefined} />
       ) : (
         children
       )}
