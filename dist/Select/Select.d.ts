@@ -6,7 +6,7 @@ export declare type SelectOptions = {
 };
 declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 declare type Props = {
-    options: SelectOptions[];
+    options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
     className?: string;
