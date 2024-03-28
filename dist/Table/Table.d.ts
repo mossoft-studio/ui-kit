@@ -11,7 +11,7 @@ declare type Props = {
     className: string;
     isDragDisabled?: boolean;
     haveLinks: boolean;
-    onRowClick?: (id: string) => void;
+    onRowClick?: (id: any) => void;
     isLoading?: boolean;
     itemClickKey?: string;
     setSort?: (value: string) => void;
