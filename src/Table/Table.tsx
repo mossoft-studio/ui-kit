@@ -129,12 +129,10 @@ const DraggableList: FC<Props> = ({
                         draggableId={rowData?.id?.toString()}
                         index={index}
                       >
-                        {(provided, snapshot) => {
+                        {(provided) => {
                           const style: CSSProperties = {
                             ...provided.draggableProps.style, //Тут стили , которые применяются при перемещении
                           };
-                          console.log(provided.draggableProps.style);
-                          console.log(snapshot.isDragging); // булеан - тру когда перемещаешь
 
                           return (
                             <tr
