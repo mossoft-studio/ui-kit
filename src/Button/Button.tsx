@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 

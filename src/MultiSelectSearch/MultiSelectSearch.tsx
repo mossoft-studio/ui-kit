@@ -3,7 +3,6 @@ import { ControllerRenderProps } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import useDebounce from "../hooks/useDebounce";
 import Icon from "../Icon/Icon";
-import React from "react";
 
 type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 

@@ -1,10 +1,10 @@
-import React, { CSSProperties, FC, useEffect, useState } from "react";
 import {
   DragDropContext,
-  Droppable,
   Draggable,
+  Droppable,
   DropResult,
 } from "@hello-pangea/dnd";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import Wrapper from "../Wrapper/Wrapper";
 

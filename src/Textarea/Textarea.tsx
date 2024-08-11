@@ -1,4 +1,4 @@
-import React, { FC, TextareaHTMLAttributes } from "react";
+import  { FC, TextareaHTMLAttributes } from "react";
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;

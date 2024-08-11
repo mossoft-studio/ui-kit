@@ -1,7 +1,6 @@
 import { FC, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
-import React from "react";
 import ErrorText from "../ErrorText/ErrorText";
 
 type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
