@@ -1,12 +1,12 @@
 {
   "name": "@mossoft/ui-kit",
-  "version": "0.1.56",
+  "version": "0.1.57",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./index.js",
   "scripts": {
-   "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json",
     "test": "jest",
     "pub": "npm version patch && npm publish",
     "build-css": "postcss ./src/index.css -o dist/styles.css",
