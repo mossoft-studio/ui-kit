@@ -1,6 +1,6 @@
 {
   "name": "@mossoft/ui-kit",
-  "version": "0.1.59",
+  "version": "0.1.57",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,15 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@hello-pangea/dnd": "^16.5.0",
+    "@types/css-modules": "^1.0.5",
+    "postcss-cli": "^11.0.0",
+    "react-hook-form": "^7.49.3",
+    "react-number-format": "*",
+    "scss-loader": "^0.0.1",
+    "tailwind-merge": "^2.5.0"
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^1",
     "@hello-pangea/dnd": "^16.5.0",
