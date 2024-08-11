@@ -1,6 +1,6 @@
 {
   "name": "@mossoft/ui-kit",
-  "version": "0.1.60",
+  "version": "0.1.61",
   "description": "Mossoft ui kit",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
