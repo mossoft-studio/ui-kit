@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC } from "react";
-import styles from "./loader.module.css";
+// import styles from "./loader.module.css";
 
 type Props = {
   style?: CSSProperties;
@@ -9,7 +9,7 @@ type Props = {
 const Loader: FC<Props> = ({ style, text }) => {
   return (
     <div className="flex flex-row items-center justify-center gap-3">
-      <span className={`${styles.loader} !border-b-primary`} style={style}></span>
+      <span  style={style}></span>
       {text && <span className="text-base">{text}</span>}
     </div>
   );
