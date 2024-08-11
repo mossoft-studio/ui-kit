@@ -1,6 +1,6 @@
 import React from "react";
 import { FieldError } from "react-hook-form";
-declare type Props = {
+type Props = {
     onChange: (value: any) => void;
     title: string;
     secondaryTitle?: string;

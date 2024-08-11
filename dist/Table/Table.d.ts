@@ -1,11 +1,11 @@
 import { FC } from "react";
-export declare type HeaderData = {
+export type HeaderData = {
     name: string[];
     title: string;
     unit?: string;
     transform?: (value: any, i: number) => any;
 };
-declare type Props = {
+type Props = {
     headerData: HeaderData[];
     data?: any[];
     className: string;

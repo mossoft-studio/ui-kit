@@ -1,2 +1,2 @@
 /// <reference types="react" />
-export declare const useScroll: () => ((() => void | undefined) | import("react").RefObject<HTMLDivElement>)[];
+export declare const useScroll: () => (import("react").RefObject<HTMLDivElement> | (() => void | undefined))[];

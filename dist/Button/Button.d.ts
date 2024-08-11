@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-declare type Props = {
+type Props = {
     onClick: () => void;
     className?: string;
     disabled?: boolean;

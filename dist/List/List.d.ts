@@ -1,10 +1,10 @@
 import React from "react";
-declare type ListItems = {
+type ListItems = {
     label: string;
     value: any;
     row?: string;
 };
-declare type Props = {
+type Props = {
     data: ListItems[];
     className?: string;
     onClick: (value: any) => void;

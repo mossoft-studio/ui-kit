@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-declare type Props = {
+type Props = {
     items: {
         title: string | number;
     }[];

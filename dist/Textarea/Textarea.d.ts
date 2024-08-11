@@ -1,7 +1,7 @@
 import { FC, TextareaHTMLAttributes } from "react";
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
-declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
-declare type Props = {
+type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
+type Props = {
     className?: string;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;

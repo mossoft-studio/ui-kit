@@ -1,5 +1,5 @@
 import React from "react";
-declare type Props = {
+type Props = {
     placeholder?: string;
     value: string;
     parentClassName?: string;

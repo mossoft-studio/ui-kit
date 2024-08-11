@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FieldError } from "react-hook-form";
-declare type Props = {
+type Props = {
     error: FieldError | undefined;
 };
 declare const ErrorText: FC<Props>;

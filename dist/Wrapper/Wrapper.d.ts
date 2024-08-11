@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-declare type Props = {
+type Props = {
     className?: string;
 };
 declare const Wrapper: React.FC<PropsWithChildren<Props>>;

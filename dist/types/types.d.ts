@@ -1,13 +1,13 @@
-export declare type SwitchOption = {
+export type SwitchOption = {
     value: any;
     label: string;
 };
-export declare type ListItems = {
+export type ListItems = {
     label: string;
     value: any;
     row?: string;
 };
-export declare type HeaderButton = {
+export type HeaderButton = {
     icon: string;
     href: string;
 };
