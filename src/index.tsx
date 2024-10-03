@@ -1,37 +1,39 @@
 import Button from "./Button/Button";
-import Icon from "./Icon/Icon";
-import Loader from "./Loader/Loader";
 import Checkbox from "./Checkbox/Checkbox";
-import ErrorText from "./ErrorText/ErrorText";
-import Select from "./Select/Select";
-import Textarea from "./Textarea/Textarea";
-import Input from "./Input/Input";
 import Chips from "./Chips/Chips";
-import Table from "./Table/Table";
-import Search from "./Search/Search";
-import Wrapper from "./Wrapper/Wrapper";
+import ErrorText from "./ErrorText/ErrorText";
+import Icon from "./Icon/Icon";
+import Input from "./Input/Input";
 import List from "./List/List";
+import Loader from "./Loader/Loader";
 import MultiSelectSearch from "./MultiSelectSearch/MultiSelectSearch";
+import Search from "./Search/Search";
+import Select from "./Select/Select";
+import Table from "./Table/Table";
+import Textarea from "./Textarea/Textarea";
+import Wrapper from "./Wrapper/Wrapper";
 import useDebounce from "./hooks/useDebounce";
 import { useScroll } from "./hooks/useScroll";
+import { HeaderData } from "./Table/Table";
 
 import "./tailwind.css";
 
 export {
   Button,
-  Icon,
-  Loader,
   Checkbox,
-  ErrorText,
-  Select,
-  Textarea,
-  List,
-  Wrapper,
-  MultiSelectSearch,
-  Input,
   Chips,
-  useScroll,
+  ErrorText,
+  Icon,
+  Input,
+  List,
+  Loader,
+  MultiSelectSearch,
   Search,
+  Select,
   Table,
+  Textarea,
   useDebounce,
+  useScroll,
+  Wrapper,
 };
+export type { HeaderData };
