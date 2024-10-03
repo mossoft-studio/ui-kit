@@ -1,5 +1,3 @@
-/// <reference types="react" />
-
 import { ControllerFieldState } from 'react-hook-form';
 import { ControllerRenderProps } from 'react-hook-form';
 import { CSSProperties } from 'react';
