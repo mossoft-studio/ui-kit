@@ -13,20 +13,20 @@ import { TextareaHTMLAttributes } from 'react';
 
 export declare const Button: FC<PropsWithChildren<Props>>;
 
-export declare const Checkbox: default_2.FC<Props_4>;
+export declare const Checkbox: default_2.FC<Props_2>;
 
-export declare const Chips: default_2.FC<Props_11>;
+export declare const Chips: default_2.FC<Props_3>;
 
-export declare const ErrorText: FC<Props_5>;
+export declare const ErrorText: FC<Props_4>;
 
-declare type HeaderData = {
+export declare type HeaderData = {
     name: string[];
     title: string;
     unit?: string;
     transform?: (value: any, i: number) => any;
 };
 
-export declare const Icon: default_2.FC<Props_2>;
+export declare const Icon: default_2.FC<Props_5>;
 
 export declare const Input: FC<InputProps>;
 
@@ -44,9 +44,9 @@ declare type InputProps = {
     defaultValue?: string | number | null;
     postfix?: string;
     parentClassName?: string;
-} & InputAttributes_2;
+} & InputAttributes;
 
-export declare const List: default_2.FC<Props_8>;
+export declare const List: default_2.FC<Props_6>;
 
 declare type ListItems = {
     label: string;
@@ -54,9 +54,9 @@ declare type ListItems = {
     row?: string;
 };
 
-export declare const Loader: FC<Props_3>;
+export declare const Loader: FC<Props_7>;
 
-export declare const MultiSelectSearch: FC<Props_10>;
+export declare const MultiSelectSearch: FC<Props_8>;
 
 declare type Options = {
     label: string;
@@ -75,29 +75,15 @@ declare type Props = {
 };
 
 declare type Props_10 = {
-    options: Options[];
+    options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
+    fieldState?: ControllerFieldState;
     className?: string;
     placeholder?: string;
-} & InputAttributes;
+    parentClassName?: string;
+} & SelectAttributes;
 
 declare type Props_11 = {
-    items: {
-        title: string | number;
-    }[];
-    disable?: boolean;
-    color?: string | null;
-    style?: CSSProperties;
-};
-
-declare type Props_12 = {
-    placeholder?: string;
-    value: string;
-    parentClassName?: string;
-    setValue: (value: string) => void;
-};
-
-declare type Props_13 = {
     headerData: HeaderData[];
     data?: any[];
     className: string;
@@ -110,17 +96,17 @@ declare type Props_13 = {
     sort?: string;
 };
 
-declare type Props_2 = {
-    name: string;
+declare type Props_12 = {
+    className?: string;
+    field?: ControllerRenderProps<any, any>;
+    fieldState?: ControllerFieldState;
+} & TextareaAttributes;
+
+declare type Props_13 = {
     className?: string;
 };
 
-declare type Props_3 = {
-    style?: CSSProperties;
-    text?: string;
-};
-
-declare type Props_4 = {
+declare type Props_2 = {
     onChange: (value: any) => void;
     title: string;
     secondaryTitle?: string;
@@ -132,38 +118,52 @@ declare type Props_4 = {
     error?: FieldError;
 };
 
-declare type Props_5 = {
+declare type Props_3 = {
+    items: {
+        title: string | number;
+    }[];
+    disable?: boolean;
+    color?: string | null;
+    style?: CSSProperties;
+};
+
+declare type Props_4 = {
     error: FieldError | undefined;
 };
 
+declare type Props_5 = {
+    name: string;
+    className?: string;
+};
+
 declare type Props_6 = {
-    options: SelectOptions[] | undefined;
-    field?: ControllerRenderProps<any, any>;
-    fieldState?: ControllerFieldState;
-    className?: string;
-    placeholder?: string;
-    parentClassName?: string;
-} & SelectAttributes;
-
-declare type Props_7 = {
-    className?: string;
-    field?: ControllerRenderProps<any, any>;
-    fieldState?: ControllerFieldState;
-} & TextareaAttributes;
-
-declare type Props_8 = {
     data: ListItems[];
     className?: string;
     onClick: (value: any) => void;
 };
 
-declare type Props_9 = {
-    className?: string;
+declare type Props_7 = {
+    style?: CSSProperties;
+    text?: string;
 };
 
-export declare const Search: default_2.FC<Props_12>;
+declare type Props_8 = {
+    options: Options[];
+    field?: ControllerRenderProps<any, any>;
+    className?: string;
+    placeholder?: string;
+} & InputAttributes_2;
 
-export declare const Select: default_2.FC<Props_6>;
+declare type Props_9 = {
+    placeholder?: string;
+    value: string;
+    parentClassName?: string;
+    setValue: (value: string) => void;
+};
+
+export declare const Search: default_2.FC<Props_9>;
+
+export declare const Select: default_2.FC<Props_10>;
 
 declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 
@@ -172,9 +172,9 @@ declare type SelectOptions = {
     label: string;
 };
 
-export declare const Table: FC<Props_13>;
+export declare const Table: FC<Props_11>;
 
-export declare const Textarea: FC<Props_7>;
+export declare const Textarea: FC<Props_12>;
 
 declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
@@ -182,6 +182,6 @@ export declare function useDebounce(value: string, delay: number): string;
 
 export declare const useScroll: () => (RefObject<HTMLDivElement> | (() => void | undefined))[];
 
-export declare const Wrapper: default_2.FC<PropsWithChildren<Props_9>>;
+export declare const Wrapper: default_2.FC<PropsWithChildren<Props_13>>;
 
 export { }
