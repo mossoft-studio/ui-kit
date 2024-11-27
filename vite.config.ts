@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
-import dts from 'vite-plugin-dts'
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   resolve: {
@@ -16,7 +16,7 @@ export default defineConfig({
       fileName: "mossoft-ui",
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", /^react\/.*/, "react-dom", /react-dom\/.*/],
       output: {
         globals: {
           react: "React",
