@@ -7,8 +7,8 @@ const meta = {
   component: Select,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
-  argTypes: {color: {control: 'color'}},
-  args: { onChange: fn(), placeholder: 'Select' },
+  argTypes: { color: { control: "color" } },
+  args: { onChange: fn(), placeholder: "Select" },
 } satisfies Meta<typeof Select>;
 
 export default meta;
@@ -17,9 +17,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-  options: [
-  {label: 'Option 1', value: '1'}, 
-  {label: 'Option 2', value: '2'}
+    fieldState: {
+      error: undefined,
+      invalid: false,
+      isTouched: false,
+      isDirty: false,
+      isValidating: false,
+    },
+    options: [
+      { label: "Option 1", value: "1" },
+      { label: "Option 2", value: "2" },
     ],
   },
 };

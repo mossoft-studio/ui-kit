@@ -1,5 +1,9 @@
 import React, { SelectHTMLAttributes } from "react";
-import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  UseFormStateReturn,
+} from "react-hook-form";
 import ErrorText from "../ErrorText/ErrorText";
 
 export type SelectOptions = {
@@ -12,10 +16,11 @@ type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 type Props = {
   options: SelectOptions[] | undefined;
   field?: ControllerRenderProps<any, any>;
-  fieldState?: ControllerFieldState;
+  fieldState: ControllerFieldState;
   className?: string;
   placeholder?: string;
   parentClassName?: string;
+  formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
 const Select: React.FC<Props> = ({
@@ -25,8 +30,10 @@ const Select: React.FC<Props> = ({
   field,
   fieldState,
   parentClassName,
+  formState,
   ...rest
 }) => {
+  const { error } = fieldState;
   return (
     <>
       <div
@@ -47,7 +54,7 @@ const Select: React.FC<Props> = ({
           ))}
         </select>
       </div>
-      <ErrorText error={fieldState?.error} />
+      <ErrorText error={error} />
     </>
   );
 };

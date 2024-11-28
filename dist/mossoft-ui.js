@@ -3230,28 +3230,32 @@ const Op = ({
   field: n,
   fieldState: o,
   parentClassName: i,
-  ...a
-}) => /* @__PURE__ */ fe(Mt, { children: [
-  /* @__PURE__ */ V(
-    "div",
-    {
-      className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${i}`,
-      children: /* @__PURE__ */ fe(
-        "select",
-        {
-          ...n,
-          ...a,
-          className: `w-full cursor-pointer appearance-none bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
-          children: [
-            /* @__PURE__ */ V("option", { value: "", selected: !0, children: e }),
-            t == null ? void 0 : t.map((s, l) => /* @__PURE__ */ V("option", { value: s.value, className: "text-black", children: s.label }, l))
-          ]
-        }
-      )
-    }
-  ),
-  /* @__PURE__ */ V(Rr, { error: o == null ? void 0 : o.error })
-] });
+  formState: a,
+  ...s
+}) => {
+  const { error: l } = o;
+  return /* @__PURE__ */ fe(Mt, { children: [
+    /* @__PURE__ */ V(
+      "div",
+      {
+        className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${i}`,
+        children: /* @__PURE__ */ fe(
+          "select",
+          {
+            ...n,
+            ...s,
+            className: `w-full cursor-pointer appearance-none bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
+            children: [
+              /* @__PURE__ */ V("option", { value: "", selected: !0, children: e }),
+              t == null ? void 0 : t.map((d, f) => /* @__PURE__ */ V("option", { value: d.value, className: "text-black", children: d.label }, f))
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ V(Rr, { error: l })
+  ] });
+};
 function gt(e) {
   "@babel/helpers - typeof";
   return gt = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {

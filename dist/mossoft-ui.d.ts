@@ -80,10 +80,11 @@ declare type Props = {
 declare type Props_10 = {
     options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
-    fieldState?: ControllerFieldState;
+    fieldState: ControllerFieldState;
     className?: string;
     placeholder?: string;
     parentClassName?: string;
+    formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
 declare type Props_11 = {
