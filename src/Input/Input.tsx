@@ -1,5 +1,9 @@
 import { FC, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
-import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  UseFormStateReturn,
+} from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import ErrorText from "../ErrorText/ErrorText";
 
@@ -9,12 +13,14 @@ type InputProps = {
   type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
   placeholder?: string;
   field?: ControllerRenderProps<any, any>;
-  fieldState?: ControllerFieldState;
+  fieldState: ControllerFieldState;
   format?: string;
   decimalScale?: number;
   defaultValue?: string | number | null;
   postfix?: string;
   parentClassName?: string;
+  label?: string;
+  formState?: UseFormStateReturn<any>;
 } & InputAttributes;
 
 export const MaskRules: {
@@ -42,12 +48,15 @@ const Input: FC<InputProps> = ({
   format,
   parentClassName,
   decimalScale = 1,
+  formState,
+  label,
   ...rest
 }) => {
   const errorClass = "!border-danger";
-
+  const { error } = fieldState;
   return (
-    <>
+    <label>
+      {label && <span className="text-primary">{label}</span>}
       {format ? (
         <PatternFormat
           onValueChange={(values) => {
@@ -59,15 +68,15 @@ const Input: FC<InputProps> = ({
           type={type as "password" | "tel" | "text"}
           mask="_"
           className={`${
-            !!fieldState?.error && errorClass
-          } ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
+            error ? errorClass : ""
+          } w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
           format={format}
           {...rest}
         />
       ) : type === "number" ? (
         <div
           className={`${
-            !!fieldState?.error && errorClass
+            error ? errorClass : ""
           } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] transition-all duration-300`}
         >
           <NumericFormat
@@ -76,7 +85,7 @@ const Input: FC<InputProps> = ({
               field?.onChange(values.value.replace("_", "")?.toString())
             }
             value={field?.value?.toString()}
-            className={`${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
+            className={`w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
             {...rest}
             {...MaskRules["number"]}
           />
@@ -92,12 +101,12 @@ const Input: FC<InputProps> = ({
           {...rest}
           type={type}
           className={`${
-            !!fieldState?.error ? errorClass : ""
-          } ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
+            error ? errorClass : ""
+          } w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
-      <ErrorText error={fieldState?.error} />
-    </>
+      <ErrorText error={error} />
+    </label>
   );
 };
 

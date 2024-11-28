@@ -10,6 +10,7 @@ import { PropsWithChildren } from 'react';
 import { RefObject } from 'react';
 import { SelectHTMLAttributes } from 'react';
 import { TextareaHTMLAttributes } from 'react';
+import { UseFormStateReturn } from 'react-hook-form';
 
 export declare const Button: FC<PropsWithChildren<Props>>;
 
@@ -38,12 +39,14 @@ declare type InputProps = {
     type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
     placeholder?: string;
     field?: ControllerRenderProps<any, any>;
-    fieldState?: ControllerFieldState;
+    fieldState: ControllerFieldState;
     format?: string;
     decimalScale?: number;
     defaultValue?: string | number | null;
     postfix?: string;
     parentClassName?: string;
+    label?: string;
+    formState?: UseFormStateReturn<any>;
 } & InputAttributes;
 
 export declare const List: default_2.FC<Props_6>;
