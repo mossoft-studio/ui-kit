@@ -20,6 +20,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   parentClassName?: string;
+  label?: string;
   formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
@@ -31,11 +32,13 @@ const Select: React.FC<Props> = ({
   fieldState,
   parentClassName,
   formState,
+  label,
   ...rest
 }) => {
   const { error } = fieldState;
   return (
-    <>
+    <label>
+      {label && <span className="text-primary">{label}</span>}
       <div
         className={`relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${parentClassName}`}
       >
@@ -55,7 +58,7 @@ const Select: React.FC<Props> = ({
         </select>
       </div>
       <ErrorText error={error} />
-    </>
+    </label>
   );
 };
 

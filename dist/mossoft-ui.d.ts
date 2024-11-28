@@ -84,6 +84,7 @@ declare type Props_10 = {
     className?: string;
     placeholder?: string;
     parentClassName?: string;
+    label?: string;
     formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
