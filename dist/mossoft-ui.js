@@ -3248,7 +3248,7 @@ const Op = ({
             ...l,
             className: `w-full cursor-pointer appearance-none bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
             children: [
-              /* @__PURE__ */ V("option", { value: "", selected: !0, children: e }),
+              /* @__PURE__ */ V("option", { value: "", defaultValue: "", selected: !0, children: e }),
               t == null ? void 0 : t.map((f, c) => /* @__PURE__ */ V("option", { value: f.value, className: "text-black", children: f.label }, c))
             ]
           }
