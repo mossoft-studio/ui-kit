@@ -19,6 +19,7 @@ type InputProps = {
   defaultValue?: string | number | null;
   postfix?: string;
   parentClassName?: string;
+  labelClassName?: string;
   label?: string;
   formState?: UseFormStateReturn<any>;
 } & InputAttributes;
@@ -47,6 +48,7 @@ const Input: FC<InputProps> = ({
   className,
   format,
   parentClassName,
+  labelClassName,
   decimalScale = 1,
   formState,
   label,
@@ -56,7 +58,9 @@ const Input: FC<InputProps> = ({
   const { error } = fieldState;
   return (
     <label>
-      {label && <span className="text-primary">{label}</span>}
+      {label && (
+        <span className={`text-primary ${labelClassName}`}>{label}</span>
+      )}
       {format ? (
         <PatternFormat
           onValueChange={(values) => {
@@ -69,7 +73,7 @@ const Input: FC<InputProps> = ({
           mask="_"
           className={`${
             error ? errorClass : ""
-          } w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          } w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
           format={format}
           {...rest}
         />
@@ -77,7 +81,7 @@ const Input: FC<InputProps> = ({
         <div
           className={`${
             error ? errorClass : ""
-          } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] transition-all duration-300`}
+          } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -85,7 +89,7 @@ const Input: FC<InputProps> = ({
               field?.onChange(values.value.replace("_", "")?.toString())
             }
             value={field?.value?.toString()}
-            className={`w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+            className={`w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
             {...rest}
             {...MaskRules["number"]}
           />
@@ -102,7 +106,7 @@ const Input: FC<InputProps> = ({
           type={type}
           className={`${
             error ? errorClass : ""
-          } w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          } w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
       <ErrorText error={error} />

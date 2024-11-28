@@ -21,6 +21,7 @@ type Props = {
   placeholder?: string;
   parentClassName?: string;
   label?: string;
+  labelClassName?: string;
   formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
@@ -30,6 +31,7 @@ const Select: React.FC<Props> = ({
   className,
   field,
   fieldState,
+  labelClassName,
   parentClassName,
   formState,
   label,
@@ -38,16 +40,18 @@ const Select: React.FC<Props> = ({
   const { error } = fieldState;
   return (
     <label>
-      {label && <span className="text-primary">{label}</span>}
+      {label && (
+        <span className={`text-primary ${labelClassName}`}>{label}</span>
+      )}
       <div
         className={`relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${parentClassName}`}
       >
         <select
           {...field}
           {...rest}
-          className={`w-full cursor-pointer appearance-none bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${className}`}
+          className={`w-full cursor-pointer appearance-none bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${className}`}
         >
-          <option value="" defaultValue="" selected>
+          <option value="" selected>
             {placeholder}
           </option>
           {options?.map((option, i) => (

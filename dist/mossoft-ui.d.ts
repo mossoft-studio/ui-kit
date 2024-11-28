@@ -45,6 +45,7 @@ declare type InputProps = {
     defaultValue?: string | number | null;
     postfix?: string;
     parentClassName?: string;
+    labelClassName?: string;
     label?: string;
     formState?: UseFormStateReturn<any>;
 } & InputAttributes;
@@ -85,6 +86,7 @@ declare type Props_10 = {
     placeholder?: string;
     parentClassName?: string;
     label?: string;
+    labelClassName?: string;
     formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
