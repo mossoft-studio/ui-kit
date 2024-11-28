@@ -58,7 +58,9 @@ const Input: FC<InputProps> = ({
           allowEmptyFormatting
           type={type as "password" | "tel" | "text"}
           mask="_"
-          className={`${!!fieldState?.error && errorClass} ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
+          className={`${
+            !!fieldState?.error && errorClass
+          } ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
           format={format}
           {...rest}
         />
@@ -89,7 +91,9 @@ const Input: FC<InputProps> = ({
           {...field}
           {...rest}
           type={type}
-          className={`${!!fieldState?.error && errorClass} ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
+          className={`${
+            !!fieldState?.error ? errorClass : ""
+          } ${className} w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300`}
         />
       )}
       <ErrorText error={fieldState?.error} />
