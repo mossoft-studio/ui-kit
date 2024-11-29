@@ -60,7 +60,7 @@ const Mt = ({ name: e, className: t }) => /* @__PURE__ */ V("svg", { className: 
       ]
     }
   );
-}, Rr = ({ error: e }) => /* @__PURE__ */ V("div", { className: "h-4", children: e && Object.keys(e).length ? /* @__PURE__ */ V("span", { className: "block text-danger text-[10px] text-center mt-[2px]", children: typeof e.message != "string" ? "Что-то пошло не так" : e.message }) : null }), wp = ({
+}, Rr = ({ error: e }) => /* @__PURE__ */ V("div", { className: "h-6", children: e && Object.keys(e).length ? /* @__PURE__ */ V("span", { className: "block text-danger text-[12px] text-center mt-[2px]", children: typeof e.message != "string" ? "Что-то пошло не так" : e.message }) : null }), wp = ({
   onChange: e,
   title: t,
   secondaryTitle: r,
