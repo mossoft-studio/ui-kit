@@ -6,13 +6,17 @@ type Props = {
 };
 
 const ErrorText: FC<Props> = ({ error }) => {
-  return error && Object.keys(error).length ? (
-    <span className="block text-danger text-[10px] text-center mt-[2px]">
-      {typeof error.message !== "string"
-        ? "Что-то пошло не так"
-        : error.message}
-    </span>
-  ) : null;
+  return (
+    <div className="h-4">
+      {error && Object.keys(error).length ? (
+        <span className="block text-danger text-[10px] text-center mt-[2px]">
+          {typeof error.message !== "string"
+            ? "Что-то пошло не так"
+            : error.message}
+        </span>
+      ) : null}
+    </div>
+  );
 };
 
 export default ErrorText;
