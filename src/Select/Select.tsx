@@ -16,7 +16,7 @@ type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 type Props = {
   options: SelectOptions[] | undefined;
   field?: ControllerRenderProps<any, any>;
-  fieldState: ControllerFieldState;
+  fieldState?: ControllerFieldState;
   className?: string;
   placeholder?: string;
   parentClassName?: string;
@@ -37,7 +37,6 @@ const Select: React.FC<Props> = ({
   label,
   ...rest
 }) => {
-  const { error } = fieldState;
   return (
     <label>
       {label && (
@@ -61,7 +60,7 @@ const Select: React.FC<Props> = ({
           ))}
         </select>
       </div>
-      <ErrorText error={error} />
+      <ErrorText error={fieldState?.error} />
     </label>
   );
 };

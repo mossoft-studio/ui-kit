@@ -81,7 +81,7 @@ declare type Props = {
 declare type Props_10 = {
     options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
-    fieldState: ControllerFieldState;
+    fieldState?: ControllerFieldState;
     className?: string;
     placeholder?: string;
     parentClassName?: string;
@@ -165,6 +165,7 @@ declare type Props_9 = {
     placeholder?: string;
     value: string;
     parentClassName?: string;
+    className?: string;
     setValue: (value: string) => void;
 };
 

@@ -3201,11 +3201,17 @@ const Op = ({
       );
     }) })
   ] });
-}, Ip = ({ placeholder: e, setValue: t, value: r, parentClassName: n }) => {
-  const [o, i] = Ee(r), a = Fo(o, 300);
+}, Ip = ({
+  placeholder: e,
+  setValue: t,
+  value: r,
+  className: n,
+  parentClassName: o
+}) => {
+  const [i, a] = Ee(r), s = Fo(i, 300);
   return ue(() => {
-    t == null || t(a);
-  }, [a]), /* @__PURE__ */ fe("div", { className: `relative h-fit w-full ${n}`, children: [
+    t == null || t(s);
+  }, [s]), /* @__PURE__ */ fe("div", { className: `relative h-fit w-full ${o}`, children: [
     /* @__PURE__ */ V(
       Mt,
       {
@@ -3217,10 +3223,10 @@ const Op = ({
       "input",
       {
         placeholder: e,
-        onChange: (s) => i(s.target.value),
-        value: o,
+        onChange: (l) => a(l.target.value),
+        value: i,
         type: "search",
-        className: "!pl-[40px] md:!pl-[50px] w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block py-[9px] md:py-[7px] px-[10px] md:px-[14px] transition-all duration-300"
+        className: `!pl-[40px] md:!pl-[50px] w-full bg-light-gray border-[1px] border-light-gray rounded-[30px] md:border-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block py-[9px] md:py-[7px] px-[10px] md:px-[14px] transition-all duration-300 ${n}`
       }
     )
   ] });
@@ -3235,31 +3241,28 @@ const Op = ({
   formState: s,
   label: l,
   ...d
-}) => {
-  const { error: f } = o;
-  return /* @__PURE__ */ fe("label", { children: [
-    l && /* @__PURE__ */ V("span", { className: `text-primary ${i}`, children: l }),
-    /* @__PURE__ */ V(
-      "div",
-      {
-        className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${a}`,
-        children: /* @__PURE__ */ fe(
-          "select",
-          {
-            ...n,
-            ...d,
-            className: `w-full cursor-pointer appearance-none bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
-            children: [
-              /* @__PURE__ */ V("option", { value: "", selected: !0, children: e }),
-              t == null ? void 0 : t.map((c, u) => /* @__PURE__ */ V("option", { value: c.value, className: "text-black", children: c.label }, u))
-            ]
-          }
-        )
-      }
-    ),
-    /* @__PURE__ */ V(Rr, { error: f })
-  ] });
-};
+}) => /* @__PURE__ */ fe("label", { children: [
+  l && /* @__PURE__ */ V("span", { className: `text-primary ${i}`, children: l }),
+  /* @__PURE__ */ V(
+    "div",
+    {
+      className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${a}`,
+      children: /* @__PURE__ */ fe(
+        "select",
+        {
+          ...n,
+          ...d,
+          className: `w-full cursor-pointer appearance-none bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
+          children: [
+            /* @__PURE__ */ V("option", { value: "", selected: !0, children: e }),
+            t == null ? void 0 : t.map((f, c) => /* @__PURE__ */ V("option", { value: f.value, className: "text-black", children: f.label }, c))
+          ]
+        }
+      )
+    }
+  ),
+  /* @__PURE__ */ V(Rr, { error: o == null ? void 0 : o.error })
+] });
 function gt(e) {
   "@babel/helpers - typeof";
   return gt = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {
