@@ -188,7 +188,7 @@ declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export declare function useDebounce(value: string, delay: number): string;
 
-export declare const useScroll: () => (RefObject<HTMLDivElement> | (() => void | undefined))[];
+export declare const useScroll: () => (RefObject<HTMLDivElement | null> | (() => void | undefined))[];
 
 export declare const Wrapper: default_2.FC<PropsWithChildren<Props_13>>;
 
