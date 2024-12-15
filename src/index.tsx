@@ -13,8 +13,10 @@ import Table from "./Table/Table";
 import Textarea from "./Textarea/Textarea";
 import Wrapper from "./Wrapper/Wrapper";
 import useDebounce from "./hooks/useDebounce";
+import InfinityScroll from "./InfiniteScroll/InfiniteScroll";
 import { useScroll } from "./hooks/useScroll";
 import { HeaderData } from "./Table/Table";
+import ScrollTopButton from "./ScrollTopButton/ScrollTopButton";
 
 import "./tailwind.css";
 
@@ -29,11 +31,13 @@ export {
   Loader,
   MultiSelectSearch,
   Search,
+  ScrollTopButton,
   Select,
   Table,
   Textarea,
   useDebounce,
   useScroll,
+  InfinityScroll,
   Wrapper,
 };
 export type { HeaderData };
