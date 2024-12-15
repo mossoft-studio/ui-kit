@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from 'react';
 import { ControllerFieldState } from 'react-hook-form';
 import { ControllerRenderProps } from 'react-hook-form';
 import { CSSProperties } from 'react';
@@ -13,6 +14,8 @@ import { TextareaHTMLAttributes } from 'react';
 import { UseFormStateReturn } from 'react-hook-form';
 
 export declare const Button: FC<PropsWithChildren<Props>>;
+
+declare type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export declare const Checkbox: default_2.FC<Props_2>;
 
@@ -76,7 +79,7 @@ declare type Props = {
     loadType?: "1C" | "";
     variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-secondary" | "small-danger" | "tab";
     icon?: string;
-};
+} & ButtonAttributes;
 
 declare type Props_10 = {
     options: SelectOptions[] | undefined;

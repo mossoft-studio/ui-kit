@@ -19,18 +19,19 @@ const Mt = ({ name: e, className: t }) => /* @__PURE__ */ V("svg", { className: 
   isLoading: o,
   variant: i,
   icon: a,
-  disabled: s
+  disabled: s,
+  ...l
 }) => {
-  const [l, d] = Ee(""), f = () => {
-    o && n === "1C" && (d("Отправляем запрос в 1С"), setTimeout(
-      () => d(n === "1C" ? "1С обрабатывает документы" : ""),
+  const [d, f] = Ee(""), c = () => {
+    o && n === "1C" && (f("Отправляем запрос в 1С"), setTimeout(
+      () => f(n === "1C" ? "1С обрабатывает документы" : ""),
       4e3
     ));
   };
   ue(() => {
-    n === "1C" && f();
+    n === "1C" && c();
   }, [o]);
-  const c = [
+  const u = [
     "flex items-center justify-center py-[14px] px-[6px] w-full h-fit rounded-[30px] md:rounded-[15px] text-base md:text-lg uppercase font-medium border border-transparent active:opacity-[0.6] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-[0.6]",
     r,
     i === "primary" && "text-white bg-primary",
@@ -47,9 +48,10 @@ const Mt = ({ name: e, className: t }) => /* @__PURE__ */ V("svg", { className: 
     {
       disabled: s || o,
       onClick: t,
-      className: c,
+      className: u,
+      ...l,
       children: [
-        o ? /* @__PURE__ */ V(wo, { text: n === "1C" ? l : void 0 }) : e,
+        o ? /* @__PURE__ */ V(wo, { text: n === "1C" ? d : void 0 }) : e,
         a && !o && /* @__PURE__ */ V(
           Mt,
           {
