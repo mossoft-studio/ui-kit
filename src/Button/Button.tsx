@@ -1,6 +1,14 @@
-import { FC, PropsWithChildren, useEffect, useState } from "react";
+import {
+  ButtonHTMLAttributes,
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
+
+type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>;
 
 type Props = {
   onClick: () => void;
@@ -18,7 +26,7 @@ type Props = {
     | "small-danger"
     | "tab";
   icon?: string;
-};
+} & ButtonAttributes;
 
 const Button: FC<PropsWithChildren<Props>> = ({
   children,
@@ -29,6 +37,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   variant,
   icon,
   disabled,
+  ...rest
 }) => {
   const [loadMessage, setLoadMessage] = useState("");
 
@@ -74,6 +83,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       disabled={disabled || isLoading}
       onClick={onClick}
       className={buttonClasses}
+      {...rest}
     >
       {isLoading ? (
         <Loader text={loadType === "1C" ? loadMessage : undefined} />
