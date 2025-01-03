@@ -35,7 +35,7 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfinityScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_14<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_14<T>) => JSX_2.Element;
 
 export declare const Input: FC<InputProps>;
 
@@ -122,7 +122,7 @@ declare type Props_13 = {
 } & TextareaAttributes;
 
 /**
- * A InfinityScroll component
+ * A InfiniteScroll component
  * @param {object} props
  * @property infiniteData - Use TanStack Query to integrate with this component.
  * @property renderItem - A function that returns card JSX.Element
