@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
 
 /**
- * A InfinityScroll component
+ * A InfiniteScroll component
  * @param {object} props
  * @property infiniteData - Use TanStack Query to integrate with this component.
  * @property renderItem - A function that returns card JSX.Element
