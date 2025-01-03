@@ -19,7 +19,7 @@ type Props<T> = {
   isScrollTopButton?: boolean;
 };
 
-const InfinityScroll = <T,>({
+const InfiniteScroll = <T,>({
   infiniteData,
   renderItem,
   className,
@@ -65,4 +65,4 @@ const InfinityScroll = <T,>({
   );
 };
 
-export default InfinityScroll;
+export default InfiniteScroll;
