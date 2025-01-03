@@ -13,7 +13,7 @@ import Table from "./Table/Table";
 import Textarea from "./Textarea/Textarea";
 import Wrapper from "./Wrapper/Wrapper";
 import useDebounce from "./hooks/useDebounce";
-import InfinityScroll from "./InfiniteScroll/InfiniteScroll";
+import InfiniteScroll from "./InfiniteScroll/InfiniteScroll";
 import { useScroll } from "./hooks/useScroll";
 import { HeaderData } from "./Table/Table";
 import ScrollTopButton from "./ScrollTopButton/ScrollTopButton";
@@ -37,7 +37,7 @@ export {
   Textarea,
   useDebounce,
   useScroll,
-  InfinityScroll,
+  InfiniteScroll,
   Wrapper,
 };
 export type { HeaderData };
