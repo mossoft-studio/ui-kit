@@ -1,43 +1,22 @@
-import Button from "./Button/Button";
-import Checkbox from "./Checkbox/Checkbox";
-import Chips from "./Chips/Chips";
-import ErrorText from "./ErrorText/ErrorText";
-import Icon from "./Icon/Icon";
-import Input from "./Input/Input";
-import List from "./List/List";
-import Loader from "./Loader/Loader";
-import MultiSelectSearch from "./MultiSelectSearch/MultiSelectSearch";
-import Search from "./Search/Search";
-import Select from "./Select/Select";
-import Table from "./Table/Table";
-import Textarea from "./Textarea/Textarea";
-import Wrapper from "./Wrapper/Wrapper";
-import useDebounce from "./hooks/useDebounce";
-import InfiniteScroll from "./InfiniteScroll/InfiniteScroll";
-import { useScroll } from "./hooks/useScroll";
-import { HeaderData } from "./Table/Table";
-import ScrollTopButton from "./ScrollTopButton/ScrollTopButton";
+export { default as Button } from "./Button/Button";
+export { default as Checkbox } from "./Checkbox/Checkbox";
+export { default as Chips } from "./Chips/Chips";
+export { default as ErrorText } from "./ErrorText/ErrorText";
+export { default as Icon } from "./Icon/Icon";
+export { default as Input } from "./Input/Input";
+export { default as List } from "./List/List";
+export { default as Loader } from "./Loader/Loader";
+export { default as MultiSelectSearch } from "./MultiSelectSearch/MultiSelectSearch";
+export { default as Search } from "./Search/Search";
+export { default as Select } from "./Select/Select";
+export { default as Table } from "./Table/Table";
+export { default as Textarea } from "./Textarea/Textarea";
+export { default as Wrapper } from "./Wrapper/Wrapper";
+export { default as useDebounce } from "./hooks/useDebounce";
+export { default as InfiniteScroll } from "./InfiniteScroll/InfiniteScroll";
+export { useScroll } from "./hooks/useScroll";
+export { default as ScrollTopButton } from "./ScrollTopButton/ScrollTopButton";
+
+export type { HeaderData } from "./Table/Table";
 
 import "./tailwind.css";
-
-export {
-  Button,
-  Checkbox,
-  Chips,
-  ErrorText,
-  Icon,
-  Input,
-  List,
-  Loader,
-  MultiSelectSearch,
-  Search,
-  ScrollTopButton,
-  Select,
-  Table,
-  Textarea,
-  useDebounce,
-  useScroll,
-  InfiniteScroll,
-  Wrapper,
-};
-export type { HeaderData };

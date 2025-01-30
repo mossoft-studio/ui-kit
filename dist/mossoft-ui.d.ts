@@ -87,10 +87,6 @@ declare type Props = {
 } & ButtonAttributes;
 
 declare type Props_10 = {
-    className?: string;
-};
-
-declare type Props_11 = {
     options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
@@ -102,7 +98,7 @@ declare type Props_11 = {
     formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
-declare type Props_12 = {
+declare type Props_11 = {
     headerData: HeaderData[];
     data?: any[];
     className: string;
@@ -115,11 +111,15 @@ declare type Props_12 = {
     sort?: string;
 };
 
-declare type Props_13 = {
+declare type Props_12 = {
     className?: string;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
 } & TextareaAttributes;
+
+declare type Props_13 = {
+    className?: string;
+};
 
 /**
  * A InfiniteScroll component
@@ -195,11 +195,11 @@ declare type Props_9 = {
     setValue: (value: string) => void;
 };
 
-export declare const ScrollTopButton: FC<Props_10>;
+export declare const ScrollTopButton: FC<Props_15>;
 
 export declare const Search: default_2.FC<Props_9>;
 
-export declare const Select: default_2.FC<Props_11>;
+export declare const Select: default_2.FC<Props_10>;
 
 declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 
@@ -208,9 +208,9 @@ declare type SelectOptions = {
     label: string;
 };
 
-export declare const Table: FC<Props_12>;
+export declare const Table: FC<Props_11>;
 
-export declare const Textarea: FC<Props_13>;
+export declare const Textarea: FC<Props_12>;
 
 declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
@@ -218,6 +218,6 @@ export declare function useDebounce(value: string, delay: number): string;
 
 export declare const useScroll: () => (RefObject<HTMLDivElement> | (() => void | undefined))[];
 
-export declare const Wrapper: default_2.FC<PropsWithChildren<Props_15>>;
+export declare const Wrapper: default_2.FC<PropsWithChildren<Props_13>>;
 
 export { }
