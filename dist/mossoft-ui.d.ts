@@ -5,6 +5,8 @@ import { CSSProperties } from 'react';
 import { default as default_2 } from 'react';
 import { FC } from 'react';
 import { FieldError } from 'react-hook-form';
+import { FieldPath } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 import { HTMLInputTypeAttribute } from 'react';
 import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
@@ -35,30 +37,13 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_14<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
-export declare const Input: FC<InputProps>;
+export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
 declare type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
-declare type InputAttributes_2 = InputHTMLAttributes<HTMLInputElement>;
-
-declare type InputProps = {
-    type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
-    placeholder?: string;
-    field?: ControllerRenderProps<any, any>;
-    fieldState: ControllerFieldState;
-    format?: string;
-    decimalScale?: number;
-    defaultValue?: string | number | null;
-    postfix?: string;
-    parentClassName?: string;
-    labelClassName?: string;
-    label?: string;
-    formState?: UseFormStateReturn<any>;
-} & InputAttributes;
-
-export declare const List: default_2.FC<Props_6>;
+export declare const List: default_2.FC<Props_7>;
 
 declare type ListItems = {
     label: string;
@@ -66,9 +51,9 @@ declare type ListItems = {
     row?: string;
 };
 
-export declare const Loader: FC<Props_7>;
+export declare const Loader: FC<Props_8>;
 
-export declare const MultiSelectSearch: FC<Props_8>;
+export declare const MultiSelectSearch: FC<Props_9>;
 
 declare type Options = {
     label: string;
@@ -87,6 +72,14 @@ declare type Props = {
 } & ButtonAttributes;
 
 declare type Props_10 = {
+    placeholder?: string;
+    value: string;
+    parentClassName?: string;
+    className?: string;
+    setValue: (value: string) => void;
+};
+
+declare type Props_11 = {
     options: SelectOptions[] | undefined;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
@@ -98,7 +91,7 @@ declare type Props_10 = {
     formState?: UseFormStateReturn<any>;
 } & SelectAttributes;
 
-declare type Props_11 = {
+declare type Props_12 = {
     headerData: HeaderData[];
     data?: any[];
     className: string;
@@ -111,13 +104,13 @@ declare type Props_11 = {
     sort?: string;
 };
 
-declare type Props_12 = {
+declare type Props_13 = {
     className?: string;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
 } & TextareaAttributes;
 
-declare type Props_13 = {
+declare type Props_14 = {
     className?: string;
 };
 
@@ -127,7 +120,7 @@ declare type Props_13 = {
  * @property infiniteData - Use TanStack Query to integrate with this component.
  * @property renderItem - A function that returns card JSX.Element
  */
-declare type Props_14<T> = {
+declare type Props_15<T> = {
     infiniteData: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>;
     className?: string;
     renderItem: (item: T, index: number) => JSX.Element;
@@ -135,7 +128,7 @@ declare type Props_14<T> = {
     isScrollTopButton?: boolean;
 };
 
-declare type Props_15 = {
+declare type Props_16 = {
     className?: string;
 };
 
@@ -169,37 +162,45 @@ declare type Props_5 = {
     className?: string;
 };
 
-declare type Props_6 = {
+declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = {
+    type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
+    field?: ControllerRenderProps<TFieldValues, TName>;
+    fieldState?: ControllerFieldState;
+    format?: string;
+    labelClassName?: string;
+    label?: string;
+    decimalScale?: number;
+    value?: TFieldValues[TName];
+    parentClassName?: string;
+    defaultValue?: string | number | null;
+    postfix?: string;
+    numberWrapperClassname?: string;
+    errorPlace?: "bottom" | "right";
+} & InputHTMLAttributes<HTMLInputElement>;
+
+declare type Props_7 = {
     data: ListItems[];
     className?: string;
     onClick: (value: any) => void;
 };
 
-declare type Props_7 = {
+declare type Props_8 = {
     style?: CSSProperties;
     text?: string;
 };
 
-declare type Props_8 = {
+declare type Props_9 = {
     options: Options[];
     field?: ControllerRenderProps<any, any>;
     className?: string;
     placeholder?: string;
-} & InputAttributes_2;
+} & InputAttributes;
 
-declare type Props_9 = {
-    placeholder?: string;
-    value: string;
-    parentClassName?: string;
-    className?: string;
-    setValue: (value: string) => void;
-};
+export declare const ScrollTopButton: FC<Props_16>;
 
-export declare const ScrollTopButton: FC<Props_15>;
+export declare const Search: default_2.FC<Props_10>;
 
-export declare const Search: default_2.FC<Props_9>;
-
-export declare const Select: default_2.FC<Props_10>;
+export declare const Select: default_2.FC<Props_11>;
 
 declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
 
@@ -208,9 +209,9 @@ declare type SelectOptions = {
     label: string;
 };
 
-export declare const Table: FC<Props_11>;
+export declare const Table: FC<Props_12>;
 
-export declare const Textarea: FC<Props_12>;
+export declare const Textarea: FC<Props_13>;
 
 declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
@@ -218,6 +219,6 @@ export declare function useDebounce(value: string, delay: number): string;
 
 export declare const useScroll: () => (RefObject<HTMLDivElement> | (() => void | undefined))[];
 
-export declare const Wrapper: default_2.FC<PropsWithChildren<Props_13>>;
+export declare const Wrapper: default_2.FC<PropsWithChildren<Props_14>>;
 
 export { }
