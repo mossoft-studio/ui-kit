@@ -1,28 +1,31 @@
-import { FC, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 import {
   ControllerFieldState,
   ControllerRenderProps,
-  UseFormStateReturn,
+  FieldPath,
+  FieldValues,
 } from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import ErrorText from "../ErrorText/ErrorText";
 
-type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
-
-type InputProps = {
+type Props<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>
+> = {
   type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
-  placeholder?: string;
-  field?: ControllerRenderProps<any, any>;
-  fieldState: ControllerFieldState;
+  field?: ControllerRenderProps<TFieldValues, TName>;
+  fieldState?: ControllerFieldState;
   format?: string;
-  decimalScale?: number;
-  defaultValue?: string | number | null;
-  postfix?: string;
-  parentClassName?: string;
   labelClassName?: string;
   label?: string;
-  formState?: UseFormStateReturn<any>;
-} & InputAttributes;
+  decimalScale?: number;
+  value?: TFieldValues[TName];
+  parentClassName?: string;
+  defaultValue?: string | number | null;
+  postfix?: string;
+  numberWrapperClassname?: string;
+  errorPlace?: "bottom" | "right";
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export const MaskRules: {
   [key in "number"]?: {
@@ -40,22 +43,27 @@ export const MaskRules: {
   },
 };
 
-const Input: FC<InputProps> = ({
+const Input = <
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>
+>({
   type,
   field,
+  label,
   fieldState,
   postfix,
-  className,
-  format,
-  parentClassName,
   labelClassName,
+  errorPlace = "right",
+  parentClassName,
+  className,
+  numberWrapperClassname,
+  format,
   decimalScale = 1,
-  formState,
-  label,
   ...rest
-}) => {
+}: Props<TFieldValues, TName>) => {
   const errorClass = "!border-danger";
-  const { error } = fieldState;
+  const { error } = fieldState!;
+
   return (
     <label>
       {label && (
