@@ -110,7 +110,7 @@ const Input: FC<InputProps> = ({
         />
       )}
 
-      <ErrorText error={error} />
+      {error && <ErrorText error={error} />}
     </label>
   );
 };
