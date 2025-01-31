@@ -18,5 +18,3 @@ export { useScroll } from "./hooks/useScroll";
 export { default as ScrollTopButton } from "./ScrollTopButton/ScrollTopButton";
 
 export type { HeaderData } from "./Table/Table";
-
-import "./tailwind.css";
