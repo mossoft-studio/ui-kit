@@ -16,7 +16,14 @@ export default defineConfig({
       fileName: "mossoft-ui",
     },
     rollupOptions: {
-      external: ["react", /^react\/.*/, "react-dom", /react-dom\/.*/],
+      external: [
+        "react",
+        /^react\/.*/,
+        "react-dom",
+        /react-dom\/.*/,
+        "react/jsx-runtime",
+        "tailwindcss",
+      ],
       output: {
         globals: {
           react: "React",
@@ -25,5 +32,12 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [
+    react(),
+    dts({
+      rollupTypes: true,
+      include: ["src/", "src/index.ts"],
+      exclude: ["src/stories.tsx", "src/styles.ts"],
+    }),
+  ],
 });

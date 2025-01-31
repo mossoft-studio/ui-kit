@@ -8,6 +8,7 @@ import { FieldError } from 'react-hook-form';
 import { FieldPath } from 'react-hook-form';
 import { FieldValues } from 'react-hook-form';
 import { HTMLInputTypeAttribute } from 'react';
+import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { PropsWithChildren } from 'react';
@@ -15,6 +16,7 @@ import { RefObject } from 'react';
 import { SelectHTMLAttributes } from 'react';
 import { TextareaHTMLAttributes } from 'react';
 import { UseFormStateReturn } from 'react-hook-form';
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
 
 export declare const Button: FC<PropsWithChildren<Props>>;
 
@@ -34,6 +36,8 @@ export declare type HeaderData = {
 };
 
 export declare const Icon: default_2.FC<Props_5>;
+
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
 export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
@@ -110,7 +114,21 @@ declare type Props_14 = {
     className?: string;
 };
 
-declare type Props_15 = {
+/**
+ * A InfiniteScroll component
+ * @param {object} props
+ * @property infiniteData - Use TanStack Query to integrate with this component.
+ * @property renderItem - A function that returns card JSX.Element
+ */
+declare type Props_15<T> = {
+    infiniteData: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>;
+    className?: string;
+    renderItem: (item: T, index: number) => JSX.Element;
+    iconClassName?: string;
+    isScrollTopButton?: boolean;
+};
+
+declare type Props_16 = {
     className?: string;
 };
 
@@ -178,7 +196,7 @@ declare type Props_9 = {
     placeholder?: string;
 } & InputAttributes;
 
-export declare const ScrollTopButton: FC<Props_15>;
+export declare const ScrollTopButton: FC<Props_16>;
 
 export declare const Search: default_2.FC<Props_10>;
 

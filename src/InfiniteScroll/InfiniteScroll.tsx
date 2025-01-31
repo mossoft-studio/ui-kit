@@ -1,8 +1,8 @@
-import { Loader } from "@mossoft/ui-kit";
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
+import Loader from "@/Loader/Loader";
 
 /**
  * A InfiniteScroll component

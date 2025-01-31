@@ -1,4 +1,4 @@
-import { Icon } from "@mossoft/ui-kit";
+import Icon from "@/Icon/Icon";
 import { FC, useEffect, useState } from "react";
 
 type Props = { className?: string };
