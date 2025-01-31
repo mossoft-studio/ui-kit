@@ -118,7 +118,7 @@ const Input = <
         />
       )}
 
-      {error && <ErrorText error={error} />}
+      {error && Object.keys(error)?.length && <ErrorText error={error} />}
     </label>
   );
 };

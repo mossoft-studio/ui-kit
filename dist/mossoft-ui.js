@@ -813,16 +813,16 @@ const $a = {
   decimalScale: l = 1,
   ...d
 }) => {
-  var b, m;
+  var b, m, v;
   const p = "!border-danger", { error: g } = n;
   return /* @__PURE__ */ de("label", { children: [
     r && /* @__PURE__ */ I("span", { className: `text-primary ${i}`, children: r }),
     f ? /* @__PURE__ */ I(
       Ma,
       {
-        onValueChange: (v) => {
-          var x;
-          t == null || t.onChange((x = v.value.replace("_", "")) == null ? void 0 : x.toString());
+        onValueChange: (x) => {
+          var w;
+          t == null || t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
         },
         value: (b = t == null ? void 0 : t.value) == null ? void 0 : b.toString(),
         valueIsNumericString: !0,
@@ -842,9 +842,9 @@ const $a = {
             Ia,
             {
               decimalScale: l,
-              onValueChange: (v) => {
-                var x;
-                return t == null ? void 0 : t.onChange((x = v.value.replace("_", "")) == null ? void 0 : x.toString());
+              onValueChange: (x) => {
+                var w;
+                return t == null ? void 0 : t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
               },
               value: (m = t == null ? void 0 : t.value) == null ? void 0 : m.toString(),
               className: `w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
@@ -864,7 +864,7 @@ const $a = {
         className: `${g ? p : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
-    g && /* @__PURE__ */ I(Mr, { error: g })
+    g && ((v = Object.keys(g)) == null ? void 0 : v.length) && /* @__PURE__ */ I(Mr, { error: g })
   ] });
 }, $o = ({
   children: e,
