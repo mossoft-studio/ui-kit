@@ -62,7 +62,6 @@ const Input = <
   ...rest
 }: Props<TFieldValues, TName>) => {
   const errorClass = "!border-danger";
-  const { error } = fieldState!;
 
   return (
     <label>
@@ -80,7 +79,7 @@ const Input = <
           type={type as "password" | "tel" | "text"}
           mask="_"
           className={`${
-            error ? errorClass : ""
+            fieldState?.error ? errorClass : ""
           } w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
           format={format}
           {...rest}
@@ -88,7 +87,7 @@ const Input = <
       ) : type === "number" ? (
         <div
           className={`${
-            error ? errorClass : ""
+            fieldState?.error ? errorClass : ""
           } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`}
         >
           <NumericFormat
@@ -113,12 +112,14 @@ const Input = <
           {...rest}
           type={type}
           className={`${
-            error ? errorClass : ""
+            fieldState?.error ? errorClass : ""
           } w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
 
-      {error && Object.keys(error)?.length && <ErrorText error={error} />}
+      {fieldState?.error && Object.keys(fieldState?.error)?.length && (
+        <ErrorText error={fieldState?.error} />
+      )}
     </label>
   );
 };
