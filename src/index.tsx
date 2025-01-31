@@ -13,7 +13,7 @@ export { default as Table } from "./Table/Table";
 export { default as Textarea } from "./Textarea/Textarea";
 export { default as Wrapper } from "./Wrapper/Wrapper";
 export { default as useDebounce } from "./hooks/useDebounce";
-export { default as InfiniteScroll } from "./InfiniteScroll/InfiniteScroll";
+// export { default as InfiniteScroll } from "./InfiniteScroll/InfiniteScroll";
 export { useScroll } from "./hooks/useScroll";
 export { default as ScrollTopButton } from "./ScrollTopButton/ScrollTopButton";
 
