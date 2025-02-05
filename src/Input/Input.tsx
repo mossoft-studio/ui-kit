@@ -117,8 +117,10 @@ const Input = <
         />
       )}
 
-      {fieldState?.error && Object.keys(fieldState?.error)?.length && (
+      {fieldState?.error && Object.keys(fieldState?.error)?.length ? (
         <ErrorText error={fieldState?.error} />
+      ) : (
+        <div className="h-6"></div>
       )}
     </label>
   );
