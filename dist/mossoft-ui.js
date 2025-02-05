@@ -864,7 +864,7 @@ const $a = {
         className: `${n != null && n.error ? p : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
-    (n == null ? void 0 : n.error) && ((m = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : m.length) && /* @__PURE__ */ I(Mr, { error: n == null ? void 0 : n.error })
+    n != null && n.error && ((m = Object.keys(n == null ? void 0 : n.error)) != null && m.length) ? /* @__PURE__ */ I(Mr, { error: n == null ? void 0 : n.error }) : /* @__PURE__ */ I("div", { className: "h-6" })
   ] });
 }, $o = ({
   children: e,
