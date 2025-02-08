@@ -815,7 +815,7 @@ const $a = {
 }) => {
   var g, b, m;
   const p = "!border-danger";
-  return /* @__PURE__ */ de("label", { children: [
+  return /* @__PURE__ */ de("label", { className: "relative", children: [
     r && /* @__PURE__ */ I("span", { className: `text-primary ${i}`, children: r }),
     f ? /* @__PURE__ */ I(
       Ma,
@@ -864,7 +864,7 @@ const $a = {
         className: `${n != null && n.error ? p : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
-    n != null && n.error && ((m = Object.keys(n == null ? void 0 : n.error)) != null && m.length) ? /* @__PURE__ */ I(Mr, { error: n == null ? void 0 : n.error }) : /* @__PURE__ */ I("div", { className: "h-6" })
+    /* @__PURE__ */ I("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((m = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : m.length) && /* @__PURE__ */ I(Mr, { error: n == null ? void 0 : n.error }) })
   ] });
 }, $o = ({
   children: e,

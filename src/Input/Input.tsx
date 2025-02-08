@@ -64,7 +64,7 @@ const Input = <
   const errorClass = "!border-danger";
 
   return (
-    <label>
+    <label className="relative">
       {label && (
         <span className={`text-primary ${labelClassName}`}>{label}</span>
       )}
@@ -117,11 +117,11 @@ const Input = <
         />
       )}
 
-      {fieldState?.error && Object.keys(fieldState?.error)?.length ? (
-        <ErrorText error={fieldState?.error} />
-      ) : (
-        <div className="h-6"></div>
-      )}
+      <div className="absolute w-full items-center flex justify-center flex-row">
+        {fieldState?.error && Object.keys(fieldState?.error)?.length && (
+          <ErrorText error={fieldState?.error} />
+        )}
+      </div>
     </label>
   );
 };
