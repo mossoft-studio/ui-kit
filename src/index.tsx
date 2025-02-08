@@ -12,6 +12,7 @@ export { default as Select } from "./Select/Select";
 export { default as Table } from "./Table/Table";
 export { default as Textarea } from "./Textarea/Textarea";
 export { default as Wrapper } from "./Wrapper/Wrapper";
+export { default as SelectSearch } from "./SelectSearch/SelectSearch";
 export { default as useDebounce } from "./hooks/useDebounce";
 export { default as InfiniteScroll } from "./InfiniteScroll/InfiniteScroll";
 export { useScroll } from "./hooks/useScroll";
