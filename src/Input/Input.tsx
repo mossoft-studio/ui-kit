@@ -62,18 +62,11 @@ const Input = <
   ...rest
 }: Props<TFieldValues, TName>) => {
   const errorClass = "!border-danger";
-  const isError = fieldState?.error && Object.keys(fieldState?.error)?.length;
 
   return (
     <label className="relative">
       {label && (
-        <span
-          className={`${
-            isError ? "text-danger" : "text-primary"
-          }  ${labelClassName}`}
-        >
-          {label}
-        </span>
+        <span className={`text-primary  ${labelClassName}`}>{label}</span>
       )}
       {format ? (
         <PatternFormat

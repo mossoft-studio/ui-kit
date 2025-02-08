@@ -38,18 +38,11 @@ const Select: React.FC<Props> = ({
   ...rest
 }) => {
   const errorClass = "!border-danger";
-  const isError = fieldState?.error && Object.keys(fieldState?.error)?.length;
 
   return (
     <label className="relative">
       {label && (
-        <span
-          className={`${
-            isError ? "text-danger" : "text-primary"
-          }  ${labelClassName}`}
-        >
-          {label}
-        </span>
+        <span className={`text-primary  ${labelClassName}`}>{label}</span>
       )}
       <div
         className={`relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${parentClassName}`}
