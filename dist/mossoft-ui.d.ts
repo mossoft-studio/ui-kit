@@ -12,7 +12,6 @@ import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { PropsWithChildren } from 'react';
-import { ReactNode } from 'react';
 import { RefObject } from 'react';
 import { SelectHTMLAttributes } from 'react';
 import { TextareaHTMLAttributes } from 'react';
@@ -38,13 +37,11 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_16<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
 export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
 declare type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
-
-declare type InputAttributes_2 = InputHTMLAttributes<HTMLInputElement>;
 
 export declare const List: default_2.FC<Props_7>;
 
@@ -61,12 +58,6 @@ export declare const MultiSelectSearch: FC<Props_9>;
 declare type Options = {
     label: string;
     value: string;
-    icon?: string;
-};
-
-declare type Options_2<T> = {
-    label: string;
-    value: T;
     icon?: string;
 };
 
@@ -123,26 +114,13 @@ declare type Props_14 = {
     className?: string;
 };
 
-declare type Props_15<T> = {
-    options: Options_2<T>[];
-    field?: ControllerRenderProps<any, any>;
-    className?: string;
-    parentClassName?: string;
-    listClassname?: string;
-    onChange: (value: T | null) => void;
-    value: T | undefined | null;
-    placeholder?: string;
-    error?: FieldError | undefined;
-    trigger?: ReactNode;
-} & Omit<InputAttributes_2, "value">;
-
 /**
  * A InfiniteScroll component
  * @param {object} props
  * @property infiniteData - Use TanStack Query to integrate with this component.
  * @property renderItem - A function that returns card JSX.Element
  */
-declare type Props_16<T> = {
+declare type Props_15<T> = {
     infiniteData: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>;
     className?: string;
     renderItem: (item: T, index: number) => JSX.Element;
@@ -150,7 +128,7 @@ declare type Props_16<T> = {
     isScrollTopButton?: boolean;
 };
 
-declare type Props_17 = {
+declare type Props_16 = {
     className?: string;
 };
 
@@ -218,7 +196,7 @@ declare type Props_9 = {
     placeholder?: string;
 } & InputAttributes;
 
-export declare const ScrollTopButton: FC<Props_17>;
+export declare const ScrollTopButton: FC<Props_16>;
 
 export declare const Search: default_2.FC<Props_10>;
 
@@ -230,8 +208,6 @@ declare type SelectOptions = {
     value: any;
     label: string;
 };
-
-export declare const SelectSearch: <T>({ options, field, onChange, className, value, parentClassName, listClassname, trigger, error, ...inputProps }: Props_15<T>) => JSX_2.Element;
 
 export declare const Table: FC<Props_12>;
 
