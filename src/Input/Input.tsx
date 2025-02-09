@@ -4,6 +4,7 @@ import {
   ControllerRenderProps,
   FieldPath,
   FieldValues,
+  UseFormStateReturn,
 } from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import ErrorText from "../ErrorText/ErrorText";
@@ -15,6 +16,7 @@ type Props<
   type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
   field?: ControllerRenderProps<TFieldValues, TName>;
   fieldState?: ControllerFieldState;
+  formState?: UseFormStateReturn<TFieldValues>;
   format?: string;
   labelClassName?: string;
   label?: string;
@@ -56,6 +58,7 @@ const Input = <
   errorPlace = "right",
   parentClassName,
   className,
+  formState,
   numberWrapperClassname,
   format,
   decimalScale = 1,
