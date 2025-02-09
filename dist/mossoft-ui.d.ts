@@ -39,7 +39,7 @@ export declare const Icon: default_2.FC<Props_5>;
 
 export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
-export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
+export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, formState, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
 declare type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
@@ -166,6 +166,7 @@ declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<T
     type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
     field?: ControllerRenderProps<TFieldValues, TName>;
     fieldState?: ControllerFieldState;
+    formState?: UseFormStateReturn<TFieldValues>;
     format?: string;
     labelClassName?: string;
     label?: string;
