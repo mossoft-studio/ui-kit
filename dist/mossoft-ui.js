@@ -830,6 +830,7 @@ const $a = {
         allowEmptyFormatting: !0,
         type: e,
         mask: "_",
+        style: { fontSize: "16px" },
         className: `${n != null && n.error ? g : ""} w-full border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
         format: l,
         ...p
@@ -843,6 +844,7 @@ const $a = {
             Ia,
             {
               decimalScale: d,
+              style: { fontSize: "16px" },
               onValueChange: (x) => {
                 var w;
                 return t == null ? void 0 : t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
@@ -862,6 +864,7 @@ const $a = {
         ...t,
         ...p,
         type: e,
+        style: { fontSize: "16px" },
         className: `${n != null && n.error ? g : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
