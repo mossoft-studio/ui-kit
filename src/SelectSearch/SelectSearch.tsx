@@ -1,4 +1,6 @@
-import { ErrorText, Icon, useDebounce } from "@mossoft/ui-kit";
+import ErrorText from "@/ErrorText/ErrorText";
+import useDebounce from "@/hooks/useDebounce";
+import Icon from "@/Icon/Icon";
 import {
   InputHTMLAttributes,
   ReactNode,
