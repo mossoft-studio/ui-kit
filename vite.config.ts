@@ -12,6 +12,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "./src/index.tsx"),
+      formats: ["es", "cjs"],
       name: "MossoftUI",
       fileName: "mossoft-ui",
     },
