@@ -1,14 +1,8 @@
-import { ErrorText } from "@mossoft/ui-kit";
-import dynamic from "next/dynamic";
+import ErrorText from "@/ErrorText/ErrorText";
 import { FC } from "react";
 import { FieldError } from "react-hook-form";
-import { Value } from "react-quill";
+import ReactQuill, { Value } from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
-// Use dynamic import for ReactQuill
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-});
 
 type Props = {
   readOnly?: boolean;
