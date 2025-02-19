@@ -31,6 +31,10 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+      },
     },
   },
   plugins: [
