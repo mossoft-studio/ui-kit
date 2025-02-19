@@ -37,7 +37,7 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_16<T>) => JSX_2.Element;
 
 export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, formState, numberWrapperClassname, format, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
@@ -114,13 +114,23 @@ declare type Props_14 = {
     className?: string;
 };
 
+declare type Props_15 = {
+    readOnly?: boolean;
+    value: string;
+    onChange?: any;
+    error?: FieldError;
+    className?: string;
+    taskList?: boolean;
+    image?: boolean;
+};
+
 /**
  * A InfiniteScroll component
  * @param {object} props
  * @property infiniteData - Use TanStack Query to integrate with this component.
  * @property renderItem - A function that returns card JSX.Element
  */
-declare type Props_15<T> = {
+declare type Props_16<T> = {
     infiniteData: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>;
     className?: string;
     renderItem: (item: T, index: number) => JSX.Element;
@@ -128,7 +138,7 @@ declare type Props_15<T> = {
     isScrollTopButton?: boolean;
 };
 
-declare type Props_16 = {
+declare type Props_17 = {
     className?: string;
 };
 
@@ -197,7 +207,7 @@ declare type Props_9 = {
     placeholder?: string;
 } & InputAttributes;
 
-export declare const ScrollTopButton: FC<Props_16>;
+export declare const ScrollTopButton: FC<Props_17>;
 
 export declare const Search: default_2.FC<Props_10>;
 
@@ -215,6 +225,8 @@ export declare const Table: FC<Props_12>;
 export declare const Textarea: FC<Props_13>;
 
 declare type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export declare const TextEdit: FC<Props_15>;
 
 export declare function useDebounce(value: string, delay: number): string;
 
