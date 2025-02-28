@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   resolve: {
@@ -39,6 +40,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    tailwindcss(),
     dts({
       rollupTypes: true,
       include: ["src/", "src/index.ts"],
