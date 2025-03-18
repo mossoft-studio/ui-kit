@@ -3282,7 +3282,8 @@ const da = ({
           {
             ...n,
             ...u,
-            className: `w-full ${o != null && o.error ? "!border-danger" : ""} cursor-pointer appearance-none bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
+            defaultValue: "",
+            className: `w-full ${o != null && o.error ? "!border-danger" : ""} cursor-pointer appearance-none bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
             children: [
               /* @__PURE__ */ S("option", { value: "", selected: !0, children: e }),
               t == null ? void 0 : t.map((d, f) => /* @__PURE__ */ S("option", { value: d.value, className: "text-black", children: d.label }, f))
