@@ -55,9 +55,7 @@ const Select: React.FC<Props> = ({
             fieldState?.error ? errorClass : ""
           } cursor-pointer appearance-none bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${className}`}
         >
-          <option value="" selected>
-            {placeholder}
-          </option>
+          <option value="">{placeholder}</option>
           {options?.map((option, i) => (
             <option value={option.value} key={i} className="text-black">
               {option.label}
