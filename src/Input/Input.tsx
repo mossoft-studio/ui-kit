@@ -21,6 +21,7 @@ type Props<
   labelClassName?: string;
   label?: string;
   decimalScale?: number;
+  wrapperClassName?: string;
   value?: TFieldValues[TName];
   parentClassName?: string;
   defaultValue?: string | number | null;
@@ -61,13 +62,14 @@ const Input = <
   formState,
   numberWrapperClassname,
   format,
+  wrapperClassName,
   decimalScale = 1,
   ...rest
 }: Props<TFieldValues, TName>) => {
   const errorClass = "!border-danger";
 
   return (
-    <label className="relative">
+    <label className={`relative w-full ${wrapperClassName}`}>
       {label && (
         <span className={`text-primary  ${labelClassName}`}>{label}</span>
       )}

@@ -20,6 +20,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   parentClassName?: string;
+  wrapperClassName?: string;
   label?: string;
   labelClassName?: string;
   formState?: UseFormStateReturn<any>;
@@ -31,6 +32,7 @@ const Select: React.FC<Props> = ({
   className,
   field,
   fieldState,
+  wrapperClassName,
   labelClassName,
   parentClassName,
   formState,
@@ -40,7 +42,7 @@ const Select: React.FC<Props> = ({
   const errorClass = "!border-danger";
 
   return (
-    <label className="relative">
+    <label className={`relative w-full ${wrapperClassName}`}>
       {label && (
         <span className={`text-primary  ${labelClassName}`}>{label}</span>
       )}

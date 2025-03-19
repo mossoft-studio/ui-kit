@@ -810,47 +810,48 @@ const As = {
   formState: u,
   numberWrapperClassname: p,
   format: l,
-  decimalScale: d = 1,
-  ...f
+  wrapperClassName: d,
+  decimalScale: f = 1,
+  ...g
 }) => {
-  var h, m, y;
-  const g = "!border-danger";
-  return /* @__PURE__ */ de("label", { className: "relative", children: [
+  var m, y, x;
+  const h = "!border-danger";
+  return /* @__PURE__ */ de("label", { className: `relative w-full ${d}`, children: [
     r && /* @__PURE__ */ S("span", { className: `text-primary  ${i}`, children: r }),
     l ? /* @__PURE__ */ S(
       Os,
       {
-        onValueChange: (x) => {
-          var w;
-          t == null || t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
+        onValueChange: (w) => {
+          var E;
+          t == null || t.onChange((E = w.value.replace("_", "")) == null ? void 0 : E.toString());
         },
-        value: (h = t == null ? void 0 : t.value) == null ? void 0 : h.toString(),
+        value: (m = t == null ? void 0 : t.value) == null ? void 0 : m.toString(),
         valueIsNumericString: !0,
         allowEmptyFormatting: !0,
         type: e,
         mask: "_",
         style: { fontSize: "16px" },
-        className: `${n != null && n.error ? g : ""} w-full border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
+        className: `${n != null && n.error ? h : ""} w-full border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
         format: l,
-        ...f
+        ...g
       }
     ) : e === "number" ? /* @__PURE__ */ de(
       "div",
       {
-        className: `${n != null && n.error ? g : ""} ${a} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`,
+        className: `${n != null && n.error ? h : ""} ${a} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`,
         children: [
           /* @__PURE__ */ S(
             Es,
             {
-              decimalScale: d,
+              decimalScale: f,
               style: { fontSize: "16px" },
-              onValueChange: (x) => {
-                var w;
-                return t == null ? void 0 : t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
+              onValueChange: (w) => {
+                var E;
+                return t == null ? void 0 : t.onChange((E = w.value.replace("_", "")) == null ? void 0 : E.toString());
               },
-              value: (m = t == null ? void 0 : t.value) == null ? void 0 : m.toString(),
+              value: (y = t == null ? void 0 : t.value) == null ? void 0 : y.toString(),
               className: `w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
-              ...f,
+              ...g,
               ...As.number
             }
           ),
@@ -861,13 +862,13 @@ const As = {
       "input",
       {
         ...t,
-        ...f,
+        ...g,
         type: e,
         style: { fontSize: "16px" },
-        className: `${n != null && n.error ? g : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
+        className: `${n != null && n.error ? h : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
-    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((y = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : y.length) && /* @__PURE__ */ S(Pr, { error: n == null ? void 0 : n.error }) })
+    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((x = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : x.length) && /* @__PURE__ */ S(Pr, { error: n == null ? void 0 : n.error }) })
   ] });
 }, Vf = Ps, Rs = ({
   children: e,
@@ -3264,35 +3265,36 @@ const da = ({
   className: r,
   field: n,
   fieldState: o,
-  labelClassName: i,
-  parentClassName: s,
-  formState: a,
-  label: c,
-  ...u
+  wrapperClassName: i,
+  labelClassName: s,
+  parentClassName: a,
+  formState: c,
+  label: u,
+  ...p
 }) => {
-  var l;
-  return /* @__PURE__ */ de("label", { className: "relative", children: [
-    c && /* @__PURE__ */ S("span", { className: `text-primary  ${i}`, children: c }),
+  var d;
+  return /* @__PURE__ */ de("label", { className: `relative w-full ${i}`, children: [
+    u && /* @__PURE__ */ S("span", { className: `text-primary  ${s}`, children: u }),
     /* @__PURE__ */ S(
       "div",
       {
-        className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${s}`,
+        className: `relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${a}`,
         children: /* @__PURE__ */ de(
           "select",
           {
             ...n,
-            ...u,
+            ...p,
             defaultValue: "",
             className: `w-full ${o != null && o.error ? "!border-danger" : ""} cursor-pointer appearance-none bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
             children: [
               /* @__PURE__ */ S("option", { value: "", children: e }),
-              t == null ? void 0 : t.map((d, f) => /* @__PURE__ */ S("option", { value: d.value, className: "text-black", children: d.label }, f))
+              t == null ? void 0 : t.map((f, g) => /* @__PURE__ */ S("option", { value: f.value, className: "text-black", children: f.label }, g))
             ]
           }
         )
       }
     ),
-    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (o == null ? void 0 : o.error) && ((l = Object.keys(o == null ? void 0 : o.error)) == null ? void 0 : l.length) && /* @__PURE__ */ S(Pr, { error: o == null ? void 0 : o.error }) })
+    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (o == null ? void 0 : o.error) && ((d = Object.keys(o == null ? void 0 : o.error)) == null ? void 0 : d.length) && /* @__PURE__ */ S(Pr, { error: o == null ? void 0 : o.error }) })
   ] });
 }, Lf = fa;
 function bt(e) {
