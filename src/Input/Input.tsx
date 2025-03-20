@@ -86,7 +86,7 @@ const Input = <
           style={{ fontSize: "16px" }}
           className={`${
             fieldState?.error ? errorClass : ""
-          } w-full border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          } w-full border-[1px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
           format={format}
           {...rest}
         />
@@ -94,7 +94,7 @@ const Input = <
         <div
           className={`${
             fieldState?.error ? errorClass : ""
-          } ${parentClassName} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`}
+          } ${parentClassName} flex items-center justify-between w-full border-[1px] border-primary rounded-[30px] bg-white md:rounded-[15px] transition-all duration-300`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -103,7 +103,7 @@ const Input = <
               field?.onChange(values.value.replace("_", "")?.toString())
             }
             value={field?.value?.toString()}
-            className={`w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+            className={`w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
             {...rest}
             {...MaskRules["number"]}
           />
@@ -121,7 +121,7 @@ const Input = <
           style={{ fontSize: "16px" }}
           className={`${
             fieldState?.error ? errorClass : ""
-          } w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          } w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
 

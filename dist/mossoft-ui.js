@@ -831,14 +831,14 @@ const As = {
         type: e,
         mask: "_",
         style: { fontSize: "16px" },
-        className: `${n != null && n.error ? h : ""} w-full border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
+        className: `${n != null && n.error ? h : ""} w-full border-[1px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${c}`,
         format: l,
         ...g
       }
     ) : e === "number" ? /* @__PURE__ */ de(
       "div",
       {
-        className: `${n != null && n.error ? h : ""} ${a} flex items-center justify-between w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] transition-all duration-300`,
+        className: `${n != null && n.error ? h : ""} ${a} flex items-center justify-between w-full border-[1px] border-primary rounded-[30px] bg-white md:rounded-[15px] transition-all duration-300`,
         children: [
           /* @__PURE__ */ S(
             Es,
@@ -850,7 +850,7 @@ const As = {
                 return t == null ? void 0 : t.onChange((E = w.value.replace("_", "")) == null ? void 0 : E.toString());
               },
               value: (y = t == null ? void 0 : t.value) == null ? void 0 : y.toString(),
-              className: `w-full bg-light-gray border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
+              className: `w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
               ...g,
               ...As.number
             }
@@ -865,7 +865,7 @@ const As = {
         ...g,
         type: e,
         style: { fontSize: "16px" },
-        className: `${n != null && n.error ? h : ""} w-full bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
+        className: `${n != null && n.error ? h : ""} w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
     /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((x = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : x.length) && /* @__PURE__ */ S(Pr, { error: n == null ? void 0 : n.error }) })
@@ -3285,7 +3285,7 @@ const da = ({
             ...n,
             ...p,
             defaultValue: "",
-            className: `w-full ${o != null && o.error ? "!border-danger" : ""} cursor-pointer appearance-none bg-white border-[2px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
+            className: `w-full ${o != null && o.error ? "!border-danger" : ""} cursor-pointer appearance-none bg-white border-[1px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${r}`,
             children: [
               /* @__PURE__ */ S("option", { value: "", children: e }),
               t == null ? void 0 : t.map((f, g) => /* @__PURE__ */ S("option", { value: f.value, className: "text-black", children: f.label }, g))
