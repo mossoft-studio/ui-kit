@@ -100,9 +100,9 @@ const Input = <
             decimalScale={decimalScale}
             style={{ fontSize: "16px" }}
             onValueChange={(values) =>
-              field?.onChange(values.value.replace("_", "")?.toString())
+              field?.onChange(+values.value.replace("_", "")?.toString())
             }
-            value={field?.value?.toString()}
+            value={+field?.value!}
             className={`w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
             {...rest}
             {...MaskRules["number"]}

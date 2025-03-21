@@ -814,16 +814,16 @@ const As = {
   decimalScale: f = 1,
   ...g
 }) => {
-  var m, y, x;
+  var m, y;
   const h = "!border-danger";
   return /* @__PURE__ */ de("label", { className: `relative w-full ${d}`, children: [
     r && /* @__PURE__ */ S("span", { className: `text-primary  ${i}`, children: r }),
     l ? /* @__PURE__ */ S(
       Os,
       {
-        onValueChange: (w) => {
-          var E;
-          t == null || t.onChange((E = w.value.replace("_", "")) == null ? void 0 : E.toString());
+        onValueChange: (x) => {
+          var w;
+          t == null || t.onChange((w = x.value.replace("_", "")) == null ? void 0 : w.toString());
         },
         value: (m = t == null ? void 0 : t.value) == null ? void 0 : m.toString(),
         valueIsNumericString: !0,
@@ -845,11 +845,11 @@ const As = {
             {
               decimalScale: f,
               style: { fontSize: "16px" },
-              onValueChange: (w) => {
-                var E;
-                return t == null ? void 0 : t.onChange((E = w.value.replace("_", "")) == null ? void 0 : E.toString());
+              onValueChange: (x) => {
+                var w;
+                return t == null ? void 0 : t.onChange(+((w = x.value.replace("_", "")) == null ? void 0 : w.toString()));
               },
-              value: (y = t == null ? void 0 : t.value) == null ? void 0 : y.toString(),
+              value: +(t == null ? void 0 : t.value),
               className: `w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
               ...g,
               ...As.number
@@ -868,7 +868,7 @@ const As = {
         className: `${n != null && n.error ? h : ""} w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
-    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((x = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : x.length) && /* @__PURE__ */ S(Pr, { error: n == null ? void 0 : n.error }) })
+    /* @__PURE__ */ S("div", { className: "absolute w-full items-center flex justify-center flex-row", children: (n == null ? void 0 : n.error) && ((y = Object.keys(n == null ? void 0 : n.error)) == null ? void 0 : y.length) && /* @__PURE__ */ S(Pr, { error: n == null ? void 0 : n.error }) })
   ] });
 }, Vf = Ps, Rs = ({
   children: e,
