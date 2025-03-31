@@ -1,5 +1,5 @@
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
 import Loader from "@/Loader/Loader";
@@ -17,6 +17,7 @@ type Props<T> = {
   renderItem: (item: T, index: number) => JSX.Element;
   iconClassName?: string;
   isScrollTopButton?: boolean;
+  emptyComponent?: ReactNode;
 };
 
 const InfiniteScroll = <T,>({
@@ -24,10 +25,17 @@ const InfiniteScroll = <T,>({
   renderItem,
   className,
   iconClassName,
+  emptyComponent,
   isScrollTopButton = true,
 }: Props<T>) => {
-  const { hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, data } =
-    infiniteData;
+  const {
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    data,
+    isPending,
+  } = infiniteData;
 
   const flattenPages = data?.pages.flatMap((page) => page);
 
@@ -52,14 +60,15 @@ const InfiniteScroll = <T,>({
         className="h-4 flex mt-8 flex-row items-center justify-center"
         ref={ref}
       >
-        {((isFetchingNextPage || isLoading) && (
+        {((isFetchingNextPage || isLoading || isPending) && (
           <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
         )) ||
-          (!Boolean(flattenPages?.length) && (
-            <span className="text-primary font-medium text-basetext-2xl text-2xl">
-              К сожалению, по Вашему запросу ничего не найдено 😓
-            </span>
-          ))}
+          (!Boolean(flattenPages?.length) &&
+            (emptyComponent || (
+              <span className="text-primary font-medium text-basetext-2xl text-2xl">
+                К сожалению, по Вашему запросу ничего не найдено 😓
+              </span>
+            )))}
       </div>
     </>
   );

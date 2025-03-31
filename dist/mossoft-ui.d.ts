@@ -12,6 +12,7 @@ import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 import { RefObject } from 'react';
 import { SelectHTMLAttributes } from 'react';
 import { TextareaHTMLAttributes } from 'react';
@@ -37,7 +38,7 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
 export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, formState, numberWrapperClassname, format, wrapperClassName, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
@@ -127,6 +128,7 @@ declare type Props_15<T> = {
     renderItem: (item: T, index: number) => JSX.Element;
     iconClassName?: string;
     isScrollTopButton?: boolean;
+    emptyComponent?: ReactNode;
 };
 
 declare type Props_16 = {
