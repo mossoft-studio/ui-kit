@@ -3,6 +3,7 @@ import { ReactNode, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
 import Loader from "@/Loader/Loader";
+import { twMerge } from "tailwind-merge";
 
 /**
  * A InfiniteScroll component
@@ -16,6 +17,7 @@ type Props<T> = {
   className?: string;
   renderItem: (item: T, index: number) => JSX.Element;
   iconClassName?: string;
+  emptyClassName?: string;
   isScrollTopButton?: boolean;
   emptyComponent?: ReactNode;
 };
@@ -26,6 +28,7 @@ const InfiniteScroll = <T,>({
   className,
   iconClassName,
   emptyComponent,
+  emptyClassName,
   isScrollTopButton = true,
 }: Props<T>) => {
   const {
@@ -57,18 +60,20 @@ const InfiniteScroll = <T,>({
           flattenPages.map((item, index) => renderItem(item, index))}
       </div>
       <div
-        className="h-4 flex mt-8 flex-row items-center justify-center"
+        className={twMerge(
+          "h-4 flex mt-8 flex-row items-center justify-center",
+          emptyClassName
+        )}
         ref={ref}
       >
         {((isFetchingNextPage || isLoading || isPending) && (
           <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
         )) ||
-          (!Boolean(flattenPages?.length) &&
-            (emptyComponent || (
-              <span className="text-primary font-medium text-basetext-2xl text-2xl">
-                К сожалению, по Вашему запросу ничего не найдено 😓
-              </span>
-            )))}
+          (!Boolean(flattenPages?.length) && emptyComponent) || (
+            <span className="text-primary font-medium text-basetext-2xl text-2xl">
+              К сожалению, по Вашему запросу ничего не найдено 😓
+            </span>
+          )}
       </div>
     </>
   );

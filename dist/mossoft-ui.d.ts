@@ -38,7 +38,7 @@ export declare type HeaderData = {
 
 export declare const Icon: default_2.FC<Props_5>;
 
-export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
+export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, emptyClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
 export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, formState, numberWrapperClassname, format, wrapperClassName, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
@@ -127,6 +127,7 @@ declare type Props_15<T> = {
     className?: string;
     renderItem: (item: T, index: number) => JSX.Element;
     iconClassName?: string;
+    emptyClassName?: string;
     isScrollTopButton?: boolean;
     emptyComponent?: ReactNode;
 };
