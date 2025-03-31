@@ -10094,7 +10094,7 @@ const Sf = ({ className: e }) => {
           i
         ),
         ref: g,
-        children: (u || p || d) && /* @__PURE__ */ S(Ar, { text: "Загрузка", style: { width: 40, height: 40 } }) || !(f != null && f.length) && o || /* @__PURE__ */ S("span", { className: "text-primary font-medium text-basetext-2xl text-2xl", children: "К сожалению, по Вашему запросу ничего не найдено 😓" })
+        children: (u || p || d) && /* @__PURE__ */ S(Ar, { text: "Загрузка", style: { width: 40, height: 40 } }) || !(f != null && f.length) && o
       }
     )
   ] });

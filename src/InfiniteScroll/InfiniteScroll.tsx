@@ -69,11 +69,7 @@ const InfiniteScroll = <T,>({
         {((isFetchingNextPage || isLoading || isPending) && (
           <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
         )) ||
-          (!Boolean(flattenPages?.length) && emptyComponent) || (
-            <span className="text-primary font-medium text-basetext-2xl text-2xl">
-              К сожалению, по Вашему запросу ничего не найдено 😓
-            </span>
-          )}
+          (!Boolean(flattenPages?.length) && emptyComponent)}
       </div>
     </>
   );
