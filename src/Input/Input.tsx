@@ -8,6 +8,7 @@ import {
 } from "react-hook-form";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import ErrorText from "../ErrorText/ErrorText";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props<
   TFieldValues extends FieldValues,
@@ -84,7 +85,7 @@ const Input = <
           type={type as "password" | "tel" | "text"}
           mask="_"
           style={{ fontSize: "16px" }}
-          className={`${
+          className={`$${
             fieldState?.error ? errorClass : ""
           } w-full border-[1px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
           format={format}
@@ -92,7 +93,7 @@ const Input = <
         />
       ) : type === "number" ? (
         <div
-          className={`${
+          className={`$${
             fieldState?.error ? errorClass : ""
           } ${parentClassName} flex items-center justify-between w-full border-[1px] border-primary rounded-[30px] bg-white md:rounded-[15px] transition-all duration-300`}
         >
@@ -119,16 +120,26 @@ const Input = <
           {...rest}
           type={type}
           style={{ fontSize: "16px" }}
-          className={`${
+          className={`$${
             fieldState?.error ? errorClass : ""
           } w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
 
-      <div className="absolute w-full items-center flex justify-center flex-row">
-        {fieldState?.error && Object.keys(fieldState?.error)?.length && (
-          <ErrorText error={fieldState?.error} />
-        )}
+      <div className="absolute w-full items-center flex justify-center flex-row min-h-[24px]">
+        <AnimatePresence>
+          {fieldState?.error && Object.keys(fieldState?.error)?.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.2 }}
+              className="w-full flex justify-center"
+            >
+              <ErrorText error={fieldState?.error} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </label>
   );
