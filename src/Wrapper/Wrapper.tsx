@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   className?: string;
@@ -9,7 +10,12 @@ const Wrapper: React.FC<PropsWithChildren<Props>> = ({
   className,
 }) => {
   return (
-    <div className={`bg-main rounded-[25px] py-5 px-[30px] ${className}`}>
+    <div
+      className={twMerge(
+        "bg-main rounded-[25px] py-5 px-[30px] border-primary/10 border",
+        className
+      )}
+    >
       {children}
     </div>
   );

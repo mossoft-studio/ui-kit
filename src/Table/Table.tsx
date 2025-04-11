@@ -131,7 +131,7 @@ const DraggableList: FC<Props> = ({
                       >
                         {(provided) => {
                           const style: CSSProperties = {
-                            ...provided.draggableProps.style, //Тут стили , которые применяются при перемещении
+                            ...provided.draggableProps.style,
                           };
 
                           return (
