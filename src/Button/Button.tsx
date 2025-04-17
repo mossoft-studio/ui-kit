@@ -1,21 +1,15 @@
-import {
-  ButtonHTMLAttributes,
-  FC,
-  PropsWithChildren,
-  useEffect,
-  useState,
-} from "react";
+import { FC, PropsWithChildren, ComponentProps } from "react";
+import { motion } from "framer-motion";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
 
-type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>;
+type MotionButtonProps = ComponentProps<typeof motion.button>;
 
 type Props = {
   onClick: () => void;
   className?: string;
   disabled?: boolean;
   isLoading?: boolean;
-  loadType?: "1C" | "";
   variant:
     | "primary"
     | "secondary"
@@ -26,81 +20,70 @@ type Props = {
     | "small-danger"
     | "tab";
   icon?: string;
-} & ButtonAttributes;
+} & MotionButtonProps;
 
 const Button: FC<PropsWithChildren<Props>> = ({
   children,
   onClick,
   className,
-  loadType,
   isLoading,
   variant,
   icon,
   disabled,
   ...rest
 }) => {
-  const [loadMessage, setLoadMessage] = useState("");
-
-  const handleLoadMessage = () => {
-    if (isLoading && loadType === "1C") {
-      setLoadMessage("Отправляем запрос в 1С");
-      setTimeout(
-        () =>
-          loadType === "1C"
-            ? setLoadMessage("1С обрабатывает документы")
-            : setLoadMessage(""),
-        4000
-      );
-    }
-  };
-
-  useEffect(() => {
-    loadType === "1C" && handleLoadMessage();
-  }, [isLoading]);
-
   const buttonClasses = [
-    "flex items-center justify-center py-[14px] px-[6px] w-full h-fit rounded-[30px] md:rounded-[15px] text-base md:text-lg uppercase font-medium border border-transparent active:opacity-[0.6] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-[0.6]",
+    "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
+    "rounded-2xl px-6 py-3 text-sm md:text-base",
     className,
-    variant === "primary" && "text-white bg-primary",
-    variant === "secondary" && "text-primary bg-primary bg-opacity-10",
-    variant === "small-secondary" &&
-      "!normal-case !py-[6px] !text-sm text-primary bg-primary bg-opacity-20",
-    variant === "small-primary" &&
-      "!normal-case !py-[6px] !text-sm text-white bg-primary",
-    variant === "small-danger" &&
-      "!normal-case !py-[6px] !text-sm text-danger bg-danger bg-opacity-10",
-    variant === "danger" && "text-danger bg-danger bg-opacity-10",
+    variant === "primary" &&
+      "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
+    variant === "secondary" &&
+      "bg-primary/10 text-primary hover:bg-primary/20 focus:ring-primary",
+    variant === "danger" &&
+      "bg-danger/10 text-danger hover:bg-danger/20 focus:ring-danger",
     variant === "link" &&
-      "text-primary !text-sm !py-0 !px-1 !normal-case !w-fit",
+      "bg-transparent text-primary hover:underline px-2 py-1 focus:ring-primary",
+    variant === "small-primary" &&
+      "bg-primary text-white text-xs px-4 py-2 hover:bg-primary/90 focus:ring-primary",
+    variant === "small-secondary" &&
+      "bg-primary/20 text-primary text-xs px-4 py-2 hover:bg-primary/30 focus:ring-primary",
+    variant === "small-danger" &&
+      "bg-danger/10 text-danger text-xs px-4 py-2 hover:bg-danger/20 focus:ring-danger",
     variant === "tab" &&
-      "bg-primary text-white text-sm md:!text-base !px-5 !py-2 !font-normal rounded-[30px] md:!rounded-[15px] !normal-case !w-fit",
+      "bg-primary text-white text-sm md:text-base px-5 py-2 rounded-full focus:ring-primary",
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <button
+    <motion.button
       disabled={disabled || isLoading}
       onClick={onClick}
       className={buttonClasses}
       {...rest}
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      whileTap={{ scale: 0.96 }}
+      whileHover={!disabled && !isLoading ? { scale: 1.02 } : undefined}
     >
       {isLoading ? (
-        <Loader text={loadType === "1C" ? loadMessage : undefined} />
+        <Loader style={{ width: 20, height: 20 }} />
       ) : (
-        children
+        <>
+          {children}
+          {icon && (
+            <Icon
+              name={icon}
+              className={`ml-2 ${
+                variant.includes("small") ? "w-4 h-4" : "w-5 h-5"
+              }`}
+            />
+          )}
+        </>
       )}
-      {icon && !isLoading && (
-        <Icon
-          name={icon}
-          className={
-            variant.includes("small")
-              ? "w-4 h-4 child:w-4 child:h-4"
-              : "w-5 h-5 child:w-5 child:h-5"
-          }
-        />
-      )}
-    </button>
+    </motion.button>
   );
 };
 

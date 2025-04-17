@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 import { ControllerFieldState } from 'react-hook-form';
 import { ControllerRenderProps } from 'react-hook-form';
 import { CSSProperties } from 'react';
@@ -11,6 +11,7 @@ import { HTMLInputTypeAttribute } from 'react';
 import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
+import { motion } from 'framer-motion';
 import { PropsWithChildren } from 'react';
 import { ReactNode } from 'react';
 import { RefObject } from 'react';
@@ -20,8 +21,6 @@ import { UseFormStateReturn } from 'react-hook-form';
 import { UseInfiniteQueryResult } from '@tanstack/react-query';
 
 export declare const Button: FC<PropsWithChildren<Props>>;
-
-declare type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export declare const Checkbox: default_2.FC<Props_2>;
 
@@ -54,6 +53,8 @@ declare type ListItems = {
 
 export declare const Loader: FC<Props_8>;
 
+declare type MotionButtonProps = ComponentProps<typeof motion.button>;
+
 export declare const MultiSelectSearch: FC<Props_9>;
 
 declare type Options = {
@@ -67,10 +68,9 @@ declare type Props = {
     className?: string;
     disabled?: boolean;
     isLoading?: boolean;
-    loadType?: "1C" | "";
     variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-secondary" | "small-danger" | "tab";
     icon?: string;
-} & ButtonAttributes;
+} & MotionButtonProps;
 
 declare type Props_10 = {
     placeholder?: string;
