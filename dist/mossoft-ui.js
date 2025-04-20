@@ -5686,7 +5686,13 @@ const Hg = {
   var h, v;
   const g = "!border-danger";
   return /* @__PURE__ */ he("label", { className: `relative w-full ${f}`, children: [
-    n && /* @__PURE__ */ P("span", { className: `text-primary  ${i}`, children: n }),
+    n && /* @__PURE__ */ P(
+      "span",
+      {
+        className: `absolute left-[20px] -top-[10px] px-[6px] text-primary text-xs md:text-sm bg-white z-[1] ${i}`,
+        children: n
+      }
+    ),
     u ? /* @__PURE__ */ P(
       zg,
       {
@@ -5700,14 +5706,14 @@ const Hg = {
         type: e,
         mask: "_",
         style: { fontSize: "16px" },
-        className: `$${r != null && r.error ? g : ""} w-full border-[1px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${c}`,
+        className: `$${r != null && r.error ? g : ""} w-full border border-primary rounded-xl md:border-primary md:bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${c}`,
         format: u,
         ...m
       }
     ) : e === "number" ? /* @__PURE__ */ he(
       "div",
       {
-        className: `$${r != null && r.error ? g : ""} ${a} flex items-center justify-between w-full border-[1px] border-primary rounded-[30px] bg-white md:rounded-[15px] transition-all duration-300`,
+        className: `$${r != null && r.error ? g : ""} ${a} flex items-center justify-between w-full border-[1px] border-primary rounded-xl bg-white transition-all duration-300`,
         children: [
           /* @__PURE__ */ P(
             $g,
@@ -5719,7 +5725,7 @@ const Hg = {
                 return t == null ? void 0 : t.onChange(+((E = x.value.replace("_", "")) == null ? void 0 : E.toString()));
               },
               value: +(t == null ? void 0 : t.value),
-              className: `w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
+              className: `w-full border-[1px] border-primary rounded-xl md:border-primary bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`,
               ...m,
               ...Hg.number
             }
@@ -5734,7 +5740,7 @@ const Hg = {
         ...m,
         type: e,
         style: { fontSize: "16px" },
-        className: `$${r != null && r.error ? g : ""} w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
+        className: `$${r != null && r.error ? g : ""} w-full bg-white border outline-none border-primary rounded-xl text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${c}`
       }
     ),
     /* @__PURE__ */ P("div", { className: "absolute w-full items-center flex justify-center flex-row min-h-[24px]", children: /* @__PURE__ */ P(_d, { children: (r == null ? void 0 : r.error) && ((v = Object.keys(r == null ? void 0 : r.error)) == null ? void 0 : v.length) > 0 && /* @__PURE__ */ P(
@@ -8162,7 +8168,13 @@ const Nv = ({
 }) => {
   var f;
   return /* @__PURE__ */ he("label", { className: `relative w-full ${i}`, children: [
-    l && /* @__PURE__ */ P("span", { className: `text-primary  ${s}`, children: l }),
+    l && /* @__PURE__ */ P(
+      "span",
+      {
+        className: `absolute left-[20px] -top-[10px] px-[6px] text-primary text-xs md:text-sm bg-white z-[1] ${s}`,
+        children: l
+      }
+    ),
     /* @__PURE__ */ P(
       "div",
       {

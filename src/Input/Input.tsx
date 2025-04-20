@@ -72,8 +72,13 @@ const Input = <
   return (
     <label className={`relative w-full ${wrapperClassName}`}>
       {label && (
-        <span className={`text-primary  ${labelClassName}`}>{label}</span>
+        <span
+          className={`absolute left-[20px] -top-[10px] px-[6px] text-primary text-xs md:text-sm bg-white z-[1] ${labelClassName}`}
+        >
+          {label}
+        </span>
       )}
+
       {format ? (
         <PatternFormat
           onValueChange={(values) => {
@@ -87,7 +92,7 @@ const Input = <
           style={{ fontSize: "16px" }}
           className={`$${
             fieldState?.error ? errorClass : ""
-          } w-full border-[1px] border-primary rounded-[30px] md:border-primary md:bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
+          } w-full border border-primary rounded-xl md:border-primary md:bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
           format={format}
           {...rest}
         />
@@ -95,7 +100,7 @@ const Input = <
         <div
           className={`$${
             fieldState?.error ? errorClass : ""
-          } ${parentClassName} flex items-center justify-between w-full border-[1px] border-primary rounded-[30px] bg-white md:rounded-[15px] transition-all duration-300`}
+          } ${parentClassName} flex items-center justify-between w-full border-[1px] border-primary rounded-xl bg-white transition-all duration-300`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -104,7 +109,7 @@ const Input = <
               field?.onChange(+values.value.replace("_", "")?.toString())
             }
             value={+field?.value!}
-            className={`w-full border-[1px] border-primary rounded-[30px] md:border-primary bg-white md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+            className={`w-full border-[1px] border-primary rounded-xl md:border-primary bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
             {...rest}
             {...MaskRules["number"]}
           />
@@ -122,7 +127,7 @@ const Input = <
           style={{ fontSize: "16px" }}
           className={`$${
             fieldState?.error ? errorClass : ""
-          } w-full bg-white border-[1px] outline-none border-primary rounded-[30px] md:rounded-[15px] text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          } w-full bg-white border outline-none border-primary rounded-xl text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
         />
       )}
 
