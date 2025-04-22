@@ -10,13 +10,7 @@ const Ti = ({ name: e, className: t, ...r }) => /* @__PURE__ */ w(
     className: `text-dark-gray ${t}`,
     fill: "currentColor",
     ...r,
-    children: /* @__PURE__ */ w(
-      "use",
-      {
-        className: "w-full h-full object-contain",
-        href: `/icons/sprite.svg#${e}`
-      }
-    )
+    children: /* @__PURE__ */ w("use", { className: "w-full h-full object-contain", href: `#${e}` })
   }
 ), at = /* @__PURE__ */ Pi(Ti), $i = ({ style: e, text: t }) => /* @__PURE__ */ le("div", { className: "flex flex-row items-center justify-center gap-3", children: [
   /* @__PURE__ */ w("span", { className: "w-[22px] h-[22px] border-[5px] border-solid border-white rounded-full inline-block box-border animate-rotation !border-b-primary", style: e }),
