@@ -3,6 +3,7 @@ import path from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import tailwindcss from "@tailwindcss/vite";
+import treeShakeable from "rollup-plugin-tree-shakeable";
 
 export default defineConfig({
   resolve: {
@@ -25,6 +26,8 @@ export default defineConfig({
         /react-dom\/.*/,
         "react/jsx-runtime",
         "tailwindcss",
+        "framer-motion",
+        "tailwind-merge",
       ],
       output: {
         globals: {
@@ -41,6 +44,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    treeShakeable(),
     dts({
       rollupTypes: true,
       include: ["src/", "src/index.ts"],
