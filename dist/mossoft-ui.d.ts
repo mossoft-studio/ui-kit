@@ -35,7 +35,7 @@ export declare type HeaderData = {
     transform?: (value: any, i: number) => any;
 };
 
-export declare const Icon: default_2.FC<Props_5>;
+export declare const Icon: default_2.NamedExoticComponent<Props_5>;
 
 export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, emptyClassName, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
