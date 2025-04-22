@@ -12,10 +12,7 @@ const Icon: React.FC<Props> = ({ name, className, ...rest }) => {
       fill="currentColor"
       {...rest}
     >
-      <use
-        className="w-full h-full object-contain"
-        href={`/icons/sprite.svg#${name}`}
-      ></use>
+      <use className="w-full h-full object-contain" href={`#${name}`}></use>
     </svg>
   );
 };
