@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type Props = {
   name: string;
@@ -20,4 +20,4 @@ const Icon: React.FC<Props> = ({ name, className, ...rest }) => {
   );
 };
 
-export default Icon;
+export default memo(Icon);
