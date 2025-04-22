@@ -8,7 +8,7 @@ type Props = {
 const Icon: React.FC<Props> = ({ name, className, ...rest }) => {
   return (
     <svg
-      className={`transition-all duration-300 text-dark-gray ${className}`}
+      className={`text-dark-gray ${className}`}
       fill="currentColor"
       {...rest}
     >

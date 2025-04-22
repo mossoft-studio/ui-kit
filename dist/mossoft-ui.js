@@ -7,7 +7,7 @@ import Ri, { flushSync as no } from "react-dom";
 const Ti = ({ name: e, className: t, ...r }) => /* @__PURE__ */ w(
   "svg",
   {
-    className: `transition-all duration-300 text-dark-gray ${t}`,
+    className: `text-dark-gray ${t}`,
     fill: "currentColor",
     ...r,
     children: /* @__PURE__ */ w(
