@@ -92,7 +92,7 @@ const Input = <
           style={{ fontSize: "16px" }}
           className={`$${
             fieldState?.error ? errorClass : ""
-          } w-full border border-primary rounded-xl md:border-primary md:bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
+          } w-full border border-primary rounded-xl md:border-primary bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
           format={format}
           {...rest}
         />
