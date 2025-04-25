@@ -1,4 +1,10 @@
-import { FC, PropsWithChildren, ComponentProps } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  ComponentProps,
+  useRef,
+  useCallback,
+} from "react";
 import { motion } from "framer-motion";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
@@ -7,6 +13,7 @@ type MotionButtonProps = ComponentProps<typeof motion.button>;
 
 type Props = {
   onClick: () => void;
+  debounceTimeMs?: number;
   className?: string;
   disabled?: boolean;
   isLoading?: boolean;
@@ -25,6 +32,7 @@ type Props = {
 const Button: FC<PropsWithChildren<Props>> = ({
   children,
   onClick,
+  debounceTimeMs = 500,
   className,
   isLoading,
   variant,
@@ -32,6 +40,18 @@ const Button: FC<PropsWithChildren<Props>> = ({
   disabled,
   ...rest
 }) => {
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const debouncedOnClick = useCallback(() => {
+    if (debounceTimerRef.current) return;
+
+    onClick?.();
+
+    debounceTimerRef.current = setTimeout(() => {
+      debounceTimerRef.current = null;
+    }, debounceTimeMs);
+  }, [onClick, debounceTimeMs]);
+
   const buttonClasses = [
     "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
     "rounded-2xl px-6 py-3 text-sm md:text-base",
@@ -59,7 +79,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <motion.button
       disabled={disabled || isLoading}
-      onClick={onClick}
+      onClick={debouncedOnClick}
       className={buttonClasses}
       {...rest}
       initial={{ opacity: 0, y: 6 }}

@@ -65,6 +65,7 @@ declare type Options = {
 
 declare type Props = {
     onClick: () => void;
+    debounceTimeMs?: number;
     className?: string;
     disabled?: boolean;
     isLoading?: boolean;
