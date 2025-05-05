@@ -82,9 +82,6 @@ const Button: FC<PropsWithChildren<Props>> = ({
       onClick={debouncedOnClick}
       className={buttonClasses}
       {...rest}
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
       whileTap={{ scale: 0.96 }}
       whileHover={!disabled && !isLoading ? { scale: 1.02 } : undefined}
     >

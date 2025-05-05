@@ -50,9 +50,6 @@ const $i = ({ name: e, className: t, ...r }) => /* @__PURE__ */ w(
       onClick: f,
       className: l,
       ...c,
-      initial: { opacity: 0, y: 6 },
-      animate: { opacity: 1, y: 0 },
-      transition: { duration: 0.3, ease: "easeOut" },
       whileTap: { scale: 0.96 },
       whileHover: !s && !o ? { scale: 1.02 } : void 0,
       children: o ? /* @__PURE__ */ w(yr, { style: { width: 20, height: 20 } }) : /* @__PURE__ */ le(it, { children: [
