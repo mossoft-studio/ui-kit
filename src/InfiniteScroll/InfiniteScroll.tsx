@@ -20,6 +20,7 @@ type Props<T> = {
   emptyClassName?: string;
   isScrollTopButton?: boolean;
   emptyComponent?: ReactNode;
+  loaderComponent?: ReactNode;
 };
 
 const InfiniteScroll = <T,>({
@@ -29,6 +30,7 @@ const InfiniteScroll = <T,>({
   iconClassName,
   emptyComponent,
   emptyClassName,
+  loaderComponent,
   isScrollTopButton = true,
 }: Props<T>) => {
   const {
@@ -66,9 +68,12 @@ const InfiniteScroll = <T,>({
         )}
         ref={ref}
       >
-        {((isFetchingNextPage || isLoading || isPending) && (
-          <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
-        )) ||
+        {((isFetchingNextPage || isLoading || isPending) &&
+          (loaderComponent ? (
+            loaderComponent
+          ) : (
+            <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
+          ))) ||
           (!Boolean(flattenPages?.length) && emptyComponent)}
       </div>
     </>

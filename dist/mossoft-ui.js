@@ -7830,25 +7830,26 @@ const Tf = ({ className: e }) => {
   iconClassName: n,
   emptyComponent: o,
   emptyClassName: i,
-  isScrollTopButton: a = !0
+  loaderComponent: a,
+  isScrollTopButton: s = !0
 }) => {
   const {
-    hasNextPage: s,
-    fetchNextPage: c,
-    isFetchingNextPage: u,
-    isLoading: f,
-    data: l,
-    isPending: d
-  } = e, p = l == null ? void 0 : l.pages.flatMap((m) => m), { ref: v, inView: h } = _f();
+    hasNextPage: c,
+    fetchNextPage: u,
+    isFetchingNextPage: f,
+    isLoading: l,
+    data: d,
+    isPending: p
+  } = e, v = d == null ? void 0 : d.pages.flatMap((y) => y), { ref: h, inView: m } = _f();
   return oe(() => {
-    h && s && c();
-  }, [c, h, s]), /* @__PURE__ */ le(it, { children: [
-    a && /* @__PURE__ */ w($f, { className: n }),
+    m && c && u();
+  }, [u, m, c]), /* @__PURE__ */ le(it, { children: [
+    s && /* @__PURE__ */ w($f, { className: n }),
     /* @__PURE__ */ w(
       "div",
       {
         className: `grid lg:grid-cols-3 grid-cols-1 gap-5 max-w-[1440px] items-center mx-auto ${r}`,
-        children: !!(p != null && p.length) && p.map((m, y) => t(m, y))
+        children: !!(v != null && v.length) && v.map((y, E) => t(y, E))
       }
     ),
     /* @__PURE__ */ w(
@@ -7858,8 +7859,8 @@ const Tf = ({ className: e }) => {
           "h-4 flex mt-8 flex-row items-center justify-center",
           i
         ),
-        ref: v,
-        children: (u || f || d) && /* @__PURE__ */ w(yr, { text: "Загрузка", style: { width: 40, height: 40 } }) || !(p != null && p.length) && o
+        ref: h,
+        children: (f || l || p) && (a || /* @__PURE__ */ w(yr, { text: "Загрузка", style: { width: 40, height: 40 } })) || !(v != null && v.length) && o
       }
     )
   ] });
