@@ -2,7 +2,6 @@ import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 import { ReactNode, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
-import Loader from "@/Loader/Loader";
 import { twMerge } from "tailwind-merge";
 
 /**
@@ -68,13 +67,9 @@ const InfiniteScroll = <T,>({
         )}
         ref={ref}
       >
-        {((isFetchingNextPage || isLoading || isPending) &&
-          (loaderComponent ? (
-            loaderComponent
-          ) : (
-            <Loader text="Загрузка" style={{ width: 40, height: 40 }} />
-          ))) ||
-          (!Boolean(flattenPages?.length) && emptyComponent)}
+        {isFetchingNextPage || isLoading || isPending
+          ? loaderComponent
+          : !Boolean(flattenPages?.length) && emptyComponent}
       </div>
     </>
   );
