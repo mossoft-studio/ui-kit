@@ -67,9 +67,8 @@ const InfiniteScroll = <T,>({
         )}
         ref={ref}
       >
-        {isFetchingNextPage || isLoading || isPending
-          ? loaderComponent
-          : !Boolean(flattenPages?.length) && emptyComponent}
+        {(isFetchingNextPage || isLoading || isPending) && loaderComponent}
+        {!Boolean(flattenPages?.length) && emptyComponent}
       </div>
     </>
   );
