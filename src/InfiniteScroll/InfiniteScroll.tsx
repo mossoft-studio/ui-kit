@@ -62,13 +62,18 @@ const InfiniteScroll = <T,>({
       </div>
       <div
         className={twMerge(
-          "h-4 flex mt-8 flex-row items-center justify-center",
+          "flex mt-8 flex-row items-center justify-center",
           emptyClassName
         )}
         ref={ref}
       >
-        {(isFetchingNextPage || isLoading || isPending) && loaderComponent}
-        {!Boolean(flattenPages?.length) && emptyComponent}
+        {isLoading || isPending
+          ? loaderComponent
+          : !flattenPages?.length
+          ? emptyComponent
+          : isFetchingNextPage
+          ? loaderComponent
+          : null}
       </div>
     </>
   );
