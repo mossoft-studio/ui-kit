@@ -885,7 +885,7 @@ const ga = {
   "div",
   {
     className: br(
-      "bg-main rounded-[25px] py-5 px-[30px] border-primary/10 border",
+      "bg-main rounded-2xl p-5 border-primary/10 border",
       t
     ),
     children: e
