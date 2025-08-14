@@ -11,13 +11,17 @@ import ErrorText from "../ErrorText/ErrorText";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Size = "sm" | "md" | "lg";
+
 const sizeStyles = {
   sm: { height: "h-10", paddingX: "px-2", text: "text-sm" },
   md: { height: "h-12", paddingX: "px-3", text: "text-base" },
   lg: { height: "h-14", paddingX: "px-4", text: "text-lg" },
 };
 
-export type SelectOption<T extends string> = { value: T; label: string };
+export type SelectOption<T extends string | number> = {
+  value: T;
+  label: string;
+};
 
 type Props<
   TFieldValues extends FieldValues,
@@ -33,6 +37,7 @@ type Props<
   fieldState?: ControllerFieldState;
   className?: string;
   wrapperClassName?: string;
+  disabled: boolean;
 };
 
 function cn(...xs: Array<string | false | null | undefined>) {
@@ -50,6 +55,7 @@ const Select = <
   placeholder,
   size = "md",
   field,
+  disabled,
   fieldState,
   className,
   wrapperClassName,
@@ -95,6 +101,7 @@ const Select = <
       <div ref={rootRef} className="relative">
         <button
           type="button"
+          disabled={disabled}
           className={cn(
             `${sz.height} ${sz.paddingX} ${sz.text} w-full rounded-xl border bg-white text-black`,
             "flex items-center justify-between border-gray focus:border-primary transition outline-none",

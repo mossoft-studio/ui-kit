@@ -91,6 +91,7 @@ declare type Props_11<TFieldValues extends FieldValues, TName extends FieldPath<
     fieldState?: ControllerFieldState;
     className?: string;
     wrapperClassName?: string;
+    disabled: boolean;
 };
 
 declare type Props_12 = {
@@ -208,9 +209,9 @@ export declare const ScrollTopButton: FC<Props_16>;
 
 export declare const Search: default_2.FC<Props_10>;
 
-export declare const Select: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string>({ value, onChange, options, placeholder, size, field, fieldState, className, wrapperClassName, }: Props_11<TFieldValues, TName, TVal>) => JSX_2.Element;
+export declare const Select: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string>({ value, onChange, options, placeholder, size, field, disabled, fieldState, className, wrapperClassName, }: Props_11<TFieldValues, TName, TVal>) => JSX_2.Element;
 
-declare type SelectOption<T extends string> = {
+declare type SelectOption<T extends string | number> = {
     value: T;
     label: string;
 };
