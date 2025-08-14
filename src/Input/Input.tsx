@@ -67,13 +67,26 @@ const Input = <
   decimalScale = 1,
   ...rest
 }: Props<TFieldValues, TName>) => {
-  const errorClass = "!border-danger";
+  const hasError = !!fieldState?.error;
+
+  const baseField =
+    "h-10 w-full bg-white text-black placeholder:text-dark-gray " +
+    "text-sm md:text-base font-normal rounded-xl " +
+    "border border-gray transition-[border,box-shadow] duration-200 outline-none " +
+    "focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] " +
+    "hover:border-primary/70 " +
+    "disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed";
+  const errorClass =
+    "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)] hover:!border-danger";
+  const padding = "px-3";
 
   return (
-    <label className={`relative w-full ${wrapperClassName}`}>
+    <label className={`relative w-full ${wrapperClassName || ""}`}>
       {label && (
         <span
-          className={`absolute left-[20px] -top-[10px] px-[6px] text-primary text-xs md:text-sm bg-white z-[1] ${labelClassName}`}
+          className={`absolute left-[14px] -top-[10px] z-[1] px-[6px] bg-white text-xs md:text-sm text-primary ${
+            labelClassName || ""
+          }`}
         >
           {label}
         </span>
@@ -90,17 +103,18 @@ const Input = <
           type={type as "password" | "tel" | "text"}
           mask="_"
           style={{ fontSize: "16px" }}
-          className={`$${
-            fieldState?.error ? errorClass : ""
-          } w-full border border-primary rounded-xl md:border-primary bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 outline-none ${className}`}
+          className={`${baseField} ${padding} ${hasError ? errorClass : ""} ${
+            className || ""
+          }`}
           format={format}
+          aria-invalid={hasError || undefined}
           {...rest}
         />
       ) : type === "number" ? (
         <div
-          className={`$${
-            fieldState?.error ? errorClass : ""
-          } ${parentClassName} flex items-center justify-between w-full border-[1px] border-primary rounded-xl bg-white transition-all duration-300`}
+          className={`flex items-center justify-between rounded-xl border border-gray bg-white ${
+            numberWrapperClassname || ""
+          } ${hasError ? errorClass : ""}`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -108,13 +122,18 @@ const Input = <
             onValueChange={(values) =>
               field?.onChange(+values.value.replace("_", "")?.toString())
             }
-            value={+field?.value!}
-            className={`w-full border-[1px] border-primary rounded-xl md:border-primary bg-white text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+            value={
+              typeof field?.value === "number"
+                ? field?.value
+                : Number(field?.value ?? 0)
+            }
+            className={`h-10 flex-1 bg-transparent border-0 ${padding} text-black placeholder:text-dark-gray rounded-xl focus:outline-none`}
+            aria-invalid={hasError || undefined}
             {...rest}
             {...MaskRules["number"]}
           />
           {postfix ? (
-            <span className="text-sm md:text-base text-dark-gray font-normal pr-[15px] md:pr-[10px]">
+            <span className="pr-3 text-sm md:text-base text-dark-gray select-none">
               {postfix}
             </span>
           ) : null}
@@ -125,15 +144,16 @@ const Input = <
           {...rest}
           type={type}
           style={{ fontSize: "16px" }}
-          className={`$${
-            fieldState?.error ? errorClass : ""
-          } w-full bg-white border outline-none border-primary rounded-xl text-black text-sm md:text-base font-normal placeholder:text-dark-gray block p-[14px] md:p-[10px] transition-all duration-300 ${className}`}
+          className={`${baseField} ${padding} ${hasError ? errorClass : ""} ${
+            className || ""
+          }`}
+          aria-invalid={hasError || undefined}
         />
       )}
 
       <div className="absolute w-full items-center flex justify-center flex-row min-h-[24px]">
         <AnimatePresence>
-          {fieldState?.error && Object.keys(fieldState?.error)?.length > 0 && (
+          {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
@@ -141,7 +161,7 @@ const Input = <
               transition={{ duration: 0.2 }}
               className="w-full flex justify-center"
             >
-              <ErrorText error={fieldState?.error} />
+              <ErrorText error={fieldState.error} />
             </motion.div>
           )}
         </AnimatePresence>
