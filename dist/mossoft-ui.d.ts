@@ -39,7 +39,7 @@ export declare const Icon: default_2.NamedExoticComponent<Props_5>;
 
 export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, emptyClassName, loaderComponent, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
-export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ size, type, field, label, fieldState, postfix, labelClassName, parentClassName, className, numberWrapperClassname, format, wrapperClassName, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
+export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ size, type, field, label, fieldState, postfix, labelClassName, className, numberWrapperClassname, format, wrapperClassName, decimalScale, requiredMark, onFocus, onBlur, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
 declare type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
@@ -185,6 +185,7 @@ declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<T
     postfix?: string;
     numberWrapperClassname?: string;
     errorPlace?: "bottom" | "right";
+    requiredMark?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
 declare type Props_7 = {

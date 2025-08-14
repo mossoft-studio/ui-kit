@@ -1,4 +1,9 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import {
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  useMemo,
+  useState,
+} from "react";
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -11,32 +16,34 @@ import ErrorText from "../ErrorText/ErrorText";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Size = "sm" | "md" | "lg";
-
 type SizeOptions = {
   height: string;
   padding: string;
   text: string;
   postfixPadding: string;
+  innerTopPad: string;
 };
-
 const sizeStyles: Record<Size, SizeOptions> = {
   sm: {
     height: "h-8",
-    padding: "px-2 py-1",
+    padding: "px-2",
     text: "text-sm",
     postfixPadding: "pr-2",
+    innerTopPad: "pt-5",
   },
   md: {
     height: "h-10",
-    padding: "px-3 py-2",
+    padding: "px-3",
     text: "text-base",
     postfixPadding: "pr-3",
+    innerTopPad: "pt-6",
   },
   lg: {
     height: "h-12",
-    padding: "px-4 py-3",
+    padding: "px-4",
     text: "text-lg",
     postfixPadding: "pr-4",
+    innerTopPad: "pt-7",
   },
 };
 
@@ -60,21 +67,15 @@ type Props<
   postfix?: string;
   numberWrapperClassname?: string;
   errorPlace?: "bottom" | "right";
+  requiredMark?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
-export const MaskRules: {
-  [key in "number"]?: {
-    allowNegative: boolean;
-    allowLeadingZeros: boolean;
-    thousandSeparator: string;
-    thousandsGroupStyle?: "thousand" | "lakh" | "wan";
-  };
-} = {
+export const MaskRules = {
   number: {
     allowNegative: false,
     allowLeadingZeros: false,
     thousandSeparator: " ",
-    thousandsGroupStyle: "thousand",
+    thousandsGroupStyle: "thousand" as const,
   },
 };
 
@@ -89,40 +90,75 @@ const Input = <
   fieldState,
   postfix,
   labelClassName,
-  parentClassName,
   className,
   numberWrapperClassname,
   format,
   wrapperClassName,
   decimalScale = 1,
+  requiredMark,
+  onFocus,
+  onBlur,
   ...rest
 }: Props<TFieldValues, TName>) => {
   const hasError = !!fieldState?.error;
-  const sz: SizeOptions = sizeStyles[size];
+  const sz = sizeStyles[size];
 
-  const baseField = `${sz.height} w-full bg-white text-black placeholder:text-dark-gray 
-    ${sz.text} font-normal rounded-xl border border-gray 
-    transition-[border,box-shadow] duration-200 outline-none 
-    focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] 
-    disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`;
+  const [focused, setFocused] = useState(false);
+  const rawValue =
+    field?.value ?? (rest as any)?.value ?? (rest as any)?.defaultValue;
+  const hasContent = useMemo(() => {
+    if (rawValue === 0) return true;
+    return !!rawValue && String(rawValue).length > 0;
+  }, [rawValue]);
+
+  const baseField =
+    "w-full bg-white text-black placeholder:text-dark-gray " +
+    `${sz.text} font-normal rounded-xl border transition-[border,box-shadow] duration-200 outline-none ` +
+    "border-gray focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] " +
+    "disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed";
 
   const errorClass =
-    "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)] hover:!border-danger";
+    "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)]";
+
+  const FloatingLabel = () => {
+    if (!label) return null;
+    const floated = focused || hasContent;
+    return (
+      <span
+        className={
+          "pointer-events-none absolute left-3 -top-2 z-[1] inline-flex items-center " +
+          "px-1 rounded bg-white transition-all duration-200 " +
+          (floated
+            ? "text-primary scale-90 -translate-y-1"
+            : "text-dark-gray opacity-80 translate-y-3") +
+          " " +
+          (labelClassName || "")
+        }
+      >
+        {label}
+        {requiredMark ? <span className="ml-0.5 text-danger">*</span> : null}
+      </span>
+    );
+  };
+
+  const handleFocus = (e: React.FocusEvent<any>) => {
+    setFocused(true);
+    onFocus?.(e as any);
+    (rest as any)?.onFocus?.(e as any);
+  };
+  const handleBlur = (e: React.FocusEvent<any>) => {
+    setFocused(false);
+    onBlur?.(e as any);
+    (rest as any)?.onBlur?.(e as any);
+  };
 
   return (
     <label className={`relative w-full ${wrapperClassName || ""}`}>
-      {label && (
-        <span
-          className={`absolute left-[14px] -top-[10px] z-[1] px-[6px] bg-white text-xs md:text-sm text-primary ${
-            labelClassName || ""
-          }`}
-        >
-          {label}
-        </span>
-      )}
+      <FloatingLabel />
 
       {format ? (
         <PatternFormat
+          format={format}
           onValueChange={(values) => {
             field?.onChange(values.value.replace("_", "")?.toString());
           }}
@@ -132,18 +168,21 @@ const Input = <
           type={type as "password" | "tel" | "text"}
           mask="_"
           style={{ fontSize: "16px" }}
-          className={`${baseField} ${sz.padding} ${
+          className={`${baseField} ${sz.padding} ${sz.innerTopPad} ${
             hasError ? errorClass : ""
           } ${className || ""}`}
-          format={format}
           aria-invalid={hasError || undefined}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           {...rest}
         />
       ) : type === "number" ? (
         <div
-          className={`flex items-center justify-between rounded-xl border border-gray bg-white ${
+          className={`flex items-center justify-between rounded-xl border bg-white ${
+            sz.height
+          } ${hasError ? "border-danger" : "border-gray"} ${
             numberWrapperClassname || ""
-          } ${sz.height} ${hasError ? errorClass : ""}`}
+          }`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -156,10 +195,12 @@ const Input = <
                 ? field?.value
                 : Number(field?.value ?? 0)
             }
-            className={`flex-1 bg-transparent border-0 ${sz.padding} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
+            className={`flex-1 bg-transparent border-0 ${sz.padding} ${sz.innerTopPad} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
             aria-invalid={hasError || undefined}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             {...rest}
-            {...MaskRules["number"]}
+            {...MaskRules.number}
           />
           {postfix ? (
             <span
@@ -175,10 +216,12 @@ const Input = <
           {...rest}
           type={type}
           style={{ fontSize: "16px" }}
-          className={`${baseField} ${sz.padding} ${
+          className={`${baseField} ${sz.padding} ${sz.innerTopPad} ${
             hasError ? errorClass : ""
           } ${className || ""}`}
           aria-invalid={hasError || undefined}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
       )}
 
