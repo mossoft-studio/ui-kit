@@ -12,9 +12,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type Size = "sm" | "md" | "lg";
 const sizeStyles = {
-  sm: { height: "h-8", paddingX: "px-2", text: "text-sm" },
-  md: { height: "h-10", paddingX: "px-3", text: "text-base" },
-  lg: { height: "h-12", paddingX: "px-4", text: "text-lg" },
+  sm: { height: "h-10", paddingX: "px-2", text: "text-sm" },
+  md: { height: "h-12", paddingX: "px-3", text: "text-base" },
+  lg: { height: "h-14", paddingX: "px-4", text: "text-lg" },
 };
 
 export type SelectOption<T extends string> = { value: T; label: string };

@@ -784,21 +784,21 @@ function ga(e) {
 }
 const va = {
   sm: {
-    height: "h-8",
+    height: "h-10",
     paddingX: "px-2",
     text: "text-sm",
     postfixPadding: "pr-2",
     labelMb: "mb-1"
   },
   md: {
-    height: "h-10",
+    height: "h-12",
     paddingX: "px-3",
     text: "text-base",
     postfixPadding: "pr-3",
     labelMb: "mb-1.5"
   },
   lg: {
-    height: "h-12",
+    height: "h-14",
     paddingX: "px-4",
     text: "text-lg",
     postfixPadding: "pr-4",
@@ -1042,9 +1042,9 @@ const xa = ({
     )
   ] });
 }, Xf = Da, Na = {
-  sm: { height: "h-8", paddingX: "px-2", text: "text-sm" },
-  md: { height: "h-10", paddingX: "px-3", text: "text-base" },
-  lg: { height: "h-12", paddingX: "px-4", text: "text-lg" }
+  sm: { height: "h-10", paddingX: "px-2", text: "text-sm" },
+  md: { height: "h-12", paddingX: "px-3", text: "text-base" },
+  lg: { height: "h-14", paddingX: "px-4", text: "text-lg" }
 };
 function et(...e) {
   return e.filter(Boolean).join(" ");
