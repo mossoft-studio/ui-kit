@@ -80,14 +80,15 @@ declare type Props_10 = {
     setValue: (value: string) => void;
 };
 
-declare type Props_11 = {
-    options: SelectOptions[];
+declare type Props_11<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string> = {
+    value: TVal;
+    onChange: (v: TVal) => void;
+    options: readonly SelectOption<TVal>[];
     placeholder?: string;
-    field?: ControllerRenderProps<any, any>;
+    size?: Size_2;
+    field?: ControllerRenderProps<TFieldValues, TName>;
     fieldState?: ControllerFieldState;
     className?: string;
-    label?: string;
-    labelClassName?: string;
     wrapperClassName?: string;
 };
 
@@ -206,14 +207,16 @@ export declare const ScrollTopButton: FC<Props_16>;
 
 export declare const Search: default_2.FC<Props_10>;
 
-export declare function Select({ options, placeholder, field, fieldState, className, label, labelClassName, wrapperClassName, }: Props_11): JSX_2.Element;
+export declare const Select: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string>({ value, onChange, options, placeholder, size, field, fieldState, className, wrapperClassName, }: Props_11<TFieldValues, TName, TVal>) => JSX_2.Element;
 
-declare type SelectOptions = {
-    value: string | number;
+declare type SelectOption<T extends string> = {
+    value: T;
     label: string;
 };
 
 declare type Size = "sm" | "md" | "lg";
+
+declare type Size_2 = "sm" | "md" | "lg";
 
 export declare const Table: FC<Props_12>;
 
