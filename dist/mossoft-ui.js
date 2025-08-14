@@ -1065,7 +1065,7 @@ const Sa = ({
   wrapperClassName: d
 }) => {
   const [f, l] = fe(!1), u = G(null), p = Na[o], g = !!(s != null && s.error), h = to(
-    () => Math.max(
+    () => (r == null ? void 0 : r.length) && Math.max(
       0,
       r.findIndex((x) => x.value === e)
     ),
@@ -1079,9 +1079,10 @@ const Sa = ({
   }, []);
   const E = (x) => {
     var w;
+    if (!(r != null && r.length)) return;
     const b = r[x];
     b && ((w = i == null ? void 0 : i.onChange) == null || w.call(i, b.value), t == null || t(b.value), l(!1));
-  }, D = r[h];
+  }, D = r == null ? void 0 : r[h];
   return /* @__PURE__ */ ie("label", { className: `relative block w-full ${d || ""}`, children: [
     /* @__PURE__ */ ie("div", { ref: u, className: "relative", children: [
       /* @__PURE__ */ ie(
@@ -1131,7 +1132,7 @@ const Sa = ({
             "absolute z-50 mt-2 w-full rounded-xl border border-gray bg-white shadow",
             "max-h-72 overflow-auto"
           ),
-          children: r.map((x, b) => {
+          children: r == null ? void 0 : r.map((x, b) => {
             const w = x.value === e;
             return /* @__PURE__ */ ie(
               "li",

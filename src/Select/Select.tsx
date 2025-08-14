@@ -19,8 +19,8 @@ const sizeStyles = {
 };
 
 export type SelectOption<T extends any> = {
-  value: T;
   label: string;
+  value: T;
 };
 
 type Props<
@@ -30,14 +30,14 @@ type Props<
 > = {
   value?: TVal;
   onChange?: (v: TVal) => void;
-  options: readonly SelectOption<TVal>[];
+  options?: readonly SelectOption<TVal>[];
   placeholder?: string;
   size?: Size;
   field?: ControllerRenderProps<TFieldValues, TName>;
   fieldState?: ControllerFieldState;
   className?: string;
   wrapperClassName?: string;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 function cn(...xs: Array<string | false | null | undefined>) {
@@ -67,6 +67,7 @@ const Select = <
 
   const currentIndex = useMemo(
     () =>
+      options?.length &&
       Math.max(
         0,
         options.findIndex((o) => o.value === value)
@@ -87,6 +88,7 @@ const Select = <
   }, []);
 
   const selectByIndex = (idx: number) => {
+    if (!options?.length) return;
     const opt = options[idx];
     if (!opt) return;
     field?.onChange?.(opt.value);
@@ -94,7 +96,7 @@ const Select = <
     setOpen(false);
   };
 
-  const selected = options[currentIndex];
+  const selected = options?.[currentIndex!];
 
   return (
     <label className={`relative block w-full ${wrapperClassName || ""}`}>
@@ -140,7 +142,7 @@ const Select = <
               "max-h-72 overflow-auto"
             )}
           >
-            {options.map((opt, idx) => {
+            {options?.map((opt, idx) => {
               const isSelected = opt.value === value;
               const isActive = idx === activeIndex;
               return (
