@@ -1,9 +1,4 @@
-import {
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  useMemo,
-  useState,
-} from "react";
+import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -18,32 +13,32 @@ import { motion, AnimatePresence } from "framer-motion";
 type Size = "sm" | "md" | "lg";
 type SizeOptions = {
   height: string;
-  padding: string;
+  paddingX: string;
   text: string;
   postfixPadding: string;
-  innerTopPad: string;
+  labelMb: string;
 };
 const sizeStyles: Record<Size, SizeOptions> = {
   sm: {
     height: "h-8",
-    padding: "px-2",
+    paddingX: "px-2",
     text: "text-sm",
     postfixPadding: "pr-2",
-    innerTopPad: "pt-5",
+    labelMb: "mb-1",
   },
   md: {
     height: "h-10",
-    padding: "px-3",
+    paddingX: "px-3",
     text: "text-base",
     postfixPadding: "pr-3",
-    innerTopPad: "pt-6",
+    labelMb: "mb-1.5",
   },
   lg: {
     height: "h-12",
-    padding: "px-4",
+    paddingX: "px-4",
     text: "text-lg",
     postfixPadding: "pr-4",
-    innerTopPad: "pt-7",
+    labelMb: "mb-2",
   },
 };
 
@@ -67,7 +62,6 @@ type Props<
   postfix?: string;
   numberWrapperClassname?: string;
   errorPlace?: "bottom" | "right";
-  requiredMark?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
 export const MaskRules = {
@@ -95,67 +89,20 @@ const Input = <
   format,
   wrapperClassName,
   decimalScale = 1,
-  requiredMark,
-  onFocus,
-  onBlur,
   ...rest
 }: Props<TFieldValues, TName>) => {
   const hasError = !!fieldState?.error;
   const sz = sizeStyles[size];
 
-  const [focused, setFocused] = useState(false);
-  const rawValue =
-    field?.value ?? (rest as any)?.value ?? (rest as any)?.defaultValue;
-  const hasContent = useMemo(() => {
-    if (rawValue === 0) return true;
-    return !!rawValue && String(rawValue).length > 0;
-  }, [rawValue]);
-
   const baseField =
-    "w-full bg-white text-black placeholder:text-dark-gray " +
-    `${sz.text} font-normal rounded-xl border transition-[border,box-shadow] duration-200 outline-none ` +
-    "border-gray focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] " +
-    "disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed";
-
-  const errorClass =
-    "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)]";
-
-  const FloatingLabel = () => {
-    if (!label) return null;
-    const floated = focused || hasContent;
-    return (
-      <span
-        className={
-          "pointer-events-none absolute left-3 -top-2 z-[1] inline-flex items-center " +
-          "px-1 rounded bg-white transition-all duration-200 " +
-          (floated
-            ? "text-primary scale-90 -translate-y-1"
-            : "text-dark-gray opacity-80 translate-y-3") +
-          " " +
-          (labelClassName || "")
-        }
-      >
-        {label}
-        {requiredMark ? <span className="ml-0.5 text-danger">*</span> : null}
-      </span>
-    );
-  };
-
-  const handleFocus = (e: React.FocusEvent<any>) => {
-    setFocused(true);
-    onFocus?.(e as any);
-    (rest as any)?.onFocus?.(e as any);
-  };
-  const handleBlur = (e: React.FocusEvent<any>) => {
-    setFocused(false);
-    onBlur?.(e as any);
-    (rest as any)?.onBlur?.(e as any);
-  };
+    `${sz.height} w-full bg-white text-black placeholder:text-dark-gray ${sz.text} ` +
+    `rounded-xl border transition-colors duration-150 outline-none ` +
+    `border-gray focus:border-primary ` +
+    `disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`;
+  const errorClass = "!border-danger focus:border-danger";
 
   return (
-    <label className={`relative w-full ${wrapperClassName || ""}`}>
-      <FloatingLabel />
-
+    <label className={`block w-full ${wrapperClassName || ""}`}>
       {format ? (
         <PatternFormat
           format={format}
@@ -167,13 +114,11 @@ const Input = <
           allowEmptyFormatting
           type={type as "password" | "tel" | "text"}
           mask="_"
-          style={{ fontSize: "16px" }}
-          className={`${baseField} ${sz.padding} ${sz.innerTopPad} ${
+          style={{ fontSize: "16px" }} // iOS zoom fix
+          className={`${baseField} ${sz.paddingX} ${
             hasError ? errorClass : ""
           } ${className || ""}`}
           aria-invalid={hasError || undefined}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           {...rest}
         />
       ) : type === "number" ? (
@@ -195,10 +140,8 @@ const Input = <
                 ? field?.value
                 : Number(field?.value ?? 0)
             }
-            className={`flex-1 bg-transparent border-0 ${sz.padding} ${sz.innerTopPad} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
+            className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
             aria-invalid={hasError || undefined}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             {...rest}
             {...MaskRules.number}
           />
@@ -216,24 +159,21 @@ const Input = <
           {...rest}
           type={type}
           style={{ fontSize: "16px" }}
-          className={`${baseField} ${sz.padding} ${sz.innerTopPad} ${
+          className={`${baseField} ${sz.paddingX} ${
             hasError ? errorClass : ""
           } ${className || ""}`}
           aria-invalid={hasError || undefined}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
         />
       )}
 
-      <div className="absolute w-full items-center flex justify-center flex-row min-h-[24px]">
+      <div className="min-h-6 absolute w-full items-center flex justify-center flex-row">
         <AnimatePresence>
           {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: -5 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.2 }}
-              className="w-full flex justify-center"
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
             >
               <ErrorText error={fieldState.error} />
             </motion.div>
