@@ -10,10 +10,41 @@ import { NumericFormat, PatternFormat } from "react-number-format";
 import ErrorText from "../ErrorText/ErrorText";
 import { motion, AnimatePresence } from "framer-motion";
 
+type Size = "sm" | "md" | "lg";
+
+type SizeOptions = {
+  height: string;
+  padding: string;
+  text: string;
+  postfixPadding: string;
+};
+
+const sizeStyles: Record<Size, SizeOptions> = {
+  sm: {
+    height: "h-8",
+    padding: "px-2 py-1",
+    text: "text-sm",
+    postfixPadding: "pr-2",
+  },
+  md: {
+    height: "h-10",
+    padding: "px-3 py-2",
+    text: "text-base",
+    postfixPadding: "pr-3",
+  },
+  lg: {
+    height: "h-12",
+    padding: "px-4 py-3",
+    text: "text-lg",
+    postfixPadding: "pr-4",
+  },
+};
+
 type Props<
   TFieldValues extends FieldValues,
   TName extends FieldPath<TFieldValues>
 > = {
+  size?: Size;
   type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
   field?: ControllerRenderProps<TFieldValues, TName>;
   fieldState?: ControllerFieldState;
@@ -29,7 +60,7 @@ type Props<
   postfix?: string;
   numberWrapperClassname?: string;
   errorPlace?: "bottom" | "right";
-} & InputHTMLAttributes<HTMLInputElement>;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
 export const MaskRules: {
   [key in "number"]?: {
@@ -51,16 +82,15 @@ const Input = <
   TFieldValues extends FieldValues,
   TName extends FieldPath<TFieldValues>
 >({
+  size = "md",
   type,
   field,
   label,
   fieldState,
   postfix,
   labelClassName,
-  errorPlace = "right",
   parentClassName,
   className,
-  formState,
   numberWrapperClassname,
   format,
   wrapperClassName,
@@ -68,17 +98,16 @@ const Input = <
   ...rest
 }: Props<TFieldValues, TName>) => {
   const hasError = !!fieldState?.error;
+  const sz: SizeOptions = sizeStyles[size];
 
-  const baseField =
-    "h-10 w-full bg-white text-black placeholder:text-dark-gray " +
-    "text-sm md:text-base font-normal rounded-xl " +
-    "border border-gray transition-[border,box-shadow] duration-200 outline-none " +
-    "focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] " +
-    "hover:border-primary/70 " +
-    "disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed";
+  const baseField = `${sz.height} w-full bg-white text-black placeholder:text-dark-gray 
+    ${sz.text} font-normal rounded-xl border border-gray 
+    transition-[border,box-shadow] duration-200 outline-none 
+    focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)] 
+    disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`;
+
   const errorClass =
     "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)] hover:!border-danger";
-  const padding = "px-3";
 
   return (
     <label className={`relative w-full ${wrapperClassName || ""}`}>
@@ -103,9 +132,9 @@ const Input = <
           type={type as "password" | "tel" | "text"}
           mask="_"
           style={{ fontSize: "16px" }}
-          className={`${baseField} ${padding} ${hasError ? errorClass : ""} ${
-            className || ""
-          }`}
+          className={`${baseField} ${sz.padding} ${
+            hasError ? errorClass : ""
+          } ${className || ""}`}
           format={format}
           aria-invalid={hasError || undefined}
           {...rest}
@@ -114,7 +143,7 @@ const Input = <
         <div
           className={`flex items-center justify-between rounded-xl border border-gray bg-white ${
             numberWrapperClassname || ""
-          } ${hasError ? errorClass : ""}`}
+          } ${sz.height} ${hasError ? errorClass : ""}`}
         >
           <NumericFormat
             decimalScale={decimalScale}
@@ -127,13 +156,15 @@ const Input = <
                 ? field?.value
                 : Number(field?.value ?? 0)
             }
-            className={`h-10 flex-1 bg-transparent border-0 ${padding} text-black placeholder:text-dark-gray rounded-xl focus:outline-none`}
+            className={`flex-1 bg-transparent border-0 ${sz.padding} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
             aria-invalid={hasError || undefined}
             {...rest}
             {...MaskRules["number"]}
           />
           {postfix ? (
-            <span className="pr-3 text-sm md:text-base text-dark-gray select-none">
+            <span
+              className={`${sz.postfixPadding} ${sz.text} text-dark-gray select-none`}
+            >
               {postfix}
             </span>
           ) : null}
@@ -144,9 +175,9 @@ const Input = <
           {...rest}
           type={type}
           style={{ fontSize: "16px" }}
-          className={`${baseField} ${padding} ${hasError ? errorClass : ""} ${
-            className || ""
-          }`}
+          className={`${baseField} ${sz.padding} ${
+            hasError ? errorClass : ""
+          } ${className || ""}`}
           aria-invalid={hasError || undefined}
         />
       )}

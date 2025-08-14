@@ -39,7 +39,7 @@ export declare const Icon: default_2.NamedExoticComponent<Props_5>;
 
 export declare const InfiniteScroll: <T>({ infiniteData, renderItem, className, iconClassName, emptyComponent, emptyClassName, loaderComponent, isScrollTopButton, }: Props_15<T>) => JSX_2.Element;
 
-export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ type, field, label, fieldState, postfix, labelClassName, errorPlace, parentClassName, className, formState, numberWrapperClassname, format, wrapperClassName, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
+export declare const Input: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({ size, type, field, label, fieldState, postfix, labelClassName, parentClassName, className, numberWrapperClassname, format, wrapperClassName, decimalScale, ...rest }: Props_6<TFieldValues, TName>) => JSX_2.Element;
 
 declare type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
@@ -169,6 +169,7 @@ declare type Props_5 = {
 };
 
 declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = {
+    size?: Size;
     type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
     field?: ControllerRenderProps<TFieldValues, TName>;
     fieldState?: ControllerFieldState;
@@ -184,7 +185,7 @@ declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<T
     postfix?: string;
     numberWrapperClassname?: string;
     errorPlace?: "bottom" | "right";
-} & InputHTMLAttributes<HTMLInputElement>;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
 declare type Props_7 = {
     data: ListItems[];
@@ -216,6 +217,8 @@ declare type SelectOptions = {
     value: any;
     label: string;
 };
+
+declare type Size = "sm" | "md" | "lg";
 
 export declare const Table: FC<Props_12>;
 
