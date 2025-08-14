@@ -12,6 +12,7 @@ import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { motion } from 'framer-motion';
+import { MouseEvent as MouseEvent_2 } from 'react';
 import { PropsWithChildren } from 'react';
 import { ReactNode } from 'react';
 import { RefObject } from 'react';
@@ -63,7 +64,7 @@ declare type Options = {
 };
 
 declare type Props = {
-    onClick: () => void;
+    onClick?: (e: MouseEvent_2<HTMLButtonElement>) => void;
     debounceTimeMs?: number;
     className?: string;
     disabled?: boolean;

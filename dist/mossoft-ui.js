@@ -26,11 +26,14 @@ const Vi = ({ name: e, className: t, ...r }) => /* @__PURE__ */ N(
   disabled: s,
   ...c
 }) => {
-  const u = G(null), f = Ti(() => {
-    u.current || (t == null || t(), u.current = setTimeout(() => {
-      u.current = null;
-    }, r));
-  }, [t, r]), l = [
+  const u = G(null), f = Ti(
+    (d) => {
+      u.current || (t == null || t(d), u.current = setTimeout(() => {
+        u.current = null;
+      }, r));
+    },
+    [t, r]
+  ), l = [
     "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
     "rounded-2xl px-6 py-3 text-sm md:text-base",
     n,

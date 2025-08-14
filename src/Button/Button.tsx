@@ -4,6 +4,7 @@ import {
   ComponentProps,
   useRef,
   useCallback,
+  MouseEvent,
 } from "react";
 import { motion } from "framer-motion";
 import Icon from "../Icon/Icon";
@@ -12,7 +13,7 @@ import Loader from "../Loader/Loader";
 type MotionButtonProps = ComponentProps<typeof motion.button>;
 
 type Props = {
-  onClick: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   debounceTimeMs?: number;
   className?: string;
   disabled?: boolean;
@@ -42,15 +43,18 @@ const Button: FC<PropsWithChildren<Props>> = ({
 }) => {
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const debouncedOnClick = useCallback(() => {
-    if (debounceTimerRef.current) return;
+  const debouncedOnClick = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
+      if (debounceTimerRef.current) return;
 
-    onClick?.();
+      onClick?.(e);
 
-    debounceTimerRef.current = setTimeout(() => {
-      debounceTimerRef.current = null;
-    }, debounceTimeMs);
-  }, [onClick, debounceTimeMs]);
+      debounceTimerRef.current = setTimeout(() => {
+        debounceTimerRef.current = null;
+      }, debounceTimeMs);
+    },
+    [onClick, debounceTimeMs]
+  );
 
   const buttonClasses = [
     "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
