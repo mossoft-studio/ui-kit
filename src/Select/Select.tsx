@@ -18,7 +18,7 @@ const sizeStyles = {
   lg: { height: "h-14", paddingX: "px-4", text: "text-lg" },
 };
 
-export type SelectOption<T extends string | number> = {
+export type SelectOption<T extends any> = {
   value: T;
   label: string;
 };
@@ -28,8 +28,8 @@ type Props<
   TName extends FieldPath<TFieldValues>,
   TVal extends string
 > = {
-  value: TVal;
-  onChange: (v: TVal) => void;
+  value?: TVal;
+  onChange?: (v: TVal) => void;
   options: readonly SelectOption<TVal>[];
   placeholder?: string;
   size?: Size;
@@ -90,7 +90,7 @@ const Select = <
     const opt = options[idx];
     if (!opt) return;
     field?.onChange?.(opt.value);
-    onChange(opt.value);
+    onChange?.(opt.value);
     setOpen(false);
   };
 

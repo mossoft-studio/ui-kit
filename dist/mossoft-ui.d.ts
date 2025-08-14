@@ -82,8 +82,8 @@ declare type Props_10 = {
 };
 
 declare type Props_11<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string> = {
-    value: TVal;
-    onChange: (v: TVal) => void;
+    value?: TVal;
+    onChange?: (v: TVal) => void;
     options: readonly SelectOption<TVal>[];
     placeholder?: string;
     size?: Size_2;
@@ -211,7 +211,7 @@ export declare const Search: default_2.FC<Props_10>;
 
 export declare const Select: <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>, TVal extends string>({ value, onChange, options, placeholder, size, field, disabled, fieldState, className, wrapperClassName, }: Props_11<TFieldValues, TName, TVal>) => JSX_2.Element;
 
-declare type SelectOption<T extends string | number> = {
+declare type SelectOption<T extends any> = {
     value: T;
     label: string;
 };

@@ -1080,7 +1080,7 @@ const Sa = ({
   const E = (x) => {
     var w;
     const b = r[x];
-    b && ((w = i == null ? void 0 : i.onChange) == null || w.call(i, b.value), t(b.value), l(!1));
+    b && ((w = i == null ? void 0 : i.onChange) == null || w.call(i, b.value), t == null || t(b.value), l(!1));
   }, D = r[h];
   return /* @__PURE__ */ ie("label", { className: `relative block w-full ${d || ""}`, children: [
     /* @__PURE__ */ ie("div", { ref: u, className: "relative", children: [
