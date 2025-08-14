@@ -91,7 +91,7 @@ const Select = <
   const selected = options[currentIndex];
 
   return (
-    <label className={`block w-full ${wrapperClassName || ""}`}>
+    <label className={`relative block w-full ${wrapperClassName || ""}`}>
       <div ref={rootRef} className="relative">
         <button
           type="button"

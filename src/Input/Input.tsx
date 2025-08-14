@@ -102,7 +102,7 @@ const Input = <
   const errorClass = "!border-danger focus:border-danger";
 
   return (
-    <label className={`block w-full ${wrapperClassName || ""}`}>
+    <label className={`relative block w-full ${wrapperClassName || ""}`}>
       {format ? (
         <PatternFormat
           format={format}

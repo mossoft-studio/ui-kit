@@ -828,7 +828,7 @@ const va = {
 }) => {
   var y;
   const p = !!(o != null && o.error), g = va[e], h = `${g.height} w-full bg-white text-black placeholder:text-dark-gray ${g.text} rounded-xl border transition-colors duration-150 outline-none border-gray focus:border-primary disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`, m = "!border-danger focus:border-danger";
-  return /* @__PURE__ */ ie("label", { className: `block w-full ${f || ""}`, children: [
+  return /* @__PURE__ */ ie("label", { className: `relative block w-full ${f || ""}`, children: [
     u ? /* @__PURE__ */ N(
       ga,
       {
@@ -1078,7 +1078,7 @@ const Sa = ({
     const D = r[x];
     D && ((b = i == null ? void 0 : i.onChange) == null || b.call(i, D.value), t(D.value), f(!1));
   }, E = r[g];
-  return /* @__PURE__ */ ie("label", { className: `block w-full ${c || ""}`, children: [
+  return /* @__PURE__ */ ie("label", { className: `relative block w-full ${c || ""}`, children: [
     /* @__PURE__ */ ie("div", { ref: l, className: "relative", children: [
       /* @__PURE__ */ ie(
         "button",
