@@ -1,82 +1,91 @@
-import React, { SelectHTMLAttributes } from "react";
-import {
-  ControllerFieldState,
-  ControllerRenderProps,
-  UseFormStateReturn,
-} from "react-hook-form";
+import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 import ErrorText from "../ErrorText/ErrorText";
 
 export type SelectOptions = {
-  value: any;
+  value: string | number;
   label: string;
 };
 
-type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
-
 type Props = {
-  options: SelectOptions[] | undefined;
+  options: SelectOptions[];
+  placeholder?: string;
   field?: ControllerRenderProps<any, any>;
   fieldState?: ControllerFieldState;
   className?: string;
-  placeholder?: string;
-  parentClassName?: string;
-  wrapperClassName?: string;
   label?: string;
   labelClassName?: string;
-  formState?: UseFormStateReturn<any>;
-} & SelectAttributes;
+  wrapperClassName?: string;
+};
 
-const Select: React.FC<Props> = ({
-  placeholder,
+export default function StyledSelect({
   options,
-  className,
+  placeholder = "Выберите",
   field,
   fieldState,
-  wrapperClassName,
-  labelClassName,
-  parentClassName,
-  formState,
+  className,
   label,
-  ...rest
-}) => {
-  const errorClass = "!border-danger";
+  labelClassName,
+  wrapperClassName,
+}: Props) {
+  const hasError = !!fieldState?.error;
 
   return (
-    <label className={`relative w-full ${wrapperClassName}`}>
+    <label className={`relative w-full ${wrapperClassName || ""}`}>
       {label && (
         <span
-          className={`absolute left-[20px] -top-[10px] px-[6px] text-primary text-xs md:text-sm bg-white z-[1] ${labelClassName}`}
+          className={`absolute left-[14px] -top-[10px] z-[1] px-[6px] bg-white text-xs md:text-sm text-primary ${
+            labelClassName || ""
+          }`}
         >
           {label}
         </span>
       )}
 
-      <div
-        className={`relative w-full min-w-[190px] after:absolute after:right-4 after:top-0 after:bottom-0 after:my-auto after:w-2 after:h-2 after:border-t-2 after:border-r-2 after:border-dark-gray after:rotate-[134deg] after:transition-all after:duration-300 ${parentClassName}`}
-      >
+      <div className="relative">
         <select
           {...field}
-          {...rest}
-          defaultValue={""}
-          className={`w-full ${
-            fieldState?.error ? errorClass : ""
-          } cursor-pointer appearance-none bg-white border-[1px] border-primary rounded-[30px] md:border-primary md:rounded-[15px] text-dark-gray text-sm md:text-base font-normal placeholder:text-dark-gray block py-[6px] px-[10px] !pr-9 md:py-[7px] transition-all duration-300 ${className}`}
+          defaultValue=""
+          className={`h-10 w-full min-w-[200px] rounded-xl border bg-white px-3 text-sm appearance-none
+            flex items-center justify-between text-black transition focus:outline-none
+            ${
+              hasError
+                ? "!border-danger focus:shadow-[0_0_0_3px_rgba(254,72,69,0.12)]"
+                : "border-gray focus:border-primary focus:shadow-[0_0_0_3px_rgba(20,162,184,0.10)]"
+            }
+            ${className || ""}`}
         >
-          <option value="">{placeholder}</option>
-          {options?.map((option, i) => (
-            <option value={option.value} key={i} className="text-black">
-              {option.label}
+          <option value="" disabled>
+            {placeholder}
+          </option>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
             </option>
           ))}
         </select>
+
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-dark-gray"
+        >
+          <path
+            d="M7 10l5 5 5-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
-      <div className="absolute w-full items-center flex justify-center flex-row">
-        {fieldState?.error && Object.keys(fieldState?.error)?.length && (
-          <ErrorText error={fieldState?.error} />
-        )}
-      </div>
+
+      {hasError && (
+        <div className="absolute w-full flex justify-center mt-1">
+          <ErrorText error={fieldState.error} />
+        </div>
+      )}
     </label>
   );
-};
-
-export default Select;
+}

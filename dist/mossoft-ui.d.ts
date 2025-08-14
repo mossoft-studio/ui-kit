@@ -15,7 +15,6 @@ import { motion } from 'framer-motion';
 import { PropsWithChildren } from 'react';
 import { ReactNode } from 'react';
 import { RefObject } from 'react';
-import { SelectHTMLAttributes } from 'react';
 import { TextareaHTMLAttributes } from 'react';
 import { UseFormStateReturn } from 'react-hook-form';
 import { UseInfiniteQueryResult } from '@tanstack/react-query';
@@ -82,17 +81,15 @@ declare type Props_10 = {
 };
 
 declare type Props_11 = {
-    options: SelectOptions[] | undefined;
+    options: SelectOptions[];
+    placeholder?: string;
     field?: ControllerRenderProps<any, any>;
     fieldState?: ControllerFieldState;
     className?: string;
-    placeholder?: string;
-    parentClassName?: string;
-    wrapperClassName?: string;
     label?: string;
     labelClassName?: string;
-    formState?: UseFormStateReturn<any>;
-} & SelectAttributes;
+    wrapperClassName?: string;
+};
 
 declare type Props_12 = {
     headerData: HeaderData[];
@@ -209,12 +206,10 @@ export declare const ScrollTopButton: FC<Props_16>;
 
 export declare const Search: default_2.FC<Props_10>;
 
-export declare const Select: default_2.FC<Props_11>;
-
-declare type SelectAttributes = SelectHTMLAttributes<HTMLSelectElement>;
+export declare function Select({ options, placeholder, field, fieldState, className, label, labelClassName, wrapperClassName, }: Props_11): JSX_2.Element;
 
 declare type SelectOptions = {
-    value: any;
+    value: string | number;
     label: string;
 };
 

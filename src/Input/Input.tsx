@@ -114,7 +114,7 @@ const Input = <
           allowEmptyFormatting
           type={type as "password" | "tel" | "text"}
           mask="_"
-          style={{ fontSize: "16px" }} // iOS zoom fix
+          style={{ fontSize: "16px" }}
           className={`${baseField} ${sz.paddingX} ${
             hasError ? errorClass : ""
           } ${className || ""}`}
@@ -166,14 +166,15 @@ const Input = <
         />
       )}
 
-      <div className="min-h-6 absolute w-full items-center flex justify-center flex-row">
+      <div className="absolute w-full items-center flex justify-center flex-row min-h-6">
         <AnimatePresence>
           {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: -4 }}
+              initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.15 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.2 }}
+              className="w-full flex justify-center"
             >
               <ErrorText error={fieldState.error} />
             </motion.div>
