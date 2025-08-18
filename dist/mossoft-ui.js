@@ -865,7 +865,7 @@ const va = {
                 return r == null ? void 0 : r.onChange(+((D = E.value.replace("_", "")) == null ? void 0 : D.toString()));
               },
               value: typeof (r == null ? void 0 : r.value) == "number" ? r == null ? void 0 : r.value : Number((r == null ? void 0 : r.value) ?? 0),
-              className: `flex-1 bg-transparent border-0 ${g.paddingX} ${g.text} placeholder:text-dark-gray focus:outline-none`,
+              className: `flex-1 bg-transparent border-0 ${g.paddingX} ${g.text} placeholder:text-dark-gray focus:outline-none ${s}`,
               "aria-invalid": p || void 0,
               ...u,
               ...ha.number

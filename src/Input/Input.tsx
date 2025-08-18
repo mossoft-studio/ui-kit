@@ -140,7 +140,7 @@ const Input = <
                 ? field?.value
                 : Number(field?.value ?? 0)
             }
-            className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${sz.text} placeholder:text-dark-gray focus:outline-none`}
+            className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${sz.text} placeholder:text-dark-gray focus:outline-none ${className}`}
             aria-invalid={hasError || undefined}
             {...rest}
             {...MaskRules.number}
