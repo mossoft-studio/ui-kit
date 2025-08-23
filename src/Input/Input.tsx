@@ -116,12 +116,23 @@ const Input = <
 
   const [focused, setFocused] = useState(false);
 
-  const valueAny = field?.value ?? (rest as any)?.value ?? rest.defaultValue;
+  const currentValue =
+    field?.value ?? (rest as any)?.value ?? rest.defaultValue;
   const hasValue = useMemo(
-    () => !isEmpty(valueAny) || valueAny === 0,
-    [valueAny]
+    () => !isEmpty(currentValue) || currentValue === 0,
+    [currentValue]
   );
-  const active = floatingLabel && (focused || hasValue);
+
+  const shouldUseFloating = floatingLabel && !!label;
+
+  const active =
+    shouldUseFloating && (focused || hasValue || !!rest.placeholder);
+
+  const effectivePlaceholder = shouldUseFloating
+    ? active
+      ? rest.placeholder
+      : ""
+    : rest.placeholder;
 
   const baseField =
     `${sz.height} w-full bg-white text-black placeholder:text-dark-gray ${sz.text} ` +
@@ -140,40 +151,35 @@ const Input = <
     rest.onBlur?.(e);
   };
 
-  const Label = () =>
-    label ? (
-      <motion.label
-        htmlFor={inputId}
-        className={`pointer-events-none absolute ${sz.labelLeft} z-[1] ${
-          labelClassName || ""
-        }`}
-        initial={false}
-        animate={
-          active
-            ? { top: -10, scale: 0.85, opacity: 1 }
-            : { top: "50%", translateY: "-50%", scale: 1, opacity: 0.9 }
-        }
-        transition={{ type: "tween", duration: 0.18 }}
-      >
-        <span
-          className={
-            "px-1 rounded bg-white " +
-            (active ? "text-primary" : "text-dark-gray")
-          }
-        >
-          {label}
-          {requiredMark ? <span className="text-danger ml-0.5">*</span> : null}
-        </span>
-      </motion.label>
-    ) : null;
-
   return (
     <div className={`relative w-full ${wrapperClassName || ""}`}>
-      {floatingLabel && <Label />}
+      {shouldUseFloating && (
+        <motion.label
+          htmlFor={inputId}
+          className={`pointer-events-none absolute ${sz.labelLeft} z-[1] ${
+            labelClassName || ""
+          }`}
+          initial={false}
+          animate={
+            active
+              ? { top: -10, scale: 0.85, opacity: 1 }
+              : { top: "50%", translateY: "-50%", scale: 1, opacity: 0.9 }
+          }
+          transition={{ type: "tween", duration: 0.18 }}
+        >
+          <span className="px-1 rounded bg-white text-dark-gray">
+            {label}
+            {requiredMark ? (
+              <span className="text-danger ml-0.5">*</span>
+            ) : null}
+          </span>
+        </motion.label>
+      )}
 
       {format ? (
         <PatternFormat
           id={inputId}
+          placeholder={effectivePlaceholder}
           format={format}
           onValueChange={(values) => {
             field?.onChange(values.value.replace("_", "")?.toString());
@@ -202,6 +208,7 @@ const Input = <
         >
           <NumericFormat
             id={inputId}
+            placeholder={effectivePlaceholder}
             decimalScale={decimalScale}
             style={{ fontSize: "16px" }}
             onValueChange={(values) =>
@@ -210,9 +217,13 @@ const Input = <
             value={
               typeof field?.value === "number"
                 ? field?.value
-                : Number(field?.value ?? 0)
+                : field?.value === undefined || field?.value === null
+                ? undefined
+                : Number(field?.value)
             }
-            className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${sz.text} placeholder:text-dark-gray focus:outline-none ${className}`}
+            className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${
+              sz.text
+            } placeholder:text-dark-gray focus:outline-none ${className || ""}`}
             aria-invalid={hasError || undefined}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -233,6 +244,7 @@ const Input = <
           {...field}
           {...rest}
           type={type}
+          placeholder={effectivePlaceholder}
           style={{ fontSize: "16px" }}
           className={`${baseField} ${sz.paddingX} ${
             hasError ? errorClass : ""
