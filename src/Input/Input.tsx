@@ -255,15 +255,15 @@ const Input = <
         />
       )}
 
-      <div className="mt-1 min-h-[20px]">
+      <div className="absolute w-full items-center flex justify-center flex-row min-h-6">
         <AnimatePresence>
           {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: -4 }}
+              initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.18 }}
-              className="w-full"
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.2 }}
+              className="w-full flex justify-center"
             >
               <ErrorText error={fieldState.error} />
             </motion.div>

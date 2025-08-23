@@ -932,14 +932,14 @@ const ha = {
         onBlur: oe
       }
     ),
-    /* @__PURE__ */ N("div", { className: "mt-1 min-h-[20px]", children: /* @__PURE__ */ N(oo, { children: (o == null ? void 0 : o.error) && Object.keys(o.error).length > 0 && /* @__PURE__ */ N(
+    /* @__PURE__ */ N("div", { className: "absolute w-full items-center flex justify-center flex-row min-h-6", children: /* @__PURE__ */ N(oo, { children: (o == null ? void 0 : o.error) && Object.keys(o.error).length > 0 && /* @__PURE__ */ N(
       Pt.div,
       {
-        initial: { opacity: 0, y: -4 },
+        initial: { opacity: 0, y: -5 },
         animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -4 },
-        transition: { duration: 0.18 },
-        className: "w-full",
+        exit: { opacity: 0, y: -5 },
+        transition: { duration: 0.2 },
+        className: "w-full flex justify-center",
         children: /* @__PURE__ */ N(Dr, { error: o.error })
       }
     ) }) })
