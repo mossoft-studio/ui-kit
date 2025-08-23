@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import { ControllerFieldState } from 'react-hook-form';
 import { ControllerRenderProps } from 'react-hook-form';
 import { CSSProperties } from 'react';
@@ -11,7 +11,6 @@ import { HTMLInputTypeAttribute } from 'react';
 import { InfiniteData } from '@tanstack/react-query';
 import { InputHTMLAttributes } from 'react';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
-import { motion } from 'framer-motion';
 import { MouseEvent as MouseEvent_2 } from 'react';
 import { PropsWithChildren } from 'react';
 import { ReactNode } from 'react';
@@ -53,8 +52,6 @@ declare type ListItems = {
 
 export declare const Loader: FC<Props_8>;
 
-declare type MotionButtonProps = ComponentProps<typeof motion.button>;
-
 export declare const MultiSelectSearch: FC<Props_9>;
 
 declare type Options = {
@@ -72,7 +69,7 @@ declare type Props = {
     variant: "primary" | "secondary" | "danger" | "link" | "tab";
     size?: Size;
     icon?: string;
-} & MotionButtonProps;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "className" | "disabled">;
 
 declare type Props_10 = {
     placeholder?: string;

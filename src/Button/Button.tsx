@@ -1,16 +1,13 @@
 import {
   FC,
   PropsWithChildren,
-  ComponentProps,
   useRef,
   useCallback,
   MouseEvent,
+  ButtonHTMLAttributes,
 } from "react";
-import { motion } from "framer-motion";
 import Icon from "../Icon/Icon";
 import Loader from "../Loader/Loader";
-
-type MotionButtonProps = ComponentProps<typeof motion.button>;
 
 type Size = "xs" | "sm" | "md";
 
@@ -23,13 +20,18 @@ type Props = {
   variant: "primary" | "secondary" | "danger" | "link" | "tab";
   size?: Size;
   icon?: string;
-} & MotionButtonProps;
+} & Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onClick" | "className" | "disabled"
+>;
 
 const sizeClasses: Record<Size, string> = {
   xs: "px-3 py-1.5 text-xs rounded-lg",
   sm: "px-4 py-2 text-sm rounded-xl",
   md: "px-6 py-3 text-base rounded-2xl",
 };
+
+const loaderSize: Record<Size, number> = { xs: 14, sm: 18, md: 20 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
   children,
@@ -41,6 +43,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   size = "md",
   icon,
   disabled,
+  type = "button",
   ...rest
 }) => {
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -48,9 +51,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   const debouncedOnClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       if (debounceTimerRef.current) return;
-
       onClick?.(e);
-
       debounceTimerRef.current = setTimeout(() => {
         debounceTimerRef.current = null;
       }, debounceTimeMs);
@@ -58,18 +59,21 @@ const Button: FC<PropsWithChildren<Props>> = ({
     [onClick, debounceTimeMs]
   );
 
-  const variantClasses = {
-    primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
-    secondary:
-      "bg-primary/10 text-primary hover:bg-primary/20 focus:ring-primary",
-    danger: "bg-danger/10 text-danger hover:bg-danger/20 focus:ring-danger",
-    link: "bg-transparent text-primary hover:underline focus:ring-primary px-2 py-1",
-    tab: "bg-primary text-white focus:ring-primary px-5 py-2 rounded-full",
-  }[variant];
+  const variantClasses =
+    {
+      primary: "bg-primary text-white hover:bg-primary/90 active:bg-primary/80",
+      secondary:
+        "bg-primary/10 text-primary hover:bg-primary/20 active:bg-primary/25",
+      danger: "bg-danger/10 text-danger hover:bg-danger/20 active:bg-danger/30",
+      link: "bg-transparent text-primary hover:underline px-2 py-1 rounded-md",
+      tab: "bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 active:bg-primary/80",
+    }[variant] || "";
 
-  const buttonClasses = [
-    "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
-    sizeClasses[size],
+  const classes = [
+    "inline-flex items-center justify-center font-semibold",
+    "transition-colors duration-200 select-none",
+    "disabled:opacity-60 disabled:cursor-not-allowed",
+    variant !== "tab" && sizeClasses[size],
     variantClasses,
     className,
   ]
@@ -77,16 +81,15 @@ const Button: FC<PropsWithChildren<Props>> = ({
     .join(" ");
 
   return (
-    <motion.button
+    <button
+      type={type}
       disabled={disabled || isLoading}
       onClick={debouncedOnClick}
-      className={buttonClasses}
+      className={classes}
       {...rest}
-      whileTap={{ scale: 0.96 }}
-      whileHover={!disabled && !isLoading ? { scale: 1.02 } : undefined}
     >
       {isLoading ? (
-        <Loader style={{ width: 20, height: 20 }} />
+        <Loader style={{ width: loaderSize[size], height: loaderSize[size] }} />
       ) : (
         <>
           {children}
@@ -104,7 +107,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
           )}
         </>
       )}
-    </motion.button>
+    </button>
   );
 };
 
