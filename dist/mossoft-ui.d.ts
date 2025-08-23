@@ -69,7 +69,8 @@ declare type Props = {
     className?: string;
     disabled?: boolean;
     isLoading?: boolean;
-    variant: "primary" | "secondary" | "danger" | "link" | "small-primary" | "small-secondary" | "small-danger" | "tab";
+    variant: "primary" | "secondary" | "danger" | "link" | "tab";
+    size?: Size;
     icon?: string;
 } & MotionButtonProps;
 
@@ -86,7 +87,7 @@ declare type Props_11<TFieldValues extends FieldValues, TName extends FieldPath<
     onChange?: (v: TVal) => void;
     options?: readonly SelectOption<TVal>[];
     placeholder?: string;
-    size?: Size_2;
+    size?: Size_3;
     field?: ControllerRenderProps<TFieldValues, TName>;
     fieldState?: ControllerFieldState;
     className?: string;
@@ -169,7 +170,7 @@ declare type Props_5 = {
 };
 
 declare type Props_6<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = {
-    size?: Size;
+    size?: Size_2;
     type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
     field?: ControllerRenderProps<TFieldValues, TName>;
     fieldState?: ControllerFieldState;
@@ -218,9 +219,11 @@ declare type SelectOption<T extends any> = {
     value: T;
 };
 
-declare type Size = "sm" | "md" | "lg";
+declare type Size = "xs" | "sm" | "md";
 
 declare type Size_2 = "sm" | "md" | "lg";
+
+declare type Size_3 = "sm" | "md" | "lg";
 
 export declare const Table: FC<Props_12>;
 

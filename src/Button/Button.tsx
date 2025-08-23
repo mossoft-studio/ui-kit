@@ -12,23 +12,24 @@ import Loader from "../Loader/Loader";
 
 type MotionButtonProps = ComponentProps<typeof motion.button>;
 
+type Size = "xs" | "sm" | "md";
+
 type Props = {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   debounceTimeMs?: number;
   className?: string;
   disabled?: boolean;
   isLoading?: boolean;
-  variant:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "link"
-    | "small-primary"
-    | "small-secondary"
-    | "small-danger"
-    | "tab";
+  variant: "primary" | "secondary" | "danger" | "link" | "tab";
+  size?: Size;
   icon?: string;
 } & MotionButtonProps;
+
+const sizeClasses: Record<Size, string> = {
+  xs: "px-3 py-1.5 text-xs rounded-lg",
+  sm: "px-4 py-2 text-sm rounded-xl",
+  md: "px-6 py-3 text-base rounded-2xl",
+};
 
 const Button: FC<PropsWithChildren<Props>> = ({
   children,
@@ -37,6 +38,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   className,
   isLoading,
   variant,
+  size = "md",
   icon,
   disabled,
   ...rest
@@ -56,26 +58,20 @@ const Button: FC<PropsWithChildren<Props>> = ({
     [onClick, debounceTimeMs]
   );
 
+  const variantClasses = {
+    primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
+    secondary:
+      "bg-primary/10 text-primary hover:bg-primary/20 focus:ring-primary",
+    danger: "bg-danger/10 text-danger hover:bg-danger/20 focus:ring-danger",
+    link: "bg-transparent text-primary hover:underline focus:ring-primary px-2 py-1",
+    tab: "bg-primary text-white focus:ring-primary px-5 py-2 rounded-full",
+  }[variant];
+
   const buttonClasses = [
     "relative inline-flex items-center justify-center font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
-    "rounded-2xl px-6 py-3 text-sm md:text-base",
+    sizeClasses[size],
+    variantClasses,
     className,
-    variant === "primary" &&
-      "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
-    variant === "secondary" &&
-      "bg-primary/10 text-primary hover:bg-primary/20 focus:ring-primary",
-    variant === "danger" &&
-      "bg-danger/10 text-danger hover:bg-danger/20 focus:ring-danger",
-    variant === "link" &&
-      "bg-transparent text-primary hover:underline px-2 py-1 focus:ring-primary",
-    variant === "small-primary" &&
-      "bg-primary text-white text-xs px-4 py-2 hover:bg-primary/90 focus:ring-primary",
-    variant === "small-secondary" &&
-      "bg-primary/20 text-primary text-xs px-4 py-2 hover:bg-primary/30 focus:ring-primary",
-    variant === "small-danger" &&
-      "bg-danger/10 text-danger text-xs px-4 py-2 hover:bg-danger/20 focus:ring-danger",
-    variant === "tab" &&
-      "bg-primary text-white text-sm md:text-base px-5 py-2 rounded-full focus:ring-primary",
   ]
     .filter(Boolean)
     .join(" ");
@@ -98,7 +94,11 @@ const Button: FC<PropsWithChildren<Props>> = ({
             <Icon
               name={icon}
               className={`ml-2 ${
-                variant.includes("small") ? "w-4 h-4" : "w-5 h-5"
+                size === "xs"
+                  ? "w-3 h-3"
+                  : size === "sm"
+                  ? "w-4 h-4"
+                  : "w-5 h-5"
               }`}
             />
           )}
