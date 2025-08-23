@@ -1,4 +1,10 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import {
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -17,6 +23,7 @@ type SizeOptions = {
   text: string;
   postfixPadding: string;
   labelMb: string;
+  labelLeft: string;
 };
 const sizeStyles: Record<Size, SizeOptions> = {
   sm: {
@@ -25,6 +32,7 @@ const sizeStyles: Record<Size, SizeOptions> = {
     text: "text-sm",
     postfixPadding: "pr-2",
     labelMb: "mb-1",
+    labelLeft: "left-2",
   },
   md: {
     height: "h-12",
@@ -32,6 +40,7 @@ const sizeStyles: Record<Size, SizeOptions> = {
     text: "text-base",
     postfixPadding: "pr-3",
     labelMb: "mb-1.5",
+    labelLeft: "left-3",
   },
   lg: {
     height: "h-14",
@@ -39,6 +48,7 @@ const sizeStyles: Record<Size, SizeOptions> = {
     text: "text-lg",
     postfixPadding: "pr-4",
     labelMb: "mb-2",
+    labelLeft: "left-4",
   },
 };
 
@@ -62,6 +72,8 @@ type Props<
   postfix?: string;
   numberWrapperClassname?: string;
   errorPlace?: "bottom" | "right";
+  floatingLabel?: boolean;
+  requiredMark?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 
 export const MaskRules = {
@@ -72,6 +84,9 @@ export const MaskRules = {
     thousandsGroupStyle: "thousand" as const,
   },
 };
+
+const isEmpty = (v: unknown) =>
+  v === undefined || v === null || (typeof v === "string" && v.trim() === "");
 
 const Input = <
   TFieldValues extends FieldValues,
@@ -89,10 +104,24 @@ const Input = <
   format,
   wrapperClassName,
   decimalScale = 1,
+  floatingLabel = false,
+  requiredMark,
+  id,
   ...rest
 }: Props<TFieldValues, TName>) => {
   const hasError = !!fieldState?.error;
   const sz = sizeStyles[size];
+  const autoId = useId();
+  const inputId = id || autoId;
+
+  const [focused, setFocused] = useState(false);
+
+  const valueAny = field?.value ?? (rest as any)?.value ?? rest.defaultValue;
+  const hasValue = useMemo(
+    () => !isEmpty(valueAny) || valueAny === 0,
+    [valueAny]
+  );
+  const active = floatingLabel && (focused || hasValue);
 
   const baseField =
     `${sz.height} w-full bg-white text-black placeholder:text-dark-gray ${sz.text} ` +
@@ -101,10 +130,50 @@ const Input = <
     `disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`;
   const errorClass = "!border-danger focus:border-danger";
 
+  const onFocus = (e: React.FocusEvent<any>) => {
+    setFocused(true);
+    rest.onFocus?.(e);
+  };
+  const onBlur = (e: React.FocusEvent<any>) => {
+    setFocused(false);
+    field?.onBlur?.();
+    rest.onBlur?.(e);
+  };
+
+  const Label = () =>
+    label ? (
+      <motion.label
+        htmlFor={inputId}
+        className={`pointer-events-none absolute ${sz.labelLeft} z-[1] ${
+          labelClassName || ""
+        }`}
+        initial={false}
+        animate={
+          active
+            ? { top: -10, scale: 0.85, opacity: 1 }
+            : { top: "50%", translateY: "-50%", scale: 1, opacity: 0.9 }
+        }
+        transition={{ type: "tween", duration: 0.18 }}
+      >
+        <span
+          className={
+            "px-1 rounded bg-white " +
+            (active ? "text-primary" : "text-dark-gray")
+          }
+        >
+          {label}
+          {requiredMark ? <span className="text-danger ml-0.5">*</span> : null}
+        </span>
+      </motion.label>
+    ) : null;
+
   return (
-    <label className={`relative block w-full ${wrapperClassName || ""}`}>
+    <div className={`relative w-full ${wrapperClassName || ""}`}>
+      {floatingLabel && <Label />}
+
       {format ? (
         <PatternFormat
+          id={inputId}
           format={format}
           onValueChange={(values) => {
             field?.onChange(values.value.replace("_", "")?.toString());
@@ -119,6 +188,8 @@ const Input = <
             hasError ? errorClass : ""
           } ${className || ""}`}
           aria-invalid={hasError || undefined}
+          onFocus={onFocus}
+          onBlur={onBlur}
           {...rest}
         />
       ) : type === "number" ? (
@@ -130,6 +201,7 @@ const Input = <
           }`}
         >
           <NumericFormat
+            id={inputId}
             decimalScale={decimalScale}
             style={{ fontSize: "16px" }}
             onValueChange={(values) =>
@@ -142,6 +214,8 @@ const Input = <
             }
             className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${sz.text} placeholder:text-dark-gray focus:outline-none ${className}`}
             aria-invalid={hasError || undefined}
+            onFocus={onFocus}
+            onBlur={onBlur}
             {...rest}
             {...MaskRules.number}
           />
@@ -155,6 +229,7 @@ const Input = <
         </div>
       ) : (
         <input
+          id={inputId}
           {...field}
           {...rest}
           type={type}
@@ -163,25 +238,27 @@ const Input = <
             hasError ? errorClass : ""
           } ${className || ""}`}
           aria-invalid={hasError || undefined}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
       )}
 
-      <div className="absolute w-full items-center flex justify-center flex-row min-h-6">
+      <div className="mt-1 min-h-[20px]">
         <AnimatePresence>
           {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: -5 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.2 }}
-              className="w-full flex justify-center"
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.18 }}
+              className="w-full"
             >
               <ErrorText error={fieldState.error} />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </label>
+    </div>
   );
 };
 
