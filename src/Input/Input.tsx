@@ -163,7 +163,7 @@ const Input = <
           animate={
             active
               ? { top: -10, scale: 0.85, opacity: 1 }
-              : { top: "50%", translateY: "-50%", scale: 1, opacity: 0.9 }
+              : { top: "34%", translateY: "-50%", scale: 1, opacity: 0.9 }
           }
           transition={{ type: "tween", duration: 0.18 }}
         >
