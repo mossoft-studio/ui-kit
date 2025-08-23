@@ -853,7 +853,7 @@ const ha = {
         htmlFor: D,
         className: `pointer-events-none absolute ${y.labelLeft} z-[1] ${a || ""}`,
         initial: !1,
-        animate: G ? { top: -10, scale: 0.85, opacity: 1 } : { top: "34%", translateY: "-50%", scale: 1, opacity: 0.9 },
+        animate: G ? { top: -10, scale: 0.85, opacity: 1 } : { top: "50%", translateY: "-50%", scale: 1, opacity: 0.9 },
         transition: { type: "tween", duration: 0.18 },
         children: /* @__PURE__ */ ie("span", { className: "px-1 rounded bg-white text-dark-gray", children: [
           n,
