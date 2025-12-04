@@ -1,34 +1,41 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, FC } from "react";
+
+type ChipItem = {
+  title: string | number;
+};
 
 type Props = {
-  items: {
-    title: string | number;
-  }[];
+  items: ChipItem[];
   disable?: boolean;
   color?: string | null;
   style?: CSSProperties;
 };
 
-const Chips: React.FC<Props> = ({ items, disable, color, style }) => {
+const Chips: FC<Props> = ({ items, disable, color, style }) => {
   return (
-    <div className="flex flex-wrap gap-[6px]">
-      {items.map((item) => (
-        <>
-          {item.title ? (
-            <div
-              style={style}
-              key={item.title}
-              className={`${
-                disable ? "bg-dark-gray" : color ? color : "bg-primary"
-              } rounded-[15px] px-[10px] py-[5px] text-sm text-white h-fit`}
-            >
-              {item.title}
-            </div>
-          ) : (
-            <></>
-          )}
-        </>
-      ))}
+    <div className="flex flex-wrap gap-1.5">
+      {items.map((item, index) => {
+        if (!item.title) return null;
+
+        const classes = [
+          disable
+            ? "bg-gray-400 text-white"
+            : color
+            ? color
+            : "bg-blue-600 text-white",
+          "px-3 py-1 text-sm rounded-full h-fit",
+          "transition-colors duration-200 ease-out",
+          !disable && "hover:bg-blue-700",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        return (
+          <div key={index} className={classes} style={style}>
+            {item.title}
+          </div>
+        );
+      })}
     </div>
   );
 };

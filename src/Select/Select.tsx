@@ -12,7 +12,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type Size = "sm" | "md" | "lg";
 
-const sizeStyles = {
+const sizeStyles: Record<
+  Size,
+  { height: string; paddingX: string; text: string }
+> = {
   sm: { height: "h-10", paddingX: "px-2", text: "text-sm" },
   md: { height: "h-12", paddingX: "px-3", text: "text-base" },
   lg: { height: "h-14", paddingX: "px-4", text: "text-lg" },
@@ -67,13 +70,15 @@ const Select = <
 
   const currentIndex = useMemo(
     () =>
-      options?.length &&
-      Math.max(
-        0,
-        options.findIndex((o) => o.value === value)
-      ),
+      options?.length
+        ? Math.max(
+            0,
+            options.findIndex((o) => o.value === value)
+          )
+        : -1,
     [options, value]
   );
+
   const [activeIndex, setActiveIndex] = useState(currentIndex);
 
   useEffect(() => setActiveIndex(currentIndex), [currentIndex]);
@@ -91,28 +96,33 @@ const Select = <
     if (!options?.length) return;
     const opt = options[idx];
     if (!opt) return;
-    field?.onChange?.(opt.value);
+    field?.onChange?.(opt.value as any);
     onChange?.(opt.value);
     setOpen(false);
   };
 
-  const selected = options?.[currentIndex!];
+  const selected =
+    currentIndex !== -1 && options ? options[currentIndex] : undefined;
 
   return (
-    <label className={`relative block w-full ${wrapperClassName || ""}`}>
+    <label className={cn("relative block w-full", wrapperClassName)}>
       <div ref={rootRef} className="relative">
         <button
           type="button"
           disabled={disabled}
           className={cn(
-            `${sz.height} ${sz.paddingX} ${sz.text} w-full rounded-xl border bg-white text-black`,
-            "flex items-center justify-between border-gray focus:border-primary transition outline-none",
-            hasError && "!border-danger focus:border-danger",
+            `${sz.height} ${sz.paddingX} ${sz.text} w-full rounded-xl bg-white text-black`,
+            "flex items-center justify-between border border-gray-300",
+            "transition-colors duration-150 outline-none",
+            "hover:border-gray-400",
+            "focus:border-blue-600",
+            disabled && "bg-gray-100 text-gray-400 cursor-not-allowed",
+            hasError && "!border-red-500 focus:!border-red-600",
             className
           )}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => !disabled && setOpen((v) => !v)}
         >
-          <span className={cn("truncate", !selected && "text-dark-gray")}>
+          <span className={cn("truncate", !selected && "text-gray-500")}>
             {selected ? selected.label : placeholder}
           </span>
           <svg
@@ -120,8 +130,8 @@ const Select = <
             height="18"
             viewBox="0 0 24 24"
             className={cn(
-              "ml-2 shrink-0 transition",
-              open ? "rotate-180 text-primary" : "text-dark-gray"
+              "ml-2 shrink-0 transition-transform duration-150",
+              open ? "rotate-180 text-blue-600" : "text-gray-400"
             )}
           >
             <path
@@ -138,7 +148,7 @@ const Select = <
         {open && (
           <ul
             className={cn(
-              "absolute z-50 mt-2 w-full rounded-xl border border-gray bg-white shadow",
+              "absolute z-50 mt-2 w-full rounded-xl border border-gray-200 bg-white shadow-lg",
               "max-h-72 overflow-auto"
             )}
           >
@@ -152,8 +162,8 @@ const Select = <
                   aria-selected={isSelected}
                   className={cn(
                     "cursor-pointer px-3 py-2 text-sm flex items-center justify-between",
-                    isActive && "bg-gray-trans",
-                    isSelected && "text-primary"
+                    isActive && "bg-gray-100",
+                    isSelected && "text-blue-600"
                   )}
                   onMouseEnter={() => setActiveIndex(idx)}
                   onClick={() => selectByIndex(idx)}
@@ -164,7 +174,7 @@ const Select = <
                       width="16"
                       height="16"
                       viewBox="0 0 24 24"
-                      className="text-primary"
+                      className="text-blue-600"
                     >
                       <path
                         d="M20 6L9 17l-5-5"
@@ -201,4 +211,5 @@ const Select = <
     </label>
   );
 };
+
 export default Select;

@@ -6,16 +6,13 @@ type Props = {
 };
 
 const ErrorText: FC<Props> = ({ error }) => {
+  if (!error || !Object.keys(error).length) return null;
+
+  const message =
+    typeof error.message !== "string" ? "Что-то пошло не так" : error.message;
+
   return (
-    <div className="">
-      {error && Object.keys(error).length ? (
-        <span className="block text-danger text-[12px] text-center">
-          {typeof error.message !== "string"
-            ? "Что-то пошло не так"
-            : error.message}
-        </span>
-      ) : null}
-    </div>
+    <span className="block text-red-600 text-xs text-center">{message}</span>
   );
 };
 

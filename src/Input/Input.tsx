@@ -25,6 +25,7 @@ type SizeOptions = {
   labelMb: string;
   labelLeft: string;
 };
+
 const sizeStyles: Record<Size, SizeOptions> = {
   sm: {
     height: "h-10",
@@ -57,7 +58,7 @@ type Props<
   TName extends FieldPath<TFieldValues>
 > = {
   size?: Size;
-  type?: HTMLInputTypeAttribute | ("password" | "tel" | "text");
+  type?: HTMLInputTypeAttribute | "password" | "tel" | "text";
   field?: ControllerRenderProps<TFieldValues, TName>;
   fieldState?: ControllerFieldState;
   formState?: UseFormStateReturn<TFieldValues>;
@@ -118,13 +119,13 @@ const Input = <
 
   const currentValue =
     field?.value ?? (rest as any)?.value ?? rest.defaultValue;
+
   const hasValue = useMemo(
     () => !isEmpty(currentValue) || currentValue === 0,
     [currentValue]
   );
 
   const shouldUseFloating = floatingLabel && !!label;
-
   const active =
     shouldUseFloating && (focused || hasValue || !!rest.placeholder);
 
@@ -135,11 +136,13 @@ const Input = <
     : rest.placeholder;
 
   const baseField =
-    `${sz.height} w-full bg-white text-black placeholder:text-dark-gray ${sz.text} ` +
-    `rounded-xl border transition-colors duration-150 outline-none ` +
-    `border-gray focus:border-primary ` +
-    `disabled:bg-gray-trans disabled:text-dark-gray disabled:cursor-not-allowed`;
-  const errorClass = "!border-danger focus:border-danger";
+    `${sz.height} w-full bg-white text-black placeholder:text-gray-500 ${sz.text} ` +
+    `rounded-xl border outline-none ` +
+    `transition-all duration-150 ` +
+    `border-gray-300 hover:border-gray-400 focus:border-gray-500 ` +
+    `disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed`;
+
+  const errorClass = "!border-red-500 focus:!border-red-600";
 
   const onFocus = (e: React.FocusEvent<any>) => {
     setFocused(true);
@@ -156,7 +159,7 @@ const Input = <
       {shouldUseFloating && (
         <motion.label
           htmlFor={inputId}
-          className={`pointer-events-none absolute ${sz.labelLeft} z-[1] ${
+          className={`pointer-events-none absolute ${sz.labelLeft} z-[5] ${
             labelClassName || ""
           }`}
           initial={false}
@@ -167,10 +170,10 @@ const Input = <
           }
           transition={{ type: "tween", duration: 0.18 }}
         >
-          <span className="px-1 rounded bg-white text-dark-gray">
+          <span className="px-1 rounded bg-white text-gray-600">
             {label}
             {requiredMark ? (
-              <span className="text-danger ml-0.5">*</span>
+              <span className="text-red-500 ml-0.5">*</span>
             ) : null}
           </span>
         </motion.label>
@@ -182,7 +185,7 @@ const Input = <
           placeholder={effectivePlaceholder}
           format={format}
           onValueChange={(values) => {
-            field?.onChange(values.value.replace("_", "")?.toString());
+            field?.onChange(values.value.replace("_", ""));
           }}
           value={field?.value?.toString()}
           valueIsNumericString
@@ -200,11 +203,15 @@ const Input = <
         />
       ) : type === "number" ? (
         <div
-          className={`flex items-center justify-between rounded-xl border bg-white ${
-            sz.height
-          } ${hasError ? "border-danger" : "border-gray"} ${
-            numberWrapperClassname || ""
-          }`}
+          className={
+            `flex items-center justify-between rounded-xl border bg-white ${sz.height} transition-all duration-150 ` +
+            `${
+              hasError
+                ? "border-red-500 focus-within:border-red-600"
+                : "border-gray-300 hover:border-gray-400 focus-within:border-gray-500"
+            } ` +
+            `${numberWrapperClassname || ""}`
+          }
         >
           <NumericFormat
             id={inputId}
@@ -212,7 +219,7 @@ const Input = <
             decimalScale={decimalScale}
             style={{ fontSize: "16px" }}
             onValueChange={(values) =>
-              field?.onChange(+values.value.replace("_", "")?.toString())
+              field?.onChange(Number(values.value.replace("_", "")))
             }
             value={
               typeof field?.value === "number"
@@ -223,22 +230,26 @@ const Input = <
             }
             className={`flex-1 bg-transparent border-0 ${sz.paddingX} ${
               sz.text
-            } placeholder:text-dark-gray focus:outline-none ${className || ""}`}
+            } placeholder:text-gray-500 focus:outline-none ${className || ""}`}
             aria-invalid={hasError || undefined}
             onFocus={onFocus}
             onBlur={onBlur}
             {...rest}
             {...MaskRules.number}
           />
+
           {postfix ? (
             <span
-              className={`${sz.postfixPadding} ${sz.text} text-dark-gray select-none`}
+              className={`${sz.postfixPadding} ${sz.text} text-gray-500 select-none`}
             >
               {postfix}
             </span>
           ) : null}
         </div>
       ) : (
+        //
+        // DEFAULT INPUT
+        //
         <input
           id={inputId}
           {...field}
@@ -255,7 +266,7 @@ const Input = <
         />
       )}
 
-      <div className="absolute w-full items-center flex justify-center flex-row min-h-6">
+      <div className="absolute w-full flex items-center justify-center min-h-6">
         <AnimatePresence>
           {fieldState?.error && Object.keys(fieldState.error).length > 0 && (
             <motion.div

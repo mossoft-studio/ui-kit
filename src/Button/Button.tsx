@@ -61,17 +61,27 @@ const Button: FC<PropsWithChildren<Props>> = ({
 
   const variantClasses =
     {
-      primary: "bg-primary text-white hover:bg-primary/90 active:bg-primary/80",
+      primary: "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800",
+
       secondary:
-        "bg-primary/10 text-primary hover:bg-primary/20 active:bg-primary/25",
-      danger: "bg-danger/10 text-danger hover:bg-danger/20 active:bg-danger/30",
-      link: "bg-transparent text-primary hover:underline px-2 py-1 rounded-md",
-      tab: "bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 active:bg-primary/80",
+        "bg-gray-200 text-gray-800 hover:bg-gray-300 active:bg-gray-400",
+
+      danger: "bg-red-500 text-white hover:bg-red-600 active:bg-red-700",
+
+      link:
+        "bg-transparent text-blue-600 px-2 py-1 rounded-md " +
+        "hover:text-blue-700 hover:underline active:text-blue-800",
+
+      tab:
+        "bg-blue-600 text-white px-5 py-2 rounded-full " +
+        "hover:bg-blue-700 active:bg-blue-800",
     }[variant] || "";
 
   const classes = [
-    "inline-flex items-center justify-center font-semibold",
-    "transition-colors duration-200 select-none",
+    "inline-flex items-center justify-center cursor-pointer font-semibold",
+    "transition-opacity transition-colors duration-200 ease-out",
+    "hover:opacity-90 active:opacity-80",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2",
     "disabled:opacity-60 disabled:cursor-not-allowed",
     variant !== "tab" && sizeClasses[size],
     variantClasses,
@@ -96,13 +106,13 @@ const Button: FC<PropsWithChildren<Props>> = ({
           {icon && (
             <Icon
               name={icon}
-              className={`ml-2 ${
+              className={
                 size === "xs"
-                  ? "w-3 h-3"
+                  ? "ml-2 w-3 h-3"
                   : size === "sm"
-                  ? "w-4 h-4"
-                  : "w-5 h-5"
-              }`}
+                  ? "ml-2 w-4 h-4"
+                  : "ml-2 w-5 h-5"
+              }
             />
           )}
         </>

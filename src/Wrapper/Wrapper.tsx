@@ -10,12 +10,7 @@ const Wrapper: React.FC<PropsWithChildren<Props>> = ({
   className,
 }) => {
   return (
-    <div
-      className={twMerge(
-        "bg-main rounded-2xl p-5 border-primary/10 border",
-        className
-      )}
-    >
+    <div className={twMerge("bg-main rounded-2xl p-5 ", className)}>
       {children}
     </div>
   );

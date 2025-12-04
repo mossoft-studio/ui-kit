@@ -4,13 +4,6 @@ import { useInView } from "react-intersection-observer";
 import ScrollTopButton from "@/ScrollTopButton/ScrollTopButton";
 import { twMerge } from "tailwind-merge";
 
-/**
- * A InfiniteScroll component
- * @param {object} props
- * @property infiniteData - Use TanStack Query to integrate with this component.
- * @property renderItem - A function that returns card JSX.Element
- */
-
 type Props<T> = {
   infiniteData: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>;
   className?: string;
@@ -54,12 +47,14 @@ const InfiniteScroll = <T,>({
   return (
     <>
       {isScrollTopButton && <ScrollTopButton className={iconClassName} />}
+
       <div
         className={`grid lg:grid-cols-3 grid-cols-1 gap-5 max-w-[1440px] items-center mx-auto ${className}`}
       >
         {!!flattenPages?.length &&
           flattenPages.map((item, index) => renderItem(item, index))}
       </div>
+
       <div
         className={twMerge(
           "flex mt-8 flex-row items-center justify-center",

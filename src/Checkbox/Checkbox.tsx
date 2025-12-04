@@ -1,10 +1,9 @@
-import React from "react";
+import React, { FC, MouseEvent } from "react";
 import { FieldError } from "react-hook-form";
 import ErrorText from "../ErrorText/ErrorText";
 
 type Props = {
-  onChange: (value: any) => void;
-
+  onChange: (value: boolean) => void;
   title: string;
   secondaryTitle?: string;
   labelClassName?: string;
@@ -15,7 +14,7 @@ type Props = {
   error?: FieldError;
 };
 
-const Checkbox: React.FC<Props> = ({
+const Checkbox: FC<Props> = ({
   onChange,
   title,
   secondaryTitle,
@@ -26,19 +25,42 @@ const Checkbox: React.FC<Props> = ({
   checked,
   disabled,
 }) => {
+  const handleClickLabel = (e: MouseEvent<HTMLLabelElement>) => {
+    e.stopPropagation();
+  };
+
+  const baseLabelClasses =
+    "w-fit flex items-center gap-2 rounded-full md:rounded-2xl px-4 py-1.5 md:py-2 " +
+    "bg-gray-100 hover:bg-gray-200 active:bg-gray-300 " +
+    "transition-colors duration-200 ease-out cursor-pointer";
+
+  const labelClasses = [
+    baseLabelClasses,
+    disabled && "cursor-not-allowed opacity-60",
+    labelClassName,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const titleClasses = ["text-sm text-gray-800 font-normal", titleClassName]
+    .filter(Boolean)
+    .join(" ");
+
+  const checkboxClasses = [
+    "w-4 h-4 rounded border-gray-300 text-blue-600",
+    "focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none",
+    "transition-colors duration-200 ease-out",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <>
-      <label
-        onClick={(e) => e.stopPropagation()}
-        className={`bg-light-gray w-fit flex items-center gap-[10px] py-[6px] px-[15px] md:py-2 rounded-[30px] md:rounded-[15px] cursor-pointer ${labelClassName}`}
-      >
-        <span
-          className={`text-sm text-dark-gray font-normal ${titleClassName}`}
-        >
-          {title}
-        </span>
+      <label onClick={handleClickLabel} className={labelClasses}>
+        <span className={titleClasses}>{title}</span>
         {secondaryTitle && (
-          <span className="text-center text-sm text-dark-gray font-normal">
+          <span className="text-sm text-gray-600 font-normal text-center">
             {secondaryTitle}
           </span>
         )}
@@ -47,7 +69,7 @@ const Checkbox: React.FC<Props> = ({
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
           type="checkbox"
-          className={className}
+          className={checkboxClasses}
         />
       </label>
       {error && <ErrorText error={error} />}
